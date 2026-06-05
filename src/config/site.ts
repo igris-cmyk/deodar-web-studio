@@ -264,6 +264,7 @@ export const projects: Project[] = [
       "A workflow-focused web application built around structured productivity and modern user experience.",
     proof: "Shows ability to design and build focused web applications with clean product structure.",
     screenshot: "/screenshots/dueflow.png",
+      liveUrl: "https://due-flow-peach.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/DueFlow",
     tech: ["Product structure", "UX flows"],
   },
