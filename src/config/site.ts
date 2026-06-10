@@ -41,6 +41,9 @@ export type Service = {
 export type PackageTier = {
   title: string;
   summary: string;
+  startingPrice: string;
+  bestFor: string;
+  useCase: string;
   includes: string[];
   cta: string;
   featured?: boolean;
@@ -50,7 +53,7 @@ export type Project = {
   name: string;
   category: string;
   description: string;
-  proof: string;
+  details: string;
   screenshot?: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -68,27 +71,45 @@ export type FAQItem = {
   answer: string;
 };
 
-export const siteConfig = {
-  name: "Cedar Web Studio",
-  descriptor: "Websites • Digital Menus • Online Stores",
-  tagline: "Professional websites for modern local businesses.",
-  heroHeadline: "Websites that help local businesses look professional and get orders online.",
-  description:
-    "Cedar Web Studio builds clean, mobile-friendly websites, digital menus, and online stores for cafes, shops, service providers, and growing local brands.",
-  promise:
-    "We build clean, mobile-friendly websites that help businesses present their services, display menus or products, and make it easy for customers to contact or order through WhatsApp.",
-  founder: "Sahil Khursheed",
-  githubUrl: "https://github.com/igris-cmyk",
+const configuredEmail = process.env.NEXT_PUBLIC_CEDAR_EMAIL?.trim();
+
+export const contactConfig = {
+  studioName: "Cedar Web Studio",
+  founderName: "Sahil Khursheed",
+  locationLine: "Based in India. Building websites for local businesses across the country.",
+  // Replace with a working professional email before public outreach.
+  email: configuredEmail || "prammer711@gmail.com",
+  hasConfiguredProfessionalEmail: Boolean(configuredEmail),
+  recommendedEmail: "hello@cedarwebstudio.com",
   whatsAppNumber: "919541206212",
-  email: "prammer711@gmail.com",
-  serviceArea: "India-based web studio serving clients remotely worldwide",
-  heroImage: "/cedar-studio-workspace.png",
+  githubUrl: "https://github.com/igris-cmyk",
+  socialLinks: [
+    { label: "GitHub", href: "https://github.com/igris-cmyk" },
+  ],
+  serviceCategories: ["Websites", "Digital menus", "Online stores"],
+  budgetRanges: ["₹5,000 – ₹15,000", "₹15,000 – ₹30,000", "₹30,000+"],
+};
+
+export const siteConfig = {
+  name: contactConfig.studioName,
+  descriptor: "Websites • Digital Menus • Online Stores",
+  tagline: "Websites, digital menus, and online stores for local businesses.",
+  heroHeadline: "Websites, digital menus, and online stores for local businesses.",
+  description:
+    "Cedar Web Studio helps cafes, salons, gyms, Instagram sellers, and home businesses look professional online, explain their offer clearly, and turn interested visitors into WhatsApp enquiries or orders.",
+  promise:
+    "A clean site gives people confidence before they message you. Your Instagram may get attention; your website helps turn that attention into enquiries.",
+  founder: contactConfig.founderName,
+  githubUrl: contactConfig.githubUrl,
+  whatsAppNumber: contactConfig.whatsAppNumber,
+  email: contactConfig.email,
+  serviceArea: contactConfig.locationLine,
   ctas: {
-    primary: "Get a Free Quote",
-    nav: "Get Quote",
-    secondary: "View Services",
+    primary: "Get a quote on WhatsApp",
+    nav: "Get quote",
+    secondary: "View selected builds",
     tertiary: "See Our Work",
-    whatsapp: "Request Quote on WhatsApp",
+    whatsapp: "Send enquiry on WhatsApp",
   },
   nav: [
     { label: "Home", href: "#home" },
@@ -98,9 +119,7 @@ export const siteConfig = {
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavItem[],
-  socialLinks: [
-    { label: "GitHub", href: "https://github.com/igris-cmyk" },
-  ],
+  socialLinks: contactConfig.socialLinks,
 };
 
 export const trustPoints = [
@@ -113,11 +132,10 @@ export const trustPoints = [
 ] as const;
 
 export const heroTrustPoints = [
-  "Mobile-first design",
-  "WhatsApp ordering",
+  "Direct founder communication",
+  "WhatsApp-first enquiries",
   "Domain guidance",
-  "Clean business websites",
-  "Practical launch support",
+  "Clear starting prices",
 ];
 
 export const services: Service[] = [
@@ -125,7 +143,7 @@ export const services: Service[] = [
     title: "Business Websites",
     for: "For salons, gyms, clinics, cafes, service providers, and local businesses.",
     description:
-      "Clean websites that explain what you offer, where you are, and how customers can contact you.",
+      "When a customer checks you after closing time, your website should still explain your services, location, timings, and how to enquire.",
     icon: "building",
     features: [
       "Home, about, and services sections",
@@ -138,7 +156,7 @@ export const services: Service[] = [
     title: "Cafe & Restaurant Menus",
     for: "For cafes, restaurants, food businesses, and cloud kitchens.",
     description:
-      "Digital menus that make prices, categories, timings, location, and ordering easy to find.",
+      "Digital menus that make categories, prices, timings, location, and WhatsApp ordering easy to find from a QR code or Instagram bio.",
     icon: "coffee",
     features: [
       "Digital menu with categories",
@@ -151,7 +169,7 @@ export const services: Service[] = [
     title: "E-commerce & Product Websites",
     for: "For boutiques, shops, product sellers, and Instagram sellers.",
     description:
-      "Product-led websites that help customers browse items and place orders through the right flow.",
+      "Product-led websites that help customers browse properly before they message, order, or check out.",
     icon: "cart",
     features: [
       "Product catalog and detail pages",
@@ -164,7 +182,7 @@ export const services: Service[] = [
     title: "Website Redesigns",
     for: "For businesses with outdated websites.",
     description:
-      "A cleaner structure, stronger mobile experience, and better contact flow for existing websites.",
+      "A cleaner structure, stronger mobile experience, and better enquiry flow for websites that feel old or confusing.",
     icon: "refresh",
     features: [
       "Better mobile layout",
@@ -191,7 +209,10 @@ export const businessTypes = [
 export const packages: PackageTier[] = [
   {
     title: "Starter Website",
-    summary: "For small businesses starting online.",
+    summary: "A focused one-page site for getting the essentials online.",
+    startingPrice: "From ₹5,000",
+    bestFor: "For new cafes, salons, home businesses, and service providers.",
+    useCase: "Best when you need a clean link for Instagram bio, Google profile, or WhatsApp sharing.",
     cta: "Request Starter Quote",
     includes: [
       "One-page website",
@@ -204,7 +225,10 @@ export const packages: PackageTier[] = [
   },
   {
     title: "Business Website",
-    summary: "For a stronger online presence.",
+    summary: "A stronger website for businesses with more to explain.",
+    startingPrice: "From ₹15,000",
+    bestFor: "For businesses with services, galleries, menus, locations, and trust details.",
+    useCase: "Best when customers need to understand your offer before they contact you.",
     cta: "Request Business Quote",
     featured: true,
     includes: [
@@ -217,8 +241,11 @@ export const packages: PackageTier[] = [
     ],
   },
   {
-    title: "Online Store / Ordering Website",
-    summary: "For cafes, shops, and product sellers.",
+    title: "Online Store",
+    summary: "A product or ordering flow for sellers who need more than DMs.",
+    startingPrice: "From ₹30,000",
+    bestFor: "For Instagram sellers, boutiques, cafes, and product-led businesses.",
+    useCase: "Best when customers need to browse items, categories, or menu options before ordering.",
     cta: "Request Store Quote",
     includes: [
       "Menu or product listing",
@@ -237,8 +264,8 @@ export const projects: Project[] = [
     category: "Operations Platform",
     description:
       "A unified operations platform for service businesses, covering leads, bookings, forms, inventory, staff, alerts, activity, automations, and business health.",
-    proof:
-      "Shows dashboard design, business workflows, admin interfaces, and full-stack product thinking.",
+    details:
+      "The build shows how Cedar can organize complex business workflows into a polished, usable interface.",
     screenshot: "/screenshots/orbit.png",
     liveUrl: "https://orbit-sage-eta.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/orbit",
@@ -250,8 +277,8 @@ export const projects: Project[] = [
     category: "Journal Platform",
     description:
       "A trading journal platform with authentication, onboarding, database-backed workflows, trade tracking, and production deployment.",
-    proof:
-      "Shows secure user flows, data management, dashboards, and production-ready application structure.",
+    details:
+      "The build combines onboarding, dashboard screens, and structured data flows in a production-deployed app.",
     screenshot: "/screenshots/trademind.png",
     liveUrl: "https://trade-mind-alpha.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/TradeMind",
@@ -261,10 +288,10 @@ export const projects: Project[] = [
     name: "DueFlow",
     category: "Workflow Application",
     description:
-      "A workflow-focused web application built around structured productivity and modern user experience.",
-    proof: "Shows ability to design and build focused web applications with clean product structure.",
+      "A focused productivity web app for organizing work, money follow-ups, and day-to-day business tasks in a cleaner interface.",
+    details: "The build shows product positioning, calm interface design, and a practical workflow dashboard.",
     screenshot: "/screenshots/dueflow.png",
-      liveUrl: "https://due-flow-peach.vercel.app/",
+    liveUrl: "https://due-flow-peach.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/DueFlow",
     tech: ["Product structure", "UX flows"],
   },
@@ -273,7 +300,8 @@ export const projects: Project[] = [
     category: "Fitness Tracking App",
     description:
       "A clean fitness tracking web app with structured layouts, interactive flows, and responsive design.",
-    proof: "Shows mobile-first UI implementation and interactive frontend development.",
+    details:
+      "The build shows responsive UI craft, interaction design, and a focused app-like experience.",
     screenshot: "/screenshots/repforge.png",
     liveUrl: "https://repforge1.vercel.app/",
     tech: ["Responsive UI", "Interactive flows"],
@@ -282,8 +310,9 @@ export const projects: Project[] = [
     name: "F.R.I.D.A.Y.",
     category: "Engineering Exploration",
     description:
-      "A personal AI assistant project exploring desktop automation, local-first architecture, memory, routing, and tool-based workflows.",
-    proof: "Shows advanced engineering range beyond standard websites.",
+      "A local-first desktop AI assistant experiment exploring command routing, memory, and OS-level workflows.",
+    details:
+      "There is no public screenshot here, so it is presented as a technical capability note rather than an invented app preview.",
     repoUrl: "https://github.com/igris-cmyk/F.R.I.D.A.Y",
     tech: ["Architecture", "Tool workflows"],
     priority: "secondary",
@@ -304,7 +333,7 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Design Preview",
     description:
-      "We prepare the first layout or preview so you can see the direction before full build.",
+      "You see a homepage direction, layout structure, color and typography direction, and key sections before the full build moves ahead.",
   },
   {
     title: "Development & Testing",
@@ -322,7 +351,7 @@ export const whyChoose = [
   {
     title: "Clear scope before starting",
     description:
-      "We define the website scope clearly so there is less confusion later.",
+      "Pages, features, budget, content needs, and launch support are agreed before the build starts.",
     icon: "file",
   },
   {
@@ -344,9 +373,9 @@ export const whyChoose = [
     icon: "globe",
   },
   {
-    title: "No unnecessary complexity",
+    title: "Built for what comes first",
     description:
-      "We build what the business actually needs first. Bigger features can be added later.",
+      "Small businesses often need a clear first launch. Bigger features can be added later when they are actually useful.",
     icon: "shield",
   },
 ] as const;
@@ -355,22 +384,22 @@ export const faqs: FAQItem[] = [
   {
     question: "How much does a website cost?",
     answer:
-      "It depends on the website type, number of pages, menu/products, design level, admin panel, and extra features. After understanding the requirement, we share a clear quote.",
+      "Starter websites begin from ₹5,000, business websites from ₹15,000, and online stores from ₹30,000. Final pricing depends on pages, content readiness, products or menu items, admin needs, and launch support.",
   },
   {
     question: "Do I need domain and hosting?",
     answer:
-      "Yes. Domain and hosting are separate running costs. We can guide you through the setup so the domain stays under your ownership.",
+      "Yes. Domain and hosting are separate running costs. Cedar can guide the setup and handover so the domain stays under your ownership.",
   },
   {
     question: "Can customers order through WhatsApp?",
     answer:
-      "Yes. We can add WhatsApp buttons or a structured WhatsApp order flow depending on the website package.",
+      "Yes. Most local businesses prefer a WhatsApp-first flow, so we can add simple enquiry buttons or a more structured order message depending on the package.",
   },
   {
     question: "Can I update my menu or products myself?",
     answer:
-      "Yes, if the website includes an admin dashboard. For starter websites, updates can be handled manually or through a maintenance plan.",
+      "Yes, if the project includes an admin dashboard. For starter websites, updates can be handled manually after launch or discussed as maintenance.",
   },
   {
     question: "Do you build cafe menu websites?",
@@ -390,7 +419,7 @@ export const faqs: FAQItem[] = [
   {
     question: "How long does it take?",
     answer:
-      "Simple websites can be completed faster. Larger websites with cart, admin panel, or ordering systems take longer. Timeline is confirmed after the scope is finalized.",
+      "Simple websites can move quickly when content is ready. Larger websites with cart, admin panel, or ordering systems take longer. Timeline is confirmed after scope and content are clear.",
   },
 ];
 
@@ -405,8 +434,6 @@ export const websiteOptions = [
 ];
 
 export const budgetOptions = [
-  "₹5,000 – ₹15,000",
-  "₹15,000 – ₹30,000",
-  "₹30,000+",
-  "Not sure yet",
+  ...contactConfig.budgetRanges,
+  "Need guidance",
 ];

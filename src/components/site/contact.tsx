@@ -1,27 +1,21 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { budgetOptions, siteConfig, websiteOptions } from "@/config/site";
+import { budgetOptions, siteConfig } from "@/config/site";
 import { buildQuoteMessage, createWhatsAppQuoteUrl } from "@/lib/utils";
 import { SiteIcon } from "./icon";
 import { SectionHeading } from "./section-heading";
 
 type FormState = {
   name: string;
-  businessName: string;
-  phone: string;
   businessType: string;
-  websiteNeeded: string;
   budgetRange: string;
   message: string;
 };
 
 const initialState: FormState = {
   name: "",
-  businessName: "",
-  phone: "",
   businessType: "",
-  websiteNeeded: websiteOptions[0],
   budgetRange: budgetOptions[0],
   message: "",
 };
@@ -36,19 +30,13 @@ export function Contact() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
 
     const message = buildQuoteMessage({
-      businessName: form.businessName,
-      businessType: form.businessType,
-      websiteNeeded: form.websiteNeeded,
-      budgetRange: form.budgetRange,
-      message: [
-        form.message,
-        form.name ? `Contact Person: ${form.name}` : "",
-        form.phone ? `Phone / WhatsApp: ${form.phone}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      name: String(formData.get("name") || ""),
+      businessType: String(formData.get("businessType") || ""),
+      budgetRange: String(formData.get("budgetRange") || ""),
+      message: String(formData.get("message") || ""),
     });
 
     const url = createWhatsAppQuoteUrl(message);
@@ -59,7 +47,7 @@ export function Contact() {
     }
 
     window.open(url, "_blank", "noopener,noreferrer");
-    setStatus("Your quote request has been prepared in WhatsApp.");
+    setStatus("WhatsApp opened with your enquiry prepared. Review it, then send the message there.");
   }
 
   return (
@@ -68,8 +56,8 @@ export function Contact() {
         <div>
           <SectionHeading
             label="Get Quote"
-            title="Tell us what you want to build."
-            copy="Share your business type, website requirement, and contact details. The form opens WhatsApp with a prepared quote request, so the conversation can start with clear scope."
+            title="Start with a short WhatsApp-ready brief."
+            copy="Share the essentials first. The form opens WhatsApp with your project details already written, so the first conversation starts clearly."
           />
 
           <div className="mt-8 grid gap-4">
@@ -80,7 +68,7 @@ export function Contact() {
                 </span>
                 <div>
                   <p className="font-semibold text-cedar-cream">WhatsApp-first quoting</p>
-                  <p className="mt-1 text-sm leading-6 text-cedar-muted">Submit once and WhatsApp opens with your project details already written.</p>
+                  <p className="mt-1 text-sm leading-6 text-cedar-muted">No long enquiry process. Send a short brief and continue the discussion directly.</p>
                 </div>
               </div>
             </div>
@@ -91,56 +79,59 @@ export function Contact() {
                 </span>
                 <div>
                   <p className="font-semibold text-cedar-cream">Scope before build</p>
-                  <p className="mt-1 text-sm leading-6 text-cedar-muted">We confirm pages, features, timeline, and launch needs before quoting.</p>
+                  <p className="mt-1 text-sm leading-6 text-cedar-muted">Pages, content, budget, timeline, and launch needs are confirmed before work begins.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="rounded-lg border border-cedar-line bg-cedar-ink/75 p-4 shadow-premium sm:p-6">
+        <form
+          action="#contact"
+          onSubmit={onSubmit}
+          className="rounded-lg border border-cedar-line bg-cedar-ink/75 p-4 shadow-premium sm:p-6"
+        >
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Name" value={form.name} onChange={(value) => updateField("name", value)} autoComplete="name" />
             <Field
-              label="Business Name"
-              value={form.businessName}
-              onChange={(value) => updateField("businessName", value)}
-              autoComplete="organization"
+              label="Name"
+              name="name"
+              value={form.name}
+              onChange={(value) => updateField("name", value)}
+              autoComplete="name"
+              required
             />
             <Field
-              label="Phone / WhatsApp Number"
-              value={form.phone}
-              onChange={(value) => updateField("phone", value)}
-              autoComplete="tel"
-            />
-            <Field
-              label="Business Type"
+              label="Business type"
+              name="businessType"
               value={form.businessType}
               onChange={(value) => updateField("businessType", value)}
-              placeholder="Cafe, boutique, salon..."
+              placeholder="Cafe, salon, gym, Instagram seller..."
+              required
             />
             <SelectField
-              label="Website Needed"
-              value={form.websiteNeeded}
-              options={websiteOptions}
-              onChange={(value) => updateField("websiteNeeded", value)}
-            />
-            <SelectField
-              label="Budget Range"
+              label="Budget range"
+              name="budgetRange"
               value={form.budgetRange}
               options={budgetOptions}
               onChange={(value) => updateField("budgetRange", value)}
             />
+            <div className="rounded-md border border-cedar-line bg-cedar-surface px-4 py-3 text-sm leading-6 text-cedar-muted">
+              <p className="font-medium text-cedar-cream">What can Cedar build?</p>
+              <p className="mt-1">Websites, digital menus, online stores, and redesigns.</p>
+            </div>
           </div>
 
           <label className="mt-4 block">
-            <span className="text-sm font-medium text-cedar-cream">Message</span>
+            <span className="text-sm font-medium text-cedar-cream">Message / what you need</span>
             <textarea
               value={form.message}
+              name="message"
               onChange={(event) => updateField("message", event.target.value)}
-              rows={5}
+              rows={4}
+              required
+              aria-required="true"
               className="focus-ring mt-2 w-full resize-y rounded-md border border-cedar-line bg-cedar-surface px-4 py-3 text-sm leading-6 text-cedar-cream placeholder:text-cedar-muted/70"
-              placeholder="Tell us what you need, how many products or menu items you have, and any launch timeline."
+              placeholder="Example: I need a cafe menu website with prices, timings, Google Maps, and WhatsApp ordering."
             />
           </label>
 
@@ -174,24 +165,31 @@ export function Contact() {
 function Field({
   label,
   value,
+  name,
   onChange,
   autoComplete,
   placeholder,
+  required,
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (value: string) => void;
   autoComplete?: string;
   placeholder?: string;
+  required?: boolean;
 }) {
   return (
     <label className="block">
       <span className="text-sm font-medium text-cedar-cream">{label}</span>
       <input
         value={value}
+        name={name}
         onChange={(event) => onChange(event.target.value)}
         autoComplete={autoComplete}
         placeholder={placeholder}
+        required={required}
+        aria-required={required}
         className="focus-ring mt-2 h-12 w-full rounded-md border border-cedar-line bg-cedar-surface px-4 text-sm text-cedar-cream placeholder:text-cedar-muted/70"
       />
     </label>
@@ -201,10 +199,12 @@ function Field({
 function SelectField({
   label,
   value,
+  name,
   options,
   onChange,
 }: {
   label: string;
+  name: string;
   value: string;
   options: string[];
   onChange: (value: string) => void;
@@ -214,6 +214,7 @@ function SelectField({
       <span className="text-sm font-medium text-cedar-cream">{label}</span>
       <select
         value={value}
+        name={name}
         onChange={(event) => onChange(event.target.value)}
         className="focus-ring mt-2 h-12 w-full rounded-md border border-cedar-line bg-cedar-surface px-4 text-sm text-cedar-cream"
       >

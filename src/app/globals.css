@@ -18,6 +18,11 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  background:
+    linear-gradient(rgba(244, 239, 230, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 239, 230, 0.018) 1px, transparent 1px),
+    #0f1613;
+  background-size: 44px 44px;
 }
 
 ::selection {
@@ -46,7 +51,7 @@ body {
   }
 
   .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-cedar-gold;
+    @apply text-xs font-semibold uppercase tracking-normal text-cedar-gold;
   }
 
   .section-title {

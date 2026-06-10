@@ -12,11 +12,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Cedar Web Studio | Websites, Digital Menus & Online Stores",
   description:
-    "Cedar Web Studio builds clean, mobile-friendly websites, digital menus, product showcases, and online stores for local businesses.",
+    "Cedar Web Studio builds websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses in India.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Cedar Web Studio | Websites, Digital Menus & Online Stores",
     description:
-      "Cedar Web Studio builds clean, mobile-friendly websites, digital menus, product showcases, and online stores for local businesses.",
+      "Cedar Web Studio builds websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses in India.",
     siteName: siteConfig.name,
     type: "website",
   },

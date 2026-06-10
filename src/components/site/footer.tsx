@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { contactConfig, siteConfig } from "@/config/site";
 import { SiteIcon } from "./icon";
 
 export function Footer() {
@@ -16,8 +16,9 @@ export function Footer() {
             </span>
           </a>
           <p className="mt-5 max-w-sm text-sm leading-6 text-cedar-muted">
-            Websites, digital menus, and online stores for growing local businesses.
+            Websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses.
           </p>
+          <p className="mt-3 max-w-sm text-sm leading-6 text-cedar-muted">{contactConfig.locationLine}</p>
           <a
             href="#contact"
             className="focus-ring mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cedar-gold px-5 py-3 text-sm font-semibold text-cedar-ink"
@@ -28,16 +29,16 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-cedar-gold">Services</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-normal text-cedar-gold">Services</h2>
           <ul className="mt-4 grid gap-3 text-sm text-cedar-muted">
-            {["Business Websites", "Digital Menus", "Product Websites", "Website Redesigns"].map((item) => (
+            {["Business Websites", "Digital Menus", "Online Stores", "Website Redesigns"].map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-cedar-gold">Quick Links</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-normal text-cedar-gold">Quick Links</h2>
           <ul className="mt-4 grid gap-3 text-sm">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
@@ -48,7 +49,7 @@ export function Footer() {
             ))}
             <li>
               <a
-                href={siteConfig.githubUrl}
+                href={contactConfig.githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="focus-ring inline-flex items-center gap-2 rounded-md text-cedar-muted transition hover:text-cedar-cream"
@@ -57,14 +58,16 @@ export function Footer() {
                 <SiteIcon name="github" className="size-4" />
               </a>
             </li>
-            <li>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="focus-ring rounded-md text-cedar-muted transition hover:text-cedar-cream"
-              >
-                {siteConfig.email}
-              </a>
-            </li>
+            {contactConfig.hasConfiguredProfessionalEmail ? (
+              <li>
+                <a
+                  href={`mailto:${contactConfig.email}`}
+                  className="focus-ring rounded-md text-cedar-muted transition hover:text-cedar-cream"
+                >
+                  {contactConfig.email}
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
