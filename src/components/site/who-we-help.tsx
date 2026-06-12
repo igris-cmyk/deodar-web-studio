@@ -4,19 +4,19 @@ import { SectionHeading } from "./section-heading";
 
 export function WhoWeHelp() {
   return (
-    <section className="section-spacing border-b border-cedar-line bg-cedar-surface/30">
+    <section id="who" className="section-spacing border-b border-deodar-line bg-deodar-surface/30">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <SectionHeading
             label="Who We Help"
-            title="Built for businesses that need more than just a social media page."
-            copy="Social media is useful, but a website gives your business a proper home online with your services, products, menu, location, contact details, and order flow in one clean place."
+            title="Built for local businesses that need a clearer first impression."
+            copy="For businesses that need clear information, a professional first impression, and direct customer contact without sending people through scattered posts and repeated WhatsApp explanations."
           />
           <a
             href="#contact"
-            className="focus-ring mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-cedar-gold/40 bg-cedar-gold px-6 py-3 text-sm font-semibold text-cedar-ink transition hover:bg-[#c89858]"
+            className="focus-ring mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-deodar-gold/40 bg-deodar-gold px-6 py-3 text-sm font-semibold text-deodar-ink transition hover:bg-[#c89858]"
           >
-            Tell us about your business
+            Start a website enquiry
             <SiteIcon name="arrow" className="size-4" />
           </a>
         </div>
@@ -25,7 +25,7 @@ export function WhoWeHelp() {
           {businessTypes.map((type) => (
             <div
               key={type}
-              className="flex min-h-24 items-center rounded-lg border border-cedar-line bg-cedar-ink/60 p-4 text-sm font-medium leading-5 text-cedar-cream transition hover:border-cedar-gold/40"
+              className="flex min-h-24 items-center rounded-lg border border-deodar-line bg-deodar-ink/60 p-4 text-sm font-medium leading-5 text-deodar-cream transition hover:border-deodar-gold/40"
             >
               {type}
             </div>

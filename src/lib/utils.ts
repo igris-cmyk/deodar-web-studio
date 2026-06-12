@@ -20,16 +20,24 @@ export function createWhatsAppQuoteUrl(message: string) {
 
 export function buildQuoteMessage(values: {
   name?: string;
+  businessName?: string;
   businessType?: string;
+  phone?: string;
+  serviceNeeded?: string;
   budgetRange?: string;
+  timeline?: string;
   message?: string;
 }) {
   return [
-    "Hi Cedar Web Studio, I want to discuss a website, digital menu, or online store for my business.",
+    "Hi Deodar Web Studio, I want to discuss a website for my business.",
     "",
     `Name: ${values.name || ""}`,
-    `Business Type: ${values.businessType || ""}`,
-    `Budget Range: ${values.budgetRange || ""}`,
+    `Business: ${values.businessName || ""}`,
+    `Business type: ${values.businessType || ""}`,
+    `Phone / WhatsApp: ${values.phone || ""}`,
+    `Service needed: ${values.serviceNeeded || ""}`,
+    `Budget: ${values.budgetRange || ""}`,
+    `Timeline: ${values.timeline || ""}`,
     `Message: ${values.message || ""}`,
   ].join("\n");
 }

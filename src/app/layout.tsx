@@ -10,16 +10,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cedar Web Studio | Websites, Digital Menus & Online Stores",
+  title: "Deodar Web Studio | Clean Websites for Local Businesses",
   description:
-    "Cedar Web Studio builds websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses in India.",
+    "Deodar Web Studio builds clean, conversion-ready websites for local businesses that need trust and WhatsApp enquiries.",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Cedar Web Studio | Websites, Digital Menus & Online Stores",
+    title: "Deodar Web Studio | Clean Websites for Local Businesses",
     description:
-      "Cedar Web Studio builds websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses in India.",
+      "Clean, conversion-ready websites for cafes, clinics, shops, gyms, coaches, and service businesses.",
     siteName: siteConfig.name,
     type: "website",
   },
@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} bg-cedar-ink font-sans text-cedar-cream antialiased`}>
+      <body className={`${inter.variable} bg-deodar-ink font-sans text-deodar-cream antialiased`}>
         {children}
       </body>
     </html>

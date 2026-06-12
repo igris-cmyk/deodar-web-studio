@@ -4,21 +4,20 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { SiteIcon } from "./icon";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cedar-line bg-cedar-ink/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-deodar-line bg-deodar-ink/90 backdrop-blur-xl">
       <nav className="section-shell flex min-h-16 items-center justify-between gap-4" aria-label="Main navigation">
         <a href="#home" className="focus-ring flex items-center gap-3 rounded-md">
-          <span className="flex size-10 items-center justify-center rounded-md border border-cedar-gold/30 bg-cedar-surface text-cedar-gold">
-            <SiteIcon name="leaf" className="size-5" />
+          <span className="flex size-10 items-center justify-center rounded-md border border-deodar-gold/30 bg-deodar-surface text-sm font-semibold text-deodar-gold">
+            D
           </span>
           <span className="min-w-0">
-            <span className="block text-sm font-semibold text-cedar-cream sm:text-base">{siteConfig.name}</span>
-            <span className="block text-[11px] text-cedar-muted sm:text-xs">{siteConfig.descriptor}</span>
+            <span className="block text-sm font-semibold text-deodar-cream sm:text-base">{siteConfig.name}</span>
+            <span className="block text-[11px] text-deodar-muted sm:text-xs">{siteConfig.descriptor}</span>
           </span>
         </a>
 
@@ -27,7 +26,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="focus-ring rounded-md px-3 py-2 text-sm font-medium text-cedar-muted transition hover:text-cedar-cream"
+              className="focus-ring inline-flex min-h-10 items-center rounded-md px-3 py-2 text-sm font-medium text-deodar-muted transition hover:text-deodar-cream"
             >
               {item.label}
             </a>
@@ -37,7 +36,7 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href="#contact"
-            className="focus-ring rounded-full border border-cedar-gold/40 bg-cedar-gold px-5 py-2.5 text-sm font-semibold text-cedar-ink transition hover:bg-[#c89858]"
+            className="focus-ring rounded-full border border-deodar-gold/40 bg-deodar-gold px-5 py-2.5 text-sm font-semibold text-deodar-ink transition hover:bg-[#c89858]"
           >
             {siteConfig.ctas.nav}
           </a>
@@ -45,7 +44,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="focus-ring inline-flex size-11 items-center justify-center rounded-md border border-cedar-line bg-cedar-surface text-cedar-cream lg:hidden"
+          className="focus-ring inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-deodar-line bg-deodar-surface text-deodar-cream lg:hidden"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((value) => !value)}
@@ -56,7 +55,7 @@ export function Navbar() {
 
       <div
         className={cn(
-          "border-t border-cedar-line bg-cedar-ink px-4 py-4 lg:hidden",
+          "border-t border-deodar-line bg-deodar-ink px-4 py-4 lg:hidden",
           isOpen ? "block" : "hidden",
         )}
       >
@@ -65,7 +64,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="focus-ring rounded-md px-3 py-3 text-sm font-medium text-cedar-muted transition hover:bg-cedar-surface hover:text-cedar-cream"
+              className="focus-ring rounded-md px-3 py-3 text-sm font-medium text-deodar-muted transition hover:bg-deodar-surface hover:text-deodar-cream"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
@@ -73,7 +72,7 @@ export function Navbar() {
           ))}
           <a
             href="#contact"
-            className="focus-ring mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-cedar-gold px-5 py-3 text-sm font-semibold text-cedar-ink"
+            className="focus-ring mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-deodar-gold px-5 py-3 text-sm font-semibold text-deodar-ink"
             onClick={() => setIsOpen(false)}
           >
             {siteConfig.ctas.nav}

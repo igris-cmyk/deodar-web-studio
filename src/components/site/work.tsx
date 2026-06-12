@@ -6,12 +6,12 @@ import { SectionHeading } from "./section-heading";
 
 export function Work() {
   return (
-    <section id="work" className="section-spacing border-b border-cedar-line bg-cedar-surface/30">
+    <section id="work" className="section-spacing border-b border-deodar-line bg-deodar-surface/30">
       <div className="section-shell">
         <SectionHeading
           label="Selected Builds"
-          title="Selected builds with enough room to inspect the craft."
-          copy="We haven’t listed client work publicly yet — these selected builds show our design and engineering range across websites, dashboards, and responsive product interfaces."
+          title="Working Demos & Selected Builds"
+          copy="These are selected builds and production-style demos, not public client case studies. They show interface quality, structure, and engineering range without pretending to be client proof."
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -24,9 +24,9 @@ export function Work() {
                 project.priority === "secondary" && "opacity-90",
               )}
             >
-              <div className="overflow-hidden rounded-lg border border-cedar-line bg-cedar-ink/60">
+              <div className="overflow-hidden rounded-lg border border-deodar-line bg-deodar-ink/60">
                 {project.screenshot ? (
-                  <div className={cn("relative bg-cedar-ink", project.priority === "primary" ? "aspect-[16/9]" : "aspect-[16/10]")}>
+                  <div className={cn("relative bg-deodar-ink", project.priority === "primary" ? "aspect-[16/9]" : "aspect-[16/10]")}>
                     <Image
                       src={project.screenshot}
                       alt={`${project.name} real project screenshot preview`}
@@ -34,30 +34,30 @@ export function Work() {
                       sizes={project.priority === "primary" ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 42vw, 100vw"}
                       className="object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-cedar-ink/30 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deodar-ink/30 via-transparent to-transparent" />
                   </div>
                 ) : (
                   <TechnicalPreview category={project.category} />
                 )}
-                <div className="flex flex-col items-start gap-2 border-t border-cedar-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                  <span className="rounded-full border border-cedar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-cedar-gold">
+                <div className="flex flex-col items-start gap-2 border-t border-deodar-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                  <span className="rounded-full border border-deodar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-deodar-gold">
                     {project.category}
                   </span>
-                  <span className="text-xs text-cedar-muted">Selected build</span>
+                  <span className="text-xs text-deodar-muted">Selected build</span>
                 </div>
               </div>
 
               <div className={cn("mt-6", project.priority === "primary" && "lg:mt-0")}>
-                <h3 className="text-2xl font-semibold text-cedar-cream">{project.name}</h3>
-                <p className="mt-3 text-base leading-7 text-cedar-muted">{project.description}</p>
-                <div className="mt-5 rounded-lg border border-cedar-line bg-cedar-ink/40 p-4">
-                  <p className="text-sm leading-6 text-cedar-muted">{project.details}</p>
+                <h3 className="text-2xl font-semibold text-deodar-cream">{project.name}</h3>
+                <p className="mt-3 text-base leading-7 text-deodar-muted">{project.description}</p>
+                <div className="mt-5 rounded-lg border border-deodar-line bg-deodar-ink/40 p-4">
+                  <p className="text-sm leading-6 text-deodar-muted">{project.details}</p>
                 </div>
 
                 {project.tech?.length ? (
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.tech.map((item) => (
-                      <span key={item} className="rounded-full border border-cedar-line px-3 py-1 text-xs text-cedar-muted">
+                      <span key={item} className="rounded-full border border-deodar-line px-3 py-1 text-xs text-deodar-muted">
                         {item}
                       </span>
                     ))}
@@ -70,7 +70,7 @@ export function Work() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full bg-cedar-gold px-4 py-2 text-sm font-semibold text-cedar-ink"
+                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full bg-deodar-gold px-4 py-2 text-sm font-semibold text-deodar-ink"
                     >
                       View Live
                       <SiteIcon name="external" className="size-4" />
@@ -81,7 +81,7 @@ export function Work() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full border border-cedar-line px-4 py-2 text-sm font-semibold text-cedar-cream"
+                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full border border-deodar-line px-4 py-2 text-sm font-semibold text-deodar-cream"
                     >
                       GitHub
                       <SiteIcon name="github" className="size-4" />
@@ -101,22 +101,22 @@ function TechnicalPreview({ category }: { category: string }) {
   return (
     <div className="min-h-[260px] p-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full border border-cedar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-cedar-gold">
+        <span className="rounded-full border border-deodar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-deodar-gold">
           {category}
         </span>
-        <SiteIcon name="workflow" className="size-5 text-cedar-muted" />
+        <SiteIcon name="workflow" className="size-5 text-deodar-muted" />
       </div>
-      <div className="mt-6 overflow-hidden rounded-md border border-cedar-line bg-[#0A0F0D]">
-        <div className="flex h-9 items-center gap-1.5 border-b border-cedar-line px-3" aria-hidden="true">
-          <span className="size-2 rounded-full bg-cedar-gold/80" />
-          <span className="size-2 rounded-full bg-cedar-muted/40" />
-          <span className="size-2 rounded-full bg-cedar-forest" />
+      <div className="mt-6 overflow-hidden rounded-md border border-deodar-line bg-[#0A0F0D]">
+        <div className="flex h-9 items-center gap-1.5 border-b border-deodar-line px-3" aria-hidden="true">
+          <span className="size-2 rounded-full bg-deodar-gold/80" />
+          <span className="size-2 rounded-full bg-deodar-muted/40" />
+          <span className="size-2 rounded-full bg-deodar-accent" />
         </div>
-        <div className="space-y-3 p-4 font-mono text-xs leading-6 text-cedar-muted">
-          <p><span className="text-cedar-gold">route</span> command - local workflow</p>
-          <p><span className="text-cedar-gold">memory</span> context - user approved</p>
-          <p><span className="text-cedar-gold">tools</span> desktop actions - guarded</p>
-          <p className="text-cedar-cream">status: technical exploration</p>
+        <div className="space-y-3 p-4 font-mono text-xs leading-6 text-deodar-muted">
+          <p><span className="text-deodar-gold">route</span> command - local workflow</p>
+          <p><span className="text-deodar-gold">memory</span> context - user approved</p>
+          <p><span className="text-deodar-gold">tools</span> desktop actions - guarded</p>
+          <p className="text-deodar-cream">status: technical exploration</p>
         </div>
       </div>
     </div>

@@ -51,22 +51,22 @@ body {
   }
 
   .section-label {
-    @apply text-xs font-semibold uppercase tracking-normal text-cedar-gold;
+    @apply text-xs font-semibold uppercase tracking-normal text-deodar-gold;
   }
 
   .section-title {
-    @apply mt-3 max-w-3xl text-3xl font-semibold leading-tight text-cedar-cream sm:text-4xl lg:text-5xl;
+    @apply mt-3 max-w-3xl text-3xl font-semibold leading-tight text-deodar-cream sm:text-4xl lg:text-5xl;
   }
 
   .section-copy {
-    @apply mt-4 max-w-2xl text-base leading-7 text-cedar-muted sm:text-lg;
+    @apply mt-4 max-w-2xl text-base leading-7 text-deodar-muted sm:text-lg;
   }
 
   .premium-card {
-    @apply rounded-lg border border-cedar-line bg-cedar-surface/90 shadow-[inset_0_1px_0_rgba(244,239,230,0.05)] transition duration-200 hover:-translate-y-1 hover:border-cedar-gold/40 hover:shadow-lift;
+    @apply rounded-lg border border-deodar-line bg-deodar-surface/90 shadow-[inset_0_1px_0_rgba(244,239,230,0.05)] transition duration-200 hover:-translate-y-1 hover:border-deodar-gold/40 hover:shadow-lift;
   }
 
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-cedar-gold focus:ring-offset-2 focus:ring-offset-cedar-ink;
+    @apply focus:outline-none focus:ring-2 focus:ring-deodar-gold focus:ring-offset-2 focus:ring-offset-deodar-ink;
   }
 }

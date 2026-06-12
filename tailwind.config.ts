@@ -5,14 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cedar: {
+        deodar: {
           ink: "#0F1613",
           surface: "#17211C",
           surface2: "#1D2A23",
           cream: "#F4EFE6",
           muted: "#B8B0A3",
           gold: "#B88746",
-          forest: "#2F5D46",
+          accent: "#2F5D46",
           line: "rgba(244, 239, 230, 0.12)",
         },
       },

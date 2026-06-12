@@ -12,7 +12,6 @@ export type IconKey =
   | "github"
   | "globe"
   | "layout"
-  | "leaf"
   | "map"
   | "menu"
   | "message"
@@ -34,7 +33,8 @@ export type Service = {
   title: string;
   for: string;
   description: string;
-  features: string[];
+  includes: string[];
+  outcome: string;
   icon: IconKey;
 };
 
@@ -71,50 +71,64 @@ export type FAQItem = {
   answer: string;
 };
 
-const configuredEmail = process.env.NEXT_PUBLIC_CEDAR_EMAIL?.trim();
+export type WhyPoint = {
+  title: string;
+  description: string;
+  icon: IconKey;
+};
+
+const configuredEmail = process.env.NEXT_PUBLIC_DEODAR_EMAIL?.trim();
 
 export const contactConfig = {
-  studioName: "Cedar Web Studio",
+  studioName: "Deodar Web Studio",
   founderName: "Sahil Khursheed",
-  locationLine: "Based in India. Building websites for local businesses across the country.",
-  // Replace with a working professional email before public outreach.
+  locationLine: "Based in India. Building clean websites for local businesses.",
+  // Replace with a working professional email before using email for public outreach.
   email: configuredEmail || "prammer711@gmail.com",
   hasConfiguredProfessionalEmail: Boolean(configuredEmail),
-  recommendedEmail: "hello@cedarwebstudio.com",
+  recommendedEmail: "hello@deodarwebstudio.com",
   whatsAppNumber: "919541206212",
   githubUrl: "https://github.com/igris-cmyk",
   socialLinks: [
     { label: "GitHub", href: "https://github.com/igris-cmyk" },
   ],
-  serviceCategories: ["Websites", "Digital menus", "Online stores"],
-  budgetRanges: ["₹5,000 – ₹15,000", "₹15,000 – ₹30,000", "₹30,000+"],
+  serviceCategories: [
+    "Business Websites",
+    "Cafe & Menu Websites",
+    "Product / Service Showcase Websites",
+  ],
+  budgetRanges: [
+    "Starter one-page presence from ₹3,500",
+    "₹5,000 - ₹15,000",
+    "₹15,000 - ₹30,000",
+    "₹30,000+",
+    "Need guidance",
+  ],
 };
 
 export const siteConfig = {
   name: contactConfig.studioName,
-  descriptor: "Websites • Digital Menus • Online Stores",
-  tagline: "Websites, digital menus, and online stores for local businesses.",
-  heroHeadline: "Websites, digital menus, and online stores for local businesses.",
+  descriptor: "Clean Websites • Local Business • WhatsApp Enquiries",
+  tagline: "Clean websites for businesses that want to be trusted.",
+  heroHeadline: "Your business deserves a website that looks as serious as the work you do.",
   description:
-    "Cedar Web Studio helps cafes, salons, gyms, Instagram sellers, and home businesses look professional online, explain their offer clearly, and turn interested visitors into WhatsApp enquiries or orders.",
+    "Deodar Web Studio builds clean, mobile-friendly websites for cafes, clinics, shops, gyms, coaches, and service businesses - designed to build trust and turn visitors into real enquiries.",
   promise:
-    "A clean site gives people confidence before they message you. Your Instagram may get attention; your website helps turn that attention into enquiries.",
+    "We help your business look clear, professional, and easy to contact online.",
   founder: contactConfig.founderName,
-  githubUrl: contactConfig.githubUrl,
-  whatsAppNumber: contactConfig.whatsAppNumber,
-  email: contactConfig.email,
   serviceArea: contactConfig.locationLine,
   ctas: {
-    primary: "Get a quote on WhatsApp",
-    nav: "Get quote",
+    primary: "Start a website enquiry",
+    nav: "Start enquiry",
     secondary: "View selected builds",
-    tertiary: "See Our Work",
+    tertiary: "See selected builds",
     whatsapp: "Send enquiry on WhatsApp",
   },
   nav: [
     { label: "Home", href: "#home" },
+    { label: "Who", href: "#who" },
     { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
+    { label: "Builds", href: "#work" },
     { label: "Process", href: "#process" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
@@ -122,138 +136,118 @@ export const siteConfig = {
   socialLinks: contactConfig.socialLinks,
 };
 
+export const heroTrustPoints = [
+  "WhatsApp-first enquiry flow",
+  "Built for local businesses",
+  "Direct communication with Sahil",
+  "Clean mobile-first structure",
+];
+
 export const trustPoints = [
-  { label: "Mobile-Friendly", icon: "phone" },
-  { label: "WhatsApp Ordering", icon: "message" },
-  { label: "Digital Menus", icon: "menu" },
-  { label: "Product Showcases", icon: "shopping" },
-  { label: "Domain & Hosting Guidance", icon: "globe" },
-  { label: "Clean UI", icon: "layout" },
+  { label: "Clear services", icon: "file" },
+  { label: "WhatsApp CTA", icon: "message" },
+  { label: "Mobile responsive", icon: "phone" },
+  { label: "Location & timings", icon: "map" },
+  { label: "Basic SEO-ready structure", icon: "globe" },
+  { label: "Domain guidance", icon: "shield" },
 ] as const;
 
-export const heroTrustPoints = [
-  "Direct founder communication",
-  "WhatsApp-first enquiries",
-  "Domain guidance",
-  "Clear starting prices",
+export const businessTypes = [
+  "Cafes",
+  "Restaurants",
+  "Clinics",
+  "Gyms",
+  "Salons",
+  "Shops",
+  "Coaches",
+  "Service Providers",
 ];
 
 export const services: Service[] = [
   {
     title: "Business Websites",
-    for: "For salons, gyms, clinics, cafes, service providers, and local businesses.",
+    for: "For clinics, gyms, salons, shops, coaches, consultants, and service providers.",
     description:
-      "When a customer checks you after closing time, your website should still explain your services, location, timings, and how to enquire.",
+      "A clean website where customers can understand your services, see your location and timings, view photos, and contact you directly.",
     icon: "building",
-    features: [
-      "Home, about, and services sections",
-      "Gallery and business details",
-      "Contact section with WhatsApp button",
-      "Google Maps and mobile responsive layout",
+    includes: [
+      "Service sections and business details",
+      "Photos, timings, location, and map",
+      "Contact form and WhatsApp CTA",
+      "Mobile responsive layout",
     ],
+    outcome:
+      "Customers get the information they need before messaging, calling, or visiting.",
   },
   {
-    title: "Cafe & Restaurant Menus",
-    for: "For cafes, restaurants, food businesses, and cloud kitchens.",
+    title: "Cafe & Menu Websites",
+    for: "For cafes, restaurants, bakeries, cloud kitchens, and food businesses.",
     description:
-      "Digital menus that make categories, prices, timings, location, and WhatsApp ordering easy to find from a QR code or Instagram bio.",
+      "Digital menu, food categories, item pricing, photos, opening hours, location, and WhatsApp ordering or enquiry flow.",
     icon: "coffee",
-    features: [
-      "Digital menu with categories",
-      "Prices, opening hours, and location",
-      "WhatsApp order button",
-      "QR menu upgrade option",
+    includes: [
+      "Menu categories and item pricing",
+      "Food photos and opening hours",
+      "Location and ordering information",
+      "WhatsApp order or enquiry flow",
     ],
+    outcome:
+      "Customers can check the menu and start an order without asking for basic details again.",
   },
   {
-    title: "E-commerce & Product Websites",
-    for: "For boutiques, shops, product sellers, and Instagram sellers.",
+    title: "Product / Service Showcase Websites",
+    for: "For small sellers and businesses that need to display products, services, prices, photos, and enquiry options.",
     description:
-      "Product-led websites that help customers browse properly before they message, order, or check out.",
-    icon: "cart",
-    features: [
-      "Product catalog and detail pages",
-      "Cart or checkout when needed",
-      "WhatsApp order flow",
-      "Admin dashboard as an optional upgrade",
+      "A simple mobile-first showcase that makes your offer easy to browse and easy to enquire about.",
+    icon: "store",
+    includes: [
+      "Product or service cards",
+      "Prices, photos, and key details",
+      "WhatsApp enquiry buttons",
+      "Basic SEO-ready structure",
     ],
-  },
-  {
-    title: "Website Redesigns",
-    for: "For businesses with outdated websites.",
-    description:
-      "A cleaner structure, stronger mobile experience, and better enquiry flow for websites that feel old or confusing.",
-    icon: "refresh",
-    features: [
-      "Better mobile layout",
-      "Cleaner design and content structure",
-      "Improved contact or order flow",
-      "Performance cleanup where practical",
-    ],
+    outcome:
+      "Customers can browse first, then message with clearer intent.",
   },
 ];
 
-export const businessTypes = [
-  "Cafes & restaurants",
-  "Clothing stores",
-  "Boutiques",
-  "Salons",
-  "Gyms",
-  "Clinics",
-  "Local shops",
-  "Instagram sellers",
-  "Home businesses",
-  "Service providers",
+export const whyItMatters: WhyPoint[] = [
+  {
+    title: "Customers check first",
+    description:
+      "People often look online before they call, visit, book, or place an order. Unclear information creates doubt before the first conversation.",
+    icon: "users",
+  },
+  {
+    title: "Instagram alone is not enough",
+    description:
+      "Posts move, highlights get messy, and important details are easy to miss. A website gives your business one reliable public front.",
+    icon: "layout",
+  },
+  {
+    title: "WhatsApp works better with context",
+    description:
+      "When services, menu, prices, timings, and location are clear, enquiries are easier to answer and less repetitive.",
+    icon: "message",
+  },
 ];
 
 export const packages: PackageTier[] = [
   {
-    title: "Starter Website",
-    summary: "A focused one-page site for getting the essentials online.",
-    startingPrice: "From ₹5,000",
-    bestFor: "For new cafes, salons, home businesses, and service providers.",
-    useCase: "Best when you need a clean link for Instagram bio, Google profile, or WhatsApp sharing.",
-    cta: "Request Starter Quote",
+    title: "Starter One-Page Presence",
+    summary: "A focused one-page website for selected early clients.",
+    startingPrice: "From ₹3,500",
+    bestFor: "For small businesses that need a serious first website without heavy features.",
+    useCase:
+      "Best when you need 5-6 clear sections, mobile responsiveness, WhatsApp CTA, basic location/contact details, and deployment on free hosting.",
+    cta: "Discuss starter scope",
     includes: [
       "One-page website",
-      "Business details",
-      "Services, menu, or products",
-      "WhatsApp button",
-      "Location",
-      "Mobile-friendly layout",
-    ],
-  },
-  {
-    title: "Business Website",
-    summary: "A stronger website for businesses with more to explain.",
-    startingPrice: "From ₹15,000",
-    bestFor: "For businesses with services, galleries, menus, locations, and trust details.",
-    useCase: "Best when customers need to understand your offer before they contact you.",
-    cta: "Request Business Quote",
-    featured: true,
-    includes: [
-      "Multi-section or multi-page layout",
-      "Service or product presentation",
-      "Gallery",
-      "Contact form",
-      "Google Maps",
-      "SEO basics",
-    ],
-  },
-  {
-    title: "Online Store",
-    summary: "A product or ordering flow for sellers who need more than DMs.",
-    startingPrice: "From ₹30,000",
-    bestFor: "For Instagram sellers, boutiques, cafes, and product-led businesses.",
-    useCase: "Best when customers need to browse items, categories, or menu options before ordering.",
-    cta: "Request Store Quote",
-    includes: [
-      "Menu or product listing",
-      "Categories",
-      "Cart or checkout if needed",
-      "WhatsApp order flow",
-      "Admin dashboard if needed",
-      "Order management if needed",
+      "5-6 sections",
+      "Mobile responsive design",
+      "WhatsApp CTA",
+      "Basic contact and location details",
+      "1 revision round",
     ],
   },
 ];
@@ -261,179 +255,148 @@ export const packages: PackageTier[] = [
 export const projects: Project[] = [
   {
     name: "Orbit",
-    category: "Operations Platform",
+    category: "Operations dashboard concept",
     description:
-      "A unified operations platform for service businesses, covering leads, bookings, forms, inventory, staff, alerts, activity, automations, and business health.",
+      "An operations dashboard concept for service businesses, covering leads, bookings, forms, inventory, staff, alerts, activity, and business health.",
     details:
-      "The build shows how Cedar can organize complex business workflows into a polished, usable interface.",
+      "Useful for showing structured business workflows, dashboard clarity, and interface systems.",
     screenshot: "/screenshots/orbit.png",
     liveUrl: "https://orbit-sage-eta.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/orbit",
-    tech: ["Dashboards", "Workflows", "Admin UI"],
+    tech: ["Service operations", "Dashboard UI", "Workflow design"],
     priority: "primary",
   },
   {
-    name: "TradeMind",
-    category: "Journal Platform",
-    description:
-      "A trading journal platform with authentication, onboarding, database-backed workflows, trade tracking, and production deployment.",
-    details:
-      "The build combines onboarding, dashboard screens, and structured data flows in a production-deployed app.",
-    screenshot: "/screenshots/trademind.png",
-    liveUrl: "https://trade-mind-alpha.vercel.app/",
-    repoUrl: "https://github.com/igris-cmyk/TradeMind",
-    tech: ["User flows", "Data workflows", "Dashboards"],
-  },
-  {
     name: "DueFlow",
-    category: "Workflow Application",
+    category: "Workflow web app",
     description:
-      "A focused productivity web app for organizing work, money follow-ups, and day-to-day business tasks in a cleaner interface.",
-    details: "The build shows product positioning, calm interface design, and a practical workflow dashboard.",
+      "A clean productivity and workflow web app for organizing work, follow-ups, and day-to-day business tasks.",
+    details:
+      "Shows calm product positioning, readable interface design, and practical workflow structure.",
     screenshot: "/screenshots/dueflow.png",
     liveUrl: "https://due-flow-peach.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/DueFlow",
-    tech: ["Product structure", "UX flows"],
+    tech: ["Workflow UX", "Product structure", "Responsive interface"],
   },
   {
     name: "RepForge",
-    category: "Fitness Tracking App",
+    category: "Fitness interface",
     description:
-      "A clean fitness tracking web app with structured layouts, interactive flows, and responsive design.",
+      "A fitness tracking interface for a gym or workout use case, with structured layouts and responsive app-like screens.",
     details:
-      "The build shows responsive UI craft, interaction design, and a focused app-like experience.",
+      "Relevant for gyms and coaches who need a focused, mobile-friendly digital product or program interface.",
     screenshot: "/screenshots/repforge.png",
     liveUrl: "https://repforge1.vercel.app/",
-    tech: ["Responsive UI", "Interactive flows"],
+    tech: ["Fitness use case", "Responsive UI", "Interaction design"],
   },
   {
-    name: "F.R.I.D.A.Y.",
-    category: "Engineering Exploration",
+    name: "TradeMind",
+    category: "Full-stack product demo",
     description:
-      "A local-first desktop AI assistant experiment exploring command routing, memory, and OS-level workflows.",
+      "A SaaS-style trading journal demonstrating authentication, database-backed workflows, dashboards, and production deployment.",
     details:
-      "There is no public screenshot here, so it is presented as a technical capability note rather than an invented app preview.",
-    repoUrl: "https://github.com/igris-cmyk/F.R.I.D.A.Y",
-    tech: ["Architecture", "Tool workflows"],
-    priority: "secondary",
+      "Included carefully as a technical range demo, not as a local business case study.",
+    screenshot: "/screenshots/trademind.png",
+    liveUrl: "https://trade-mind-alpha.vercel.app/",
+    repoUrl: "https://github.com/igris-cmyk/TradeMind",
+    tech: ["Authentication", "Database workflows", "Dashboards"],
   },
 ];
 
 export const processSteps: ProcessStep[] = [
   {
-    title: "Requirement Discussion",
+    title: "Share your business details",
     description:
-      "We understand your business, website goal, content, products, budget, and timeline.",
+      "Tell us what you do, who you serve, what information customers ask for, and what you want the website to achieve.",
   },
   {
-    title: "Scope & Quote",
+    title: "Confirm scope and timeline",
     description:
-      "We define what will be built, what is included, timeline, and cost.",
+      "We agree on pages, sections, content needed, budget range, timeline, and what is not included.",
   },
   {
-    title: "Design Preview",
+    title: "Design and build",
     description:
-      "You see a homepage direction, layout structure, color and typography direction, and key sections before the full build moves ahead.",
+      "The site is structured for clarity first, then designed and built as a clean mobile-friendly web presence.",
   },
   {
-    title: "Development & Testing",
+    title: "Review and revise",
     description:
-      "We build the website, make it mobile-friendly, test links, forms, menus, order flows, and deployment setup.",
+      "You review the website, share corrections, and we handle the agreed revision round before launch.",
   },
   {
-    title: "Launch & Handover",
+    title: "Deploy and hand over",
     description:
-      "We connect the domain or hosting, launch the site, and guide you through the final handover.",
+      "We help with deployment, explain the setup, and hand over the live website and important account details.",
   },
 ];
-
-export const whyChoose = [
-  {
-    title: "Clear scope before starting",
-    description:
-      "Pages, features, budget, content needs, and launch support are agreed before the build starts.",
-    icon: "file",
-  },
-  {
-    title: "Mobile-first design",
-    description:
-      "Most customers browse from phones, so the website is designed to look good on mobile first.",
-    icon: "phone",
-  },
-  {
-    title: "Practical business features",
-    description:
-      "WhatsApp buttons, digital menus, product listings, contact forms, maps, and ordering flows.",
-    icon: "check",
-  },
-  {
-    title: "Domain & hosting guidance",
-    description:
-      "We help clients understand domain, hosting, and launch setup without unnecessary confusion.",
-    icon: "globe",
-  },
-  {
-    title: "Built for what comes first",
-    description:
-      "Small businesses often need a clear first launch. Bigger features can be added later when they are actually useful.",
-    icon: "shield",
-  },
-] as const;
 
 export const faqs: FAQItem[] = [
   {
-    question: "How much does a website cost?",
+    question: "Do I need a domain?",
     answer:
-      "Starter websites begin from ₹5,000, business websites from ₹15,000, and online stores from ₹30,000. Final pricing depends on pages, content readiness, products or menu items, admin needs, and launch support.",
+      "A domain is recommended if you want a professional website address. We can guide you, but the domain should stay under your ownership.",
   },
   {
-    question: "Do I need domain and hosting?",
+    question: "Is hosting monthly?",
     answer:
-      "Yes. Domain and hosting are separate running costs. Cedar can guide the setup and handover so the domain stays under your ownership.",
+      "Hosting can be free for simple static websites, or paid if the project needs more features. Domain and paid hosting costs are separate unless included in your quote.",
   },
   {
-    question: "Can customers order through WhatsApp?",
+    question: "Can you connect WhatsApp?",
     answer:
-      "Yes. Most local businesses prefer a WhatsApp-first flow, so we can add simple enquiry buttons or a more structured order message depending on the package.",
+      "Yes. WhatsApp buttons and pre-filled enquiry messages can be added so customers can contact you directly from the website.",
   },
   {
-    question: "Can I update my menu or products myself?",
+    question: "Can I update my menu or services later?",
     answer:
-      "Yes, if the project includes an admin dashboard. For starter websites, updates can be handled manually after launch or discussed as maintenance.",
+      "Yes. Simple updates can be handled after launch. If you need to update content yourself often, we can discuss an admin/dashboard scope separately.",
   },
   {
-    question: "Do you build cafe menu websites?",
+    question: "How long does a starter website take?",
     answer:
-      "Yes. We build digital menu websites for cafes and restaurants with menu categories, prices, contact details, location, opening hours, and WhatsApp ordering.",
+      "A starter one-page website can usually take 3-4 days after the required content is received. Timeline is confirmed after scope and content are clear.",
   },
   {
-    question: "Do you build e-commerce websites?",
+    question: "What do I need to provide?",
     answer:
-      "Yes. We build product showcase websites, WhatsApp-first ordering websites, and full e-commerce systems depending on the business requirement.",
+      "Business name, services or menu details, photos if available, location, timings, contact number, logo if you have one, and any examples you like.",
   },
   {
-    question: "Do you provide online payment integration?",
+    question: "Is SEO included?",
     answer:
-      "Payment gateway integration can be added if required. Gateway setup, verification, transaction charges, and third-party costs are separate.",
+      "Basic SEO-ready structure can be included, such as readable headings, page title, meta description, and clean structure. Google rankings are not guaranteed.",
   },
   {
-    question: "How long does it take?",
+    question: "Can you redesign my old website?",
     answer:
-      "Simple websites can move quickly when content is ready. Larger websites with cart, admin panel, or ordering systems take longer. Timeline is confirmed after scope and content are clear.",
+      "Yes. We can simplify the structure, improve mobile layout, clarify services, and make the contact flow easier.",
+  },
+  {
+    question: "Is domain or hosting included?",
+    answer:
+      "Not by default. Domain, paid hosting, payment gateways, and third-party costs are separate unless your quote specifically includes them.",
+  },
+  {
+    question: "Do you provide maintenance?",
+    answer:
+      "Maintenance can be discussed after launch. It is not automatically included unless agreed in the project scope.",
   },
 ];
 
-export const websiteOptions = [
+export const serviceOptions = [
   "Business Website",
-  "Cafe/Menu Website",
-  "Product Showcase",
-  "E-commerce Website",
+  "Cafe & Menu Website",
+  "Product / Service Showcase",
   "Website Redesign",
-  "Landing Page",
   "Not sure yet",
 ];
 
-export const budgetOptions = [
-  ...contactConfig.budgetRanges,
-  "Need guidance",
+export const budgetOptions = contactConfig.budgetRanges;
+
+export const timelineOptions = [
+  "3-4 days after content is ready",
+  "Within 1 week",
+  "Within 2-3 weeks",
+  "Flexible / not sure yet",
 ];

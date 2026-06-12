@@ -1,22 +1,30 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { budgetOptions, siteConfig } from "@/config/site";
+import { budgetOptions, serviceOptions, siteConfig, timelineOptions } from "@/config/site";
 import { buildQuoteMessage, createWhatsAppQuoteUrl } from "@/lib/utils";
 import { SiteIcon } from "./icon";
 import { SectionHeading } from "./section-heading";
 
 type FormState = {
   name: string;
+  businessName: string;
   businessType: string;
+  phone: string;
+  serviceNeeded: string;
   budgetRange: string;
+  timeline: string;
   message: string;
 };
 
 const initialState: FormState = {
   name: "",
+  businessName: "",
   businessType: "",
+  phone: "",
+  serviceNeeded: serviceOptions[0],
   budgetRange: budgetOptions[0],
+  timeline: timelineOptions[0],
   message: "",
 };
 
@@ -34,15 +42,19 @@ export function Contact() {
 
     const message = buildQuoteMessage({
       name: String(formData.get("name") || ""),
+      businessName: String(formData.get("businessName") || ""),
       businessType: String(formData.get("businessType") || ""),
+      phone: String(formData.get("phone") || ""),
+      serviceNeeded: String(formData.get("serviceNeeded") || ""),
       budgetRange: String(formData.get("budgetRange") || ""),
+      timeline: String(formData.get("timeline") || ""),
       message: String(formData.get("message") || ""),
     });
 
     const url = createWhatsAppQuoteUrl(message);
 
     if (!url) {
-      setStatus("WhatsApp is not connected yet. Update src/config/site.ts with the Cedar Web Studio number before deployment.");
+      setStatus("WhatsApp is not connected yet. Update src/config/site.ts with the Deodar Web Studio number before deployment.");
       return;
     }
 
@@ -51,35 +63,39 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section-spacing bg-cedar-surface/30">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+    <section id="contact" className="section-spacing bg-deodar-surface/30">
+      <div className="section-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <div>
           <SectionHeading
-            label="Get Quote"
-            title="Start with a short WhatsApp-ready brief."
-            copy="Share the essentials first. The form opens WhatsApp with your project details already written, so the first conversation starts clearly."
+            label="Website Enquiry"
+            title="Start with a clear WhatsApp brief."
+            copy="Share the business details once. The form opens WhatsApp with a clean enquiry message, so the discussion can start with context."
           />
 
           <div className="mt-8 grid gap-4">
-            <div className="rounded-lg border border-cedar-line bg-cedar-ink/60 p-5">
+            <div className="rounded-lg border border-deodar-line bg-deodar-ink/60 p-5">
               <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-md bg-cedar-forest/40 text-cedar-gold">
+                <span className="flex size-10 items-center justify-center rounded-md bg-deodar-accent/35 text-deodar-gold">
                   <SiteIcon name="message" className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-cedar-cream">WhatsApp-first quoting</p>
-                  <p className="mt-1 text-sm leading-6 text-cedar-muted">No long enquiry process. Send a short brief and continue the discussion directly.</p>
+                  <p className="font-semibold text-deodar-cream">WhatsApp-first contact</p>
+                  <p className="mt-1 text-sm leading-6 text-deodar-muted">
+                    No vague contact form black hole. Your enquiry opens directly in WhatsApp.
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="rounded-lg border border-cedar-line bg-cedar-ink/60 p-5">
+            <div className="rounded-lg border border-deodar-line bg-deodar-ink/60 p-5">
               <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-md bg-cedar-forest/40 text-cedar-gold">
+                <span className="flex size-10 items-center justify-center rounded-md bg-deodar-accent/35 text-deodar-gold">
                   <SiteIcon name="shield" className="size-5" />
                 </span>
                 <div>
-                  <p className="font-semibold text-cedar-cream">Scope before build</p>
-                  <p className="mt-1 text-sm leading-6 text-cedar-muted">Pages, content, budget, timeline, and launch needs are confirmed before work begins.</p>
+                  <p className="font-semibold text-deodar-cream">Scope before build</p>
+                  <p className="mt-1 text-sm leading-6 text-deodar-muted">
+                    Pages, content, timeline, budget, and launch needs are clarified before work begins.
+                  </p>
                 </div>
               </div>
             </div>
@@ -89,15 +105,16 @@ export function Contact() {
         <form
           action="#contact"
           onSubmit={onSubmit}
-          className="rounded-lg border border-cedar-line bg-cedar-ink/75 p-4 shadow-premium sm:p-6"
+          className="rounded-lg border border-deodar-line bg-deodar-ink/75 p-4 shadow-premium sm:p-6"
         >
           <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Name" name="name" value={form.name} onChange={(value) => updateField("name", value)} autoComplete="name" required />
             <Field
-              label="Name"
-              name="name"
-              value={form.name}
-              onChange={(value) => updateField("name", value)}
-              autoComplete="name"
+              label="Business name"
+              name="businessName"
+              value={form.businessName}
+              onChange={(value) => updateField("businessName", value)}
+              autoComplete="organization"
               required
             />
             <Field
@@ -105,8 +122,23 @@ export function Contact() {
               name="businessType"
               value={form.businessType}
               onChange={(value) => updateField("businessType", value)}
-              placeholder="Cafe, salon, gym, Instagram seller..."
+              placeholder="Cafe, clinic, gym, salon..."
               required
+            />
+            <Field
+              label="Phone / WhatsApp number"
+              name="phone"
+              value={form.phone}
+              onChange={(value) => updateField("phone", value)}
+              autoComplete="tel"
+              required
+            />
+            <SelectField
+              label="Service needed"
+              name="serviceNeeded"
+              value={form.serviceNeeded}
+              options={serviceOptions}
+              onChange={(value) => updateField("serviceNeeded", value)}
             />
             <SelectField
               label="Budget range"
@@ -115,14 +147,21 @@ export function Contact() {
               options={budgetOptions}
               onChange={(value) => updateField("budgetRange", value)}
             />
-            <div className="rounded-md border border-cedar-line bg-cedar-surface px-4 py-3 text-sm leading-6 text-cedar-muted">
-              <p className="font-medium text-cedar-cream">What can Cedar build?</p>
-              <p className="mt-1">Websites, digital menus, online stores, and redesigns.</p>
+            <SelectField
+              label="Timeline"
+              name="timeline"
+              value={form.timeline}
+              options={timelineOptions}
+              onChange={(value) => updateField("timeline", value)}
+            />
+            <div className="rounded-md border border-deodar-line bg-deodar-surface px-4 py-3 text-sm leading-6 text-deodar-muted">
+              <p className="font-medium text-deodar-cream">Built for clarity</p>
+              <p className="mt-1">Services, menu, location, photos, timings, and direct contact.</p>
             </div>
           </div>
 
           <label className="mt-4 block">
-            <span className="text-sm font-medium text-cedar-cream">Message / what you need</span>
+            <span className="text-sm font-medium text-deodar-cream">Message</span>
             <textarea
               value={form.message}
               name="message"
@@ -130,29 +169,29 @@ export function Contact() {
               rows={4}
               required
               aria-required="true"
-              className="focus-ring mt-2 w-full resize-y rounded-md border border-cedar-line bg-cedar-surface px-4 py-3 text-sm leading-6 text-cedar-cream placeholder:text-cedar-muted/70"
-              placeholder="Example: I need a cafe menu website with prices, timings, Google Maps, and WhatsApp ordering."
+              className="focus-ring mt-2 w-full resize-y rounded-md border border-deodar-line bg-deodar-surface px-4 py-3 text-sm leading-6 text-deodar-cream placeholder:text-deodar-muted/70"
+              placeholder="Example: I need a clean website for my clinic with services, timings, photos, Google Maps, and WhatsApp enquiry."
             />
           </label>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <button
               type="submit"
-              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-cedar-gold px-6 py-3 text-sm font-semibold text-cedar-ink transition hover:bg-[#c89858]"
+              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-deodar-gold px-6 py-3 text-sm font-semibold text-deodar-ink transition hover:bg-[#c79a5f]"
             >
               {siteConfig.ctas.whatsapp}
               <SiteIcon name="message" className="size-4" />
             </button>
             <a
               href="#work"
-              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-cedar-line px-6 py-3 text-sm font-semibold text-cedar-cream transition hover:border-cedar-gold/40"
+              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-deodar-line px-6 py-3 text-sm font-semibold text-deodar-cream transition hover:border-deodar-gold/40"
             >
-              View Selected Work
+              View selected builds
             </a>
           </div>
 
           {status ? (
-            <p className="mt-4 rounded-md border border-cedar-gold/25 bg-cedar-gold/10 px-4 py-3 text-sm leading-6 text-cedar-cream" role="status">
+            <p className="mt-4 rounded-md border border-deodar-gold/25 bg-deodar-gold/10 px-4 py-3 text-sm leading-6 text-deodar-cream" role="status">
               {status}
             </p>
           ) : null}
@@ -164,8 +203,8 @@ export function Contact() {
 
 function Field({
   label,
-  value,
   name,
+  value,
   onChange,
   autoComplete,
   placeholder,
@@ -181,7 +220,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium text-cedar-cream">{label}</span>
+      <span className="text-sm font-medium text-deodar-cream">{label}</span>
       <input
         value={value}
         name={name}
@@ -190,7 +229,7 @@ function Field({
         placeholder={placeholder}
         required={required}
         aria-required={required}
-        className="focus-ring mt-2 h-12 w-full rounded-md border border-cedar-line bg-cedar-surface px-4 text-sm text-cedar-cream placeholder:text-cedar-muted/70"
+        className="focus-ring mt-2 h-12 w-full rounded-md border border-deodar-line bg-deodar-surface px-4 text-sm text-deodar-cream placeholder:text-deodar-muted/70"
       />
     </label>
   );
@@ -198,8 +237,8 @@ function Field({
 
 function SelectField({
   label,
-  value,
   name,
+  value,
   options,
   onChange,
 }: {
@@ -211,12 +250,12 @@ function SelectField({
 }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium text-cedar-cream">{label}</span>
+      <span className="text-sm font-medium text-deodar-cream">{label}</span>
       <select
         value={value}
         name={name}
         onChange={(event) => onChange(event.target.value)}
-        className="focus-ring mt-2 h-12 w-full rounded-md border border-cedar-line bg-cedar-surface px-4 text-sm text-cedar-cream"
+        className="focus-ring mt-2 h-12 w-full rounded-md border border-deodar-line bg-deodar-surface px-4 text-sm text-deodar-cream"
       >
         {options.map((option) => (
           <option key={option}>{option}</option>

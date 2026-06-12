@@ -3,46 +3,49 @@ import { SiteIcon } from "./icon";
 
 export function Footer() {
   return (
-    <footer className="border-t border-cedar-line bg-cedar-ink">
+    <footer className="border-t border-deodar-line bg-deodar-ink">
       <div className="section-shell grid gap-10 py-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <a href="#home" className="focus-ring inline-flex items-center gap-3 rounded-md">
-            <span className="flex size-10 items-center justify-center rounded-md border border-cedar-gold/30 bg-cedar-surface text-cedar-gold">
-              <SiteIcon name="leaf" className="size-5" />
+            <span className="flex size-10 items-center justify-center rounded-md border border-deodar-gold/30 bg-deodar-surface text-sm font-semibold text-deodar-gold">
+              D
             </span>
             <span>
-              <span className="block font-semibold text-cedar-cream">{siteConfig.name}</span>
-              <span className="block text-xs text-cedar-muted">{siteConfig.descriptor}</span>
+              <span className="block font-semibold text-deodar-cream">{siteConfig.name}</span>
+              <span className="block text-xs text-deodar-muted">{siteConfig.descriptor}</span>
             </span>
           </a>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-cedar-muted">
-            Websites, digital menus, and online stores for cafes, salons, gyms, Instagram sellers, and local businesses.
+          <p className="mt-5 max-w-sm text-sm leading-6 text-deodar-muted">
+            Clean, conversion-ready websites for local businesses that need trust and WhatsApp enquiries.
           </p>
-          <p className="mt-3 max-w-sm text-sm leading-6 text-cedar-muted">{contactConfig.locationLine}</p>
+          <p className="mt-3 max-w-sm text-sm leading-6 text-deodar-muted">{contactConfig.locationLine}</p>
           <a
             href="#contact"
-            className="focus-ring mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cedar-gold px-5 py-3 text-sm font-semibold text-cedar-ink"
+            className="focus-ring mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-deodar-gold px-5 py-3 text-sm font-semibold text-deodar-ink"
           >
-            Get Quote
+            Start enquiry
             <SiteIcon name="arrow" className="size-4" />
           </a>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-cedar-gold">Services</h2>
-          <ul className="mt-4 grid gap-3 text-sm text-cedar-muted">
-            {["Business Websites", "Digital Menus", "Online Stores", "Website Redesigns"].map((item) => (
+          <h2 className="text-sm font-semibold uppercase tracking-normal text-deodar-gold">Services</h2>
+          <ul className="mt-4 grid gap-3 text-sm text-deodar-muted">
+            {["Business Websites", "Cafe & Menu Websites", "Product / Service Showcases"].map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-cedar-gold">Quick Links</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-normal text-deodar-gold">Quick Links</h2>
           <ul className="mt-4 grid gap-3 text-sm">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="focus-ring rounded-md text-cedar-muted transition hover:text-cedar-cream">
+                <a
+                  href={item.href}
+                  className="focus-ring inline-flex min-h-10 min-w-10 items-center rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
+                >
                   {item.label}
                 </a>
               </li>
@@ -52,7 +55,7 @@ export function Footer() {
                 href={contactConfig.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="focus-ring inline-flex items-center gap-2 rounded-md text-cedar-muted transition hover:text-cedar-cream"
+                className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
               >
                 GitHub Profile
                 <SiteIcon name="github" className="size-4" />
@@ -62,7 +65,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${contactConfig.email}`}
-                  className="focus-ring rounded-md text-cedar-muted transition hover:text-cedar-cream"
+                  className="focus-ring inline-flex min-h-10 items-center rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
                 >
                   {contactConfig.email}
                 </a>
@@ -72,8 +75,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-cedar-line">
-        <div className="section-shell flex flex-col gap-2 py-5 text-xs text-cedar-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-deodar-line">
+        <div className="section-shell flex flex-col gap-2 py-5 text-xs text-deodar-muted sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
           <p>{siteConfig.serviceArea}</p>
         </div>
