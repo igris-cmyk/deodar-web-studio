@@ -21,7 +21,7 @@ export function Navbar() {
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-1 xl:flex">
           {siteConfig.nav.map((item) => (
             <a
               key={item.href}
@@ -33,7 +33,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <a
             href="#contact"
             className="focus-ring rounded-full border border-deodar-gold/40 bg-deodar-gold px-5 py-2.5 text-sm font-semibold text-deodar-ink transition hover:bg-[#c89858]"
@@ -44,7 +44,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="focus-ring inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-deodar-line bg-deodar-surface text-deodar-cream lg:hidden"
+          className="focus-ring inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-deodar-line bg-deodar-surface text-deodar-cream xl:hidden"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((value) => !value)}
@@ -55,7 +55,7 @@ export function Navbar() {
 
       <div
         className={cn(
-          "border-t border-deodar-line bg-deodar-ink px-4 py-4 lg:hidden",
+          "border-t border-deodar-line bg-deodar-ink px-4 py-4 xl:hidden",
           isOpen ? "block" : "hidden",
         )}
       >

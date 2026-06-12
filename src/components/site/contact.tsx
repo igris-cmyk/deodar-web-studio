@@ -134,7 +134,7 @@ export function Contact() {
               required
             />
             <SelectField
-              label="Service needed"
+              label="Package / service"
               name="serviceNeeded"
               value={form.serviceNeeded}
               options={serviceOptions}

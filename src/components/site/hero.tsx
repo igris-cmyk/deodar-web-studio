@@ -10,7 +10,7 @@ export function Hero() {
     <section id="home" className="relative overflow-hidden border-b border-deodar-line">
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(47,93,70,0.34)_0%,transparent_32%),linear-gradient(180deg,#111812_0%,#0F1613_56%,#121914_100%)]" />
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-[repeating-linear-gradient(90deg,rgba(244,239,230,0.05)_0,rgba(244,239,230,0.05)_1px,transparent_1px,transparent_72px)] opacity-35" />
-      <div className="section-shell grid min-h-[calc(100vh-64px)] items-center gap-10 py-12 pb-20 sm:py-16 md:min-h-[760px] lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
+      <div className="section-shell grid min-h-[calc(100svh-64px)] items-center gap-10 py-12 pb-16 sm:py-16 md:min-h-[700px] lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
         <div className="max-w-3xl">
           <p className="section-label">{siteConfig.descriptor}</p>
           <h1 className="mt-4 text-4xl font-semibold leading-[1.05] text-deodar-cream sm:text-5xl lg:text-6xl">

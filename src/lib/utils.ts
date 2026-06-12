@@ -34,10 +34,10 @@ export function buildQuoteMessage(values: {
     `Name: ${values.name || ""}`,
     `Business: ${values.businessName || ""}`,
     `Business type: ${values.businessType || ""}`,
-    `Phone / WhatsApp: ${values.phone || ""}`,
-    `Service needed: ${values.serviceNeeded || ""}`,
+    `Package / service: ${values.serviceNeeded || ""}`,
     `Budget: ${values.budgetRange || ""}`,
     `Timeline: ${values.timeline || ""}`,
+    `WhatsApp number: ${values.phone || ""}`,
     `Message: ${values.message || ""}`,
   ].join("\n");
 }

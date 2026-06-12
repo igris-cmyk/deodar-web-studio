@@ -5,6 +5,10 @@ import { SiteIcon } from "./icon";
 import { SectionHeading } from "./section-heading";
 
 export function Work() {
+  const regularProjects = projects.filter((project) => project.priority !== "primary");
+  const finalWideProject =
+    regularProjects.length % 2 === 1 ? regularProjects[regularProjects.length - 1]?.name : null;
+
   return (
     <section id="work" className="section-spacing border-b border-deodar-line bg-deodar-surface/30">
       <div className="section-shell">
@@ -14,24 +18,27 @@ export function Work() {
           copy="These are selected builds and production-style demos, not public client case studies. They show interface quality, structure, and engineering range without pretending to be client proof."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          {projects.map((project) => (
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          {projects.map((project) => {
+            const isWide = project.priority === "primary" || project.name === finalWideProject;
+
+            return (
             <article
               key={project.name}
               className={cn(
                 "premium-card overflow-hidden p-4 sm:p-5",
-                project.priority === "primary" && "lg:col-span-2 lg:grid lg:grid-cols-[1.35fr_0.65fr] lg:gap-8 lg:p-6",
+                isWide && "lg:col-span-2 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:p-6",
                 project.priority === "secondary" && "opacity-90",
               )}
             >
               <div className="overflow-hidden rounded-lg border border-deodar-line bg-deodar-ink/60">
                 {project.screenshot ? (
-                  <div className={cn("relative bg-deodar-ink", project.priority === "primary" ? "aspect-[16/9]" : "aspect-[16/10]")}>
+                  <div className={cn("relative bg-deodar-ink", isWide ? "aspect-[16/9]" : "aspect-[16/10]")}>
                     <Image
                       src={project.screenshot}
                       alt={`${project.name} real project screenshot preview`}
                       fill
-                      sizes={project.priority === "primary" ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 42vw, 100vw"}
+                      sizes={isWide ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 42vw, 100vw"}
                       className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-deodar-ink/30 via-transparent to-transparent" />
@@ -47,7 +54,7 @@ export function Work() {
                 </div>
               </div>
 
-              <div className={cn("mt-6", project.priority === "primary" && "lg:mt-0")}>
+              <div className={cn("mt-6", isWide && "lg:mt-0")}>
                 <h3 className="text-2xl font-semibold text-deodar-cream">{project.name}</h3>
                 <p className="mt-3 text-base leading-7 text-deodar-muted">{project.description}</p>
                 <div className="mt-5 rounded-lg border border-deodar-line bg-deodar-ink/40 p-4">
@@ -90,7 +97,8 @@ export function Work() {
                 </div>
               </div>
             </article>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
