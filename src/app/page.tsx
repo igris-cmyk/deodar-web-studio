@@ -6,8 +6,6 @@ import { Navbar } from "@/components/site/navbar";
 import { Packages } from "@/components/site/packages";
 import { Process } from "@/components/site/process";
 import { Services } from "@/components/site/services";
-import { WhoWeHelp } from "@/components/site/who-we-help";
-import { WhyItMatters } from "@/components/site/why-it-matters";
 import { Work } from "@/components/site/work";
 
 export default function Home() {
@@ -16,12 +14,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <WhoWeHelp />
-        <Services />
-        <WhyItMatters />
         <Work />
-        <Packages />
+        <Services />
         <Process />
+        <Packages />
         <FAQ />
         <Contact />
       </main>

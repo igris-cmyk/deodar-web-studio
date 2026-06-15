@@ -441,6 +441,114 @@ export const deodarBrewEvidence = {
   },
 } as const;
 
+export const studioCapabilities = {
+  eyebrow: "Capabilities",
+  heading: "From unclear requirements to a working product system.",
+  introduction:
+    "Deodar works across product structure, interface architecture and full-stack delivery - keeping the decisions, design and implementation connected instead of handing them between disconnected specialists.",
+  qualifier:
+    "Capabilities are applied according to the product's actual scope; not every engagement requires every layer.",
+  groups: [
+    {
+      index: "01",
+      title: "Product and Workflow Architecture",
+      thesis:
+        "Define what the system must do before deciding how it should look.",
+      responsibility:
+        "Clarify users, operational constraints, core workflows, information structure, product boundaries and the decisions required for an implementable first release.",
+      outputs: [
+        "Problem and scope framing",
+        "Workflow and state mapping",
+        "Information architecture",
+        "Release boundary and decision record",
+      ],
+      appropriateProblem:
+        "Useful when a project has many ideas or operational requirements but no coherent product structure.",
+    },
+    {
+      index: "02",
+      title: "Interface Systems and Frontend Engineering",
+      thesis:
+        "Turn product structure into an interface that remains coherent across screens and states.",
+      responsibility:
+        "Design responsive flows, interaction patterns, visual hierarchy and reusable frontend systems that make complex functionality understandable and maintainable.",
+      outputs: [
+        "Responsive product flows",
+        "Interface and component systems",
+        "Accessible interaction states",
+        "Production frontend implementation",
+      ],
+      appropriateProblem:
+        "Useful when an interface must feel clear, credible and consistent while supporting real application behavior.",
+    },
+    {
+      index: "03",
+      title: "Full-Stack Systems and Production Delivery",
+      thesis:
+        "Connect the visible product to the data, permissions and operational logic behind it.",
+      responsibility:
+        "Implement the application layer, data model, authentication, administrative workflows, integrations, deployment and release verification required by the agreed product scope.",
+      outputs: [
+        "Application and data architecture",
+        "Authentication and permissions",
+        "Operational or administrative workflows",
+        "Deployment and release verification",
+      ],
+      appropriateProblem:
+        "Useful when the project must move beyond a polished interface into a functioning and maintainable system.",
+    },
+  ],
+} as const;
+
+export const studioDeliveryModel = {
+  eyebrow: "How the work moves",
+  heading: "Decisions first. Working evidence throughout.",
+  introduction:
+    "Each engagement moves through explicit decision gates. The goal is not to produce activity - it is to reduce uncertainty, build the right system and verify that it is ready to be used.",
+  founderStatement:
+    "Sahil remains directly involved across product decisions, interface architecture, implementation and release verification.",
+  stages: [
+    {
+      index: "01",
+      title: "Frame",
+      decision: "Agree on the problem, constraints and release boundary.",
+      work:
+        "Review the business context, users, existing systems, required workflows, technical constraints and evidence already available.",
+      gate:
+        "Proceed when the problem, ownership and first-release scope are explicit.",
+    },
+    {
+      index: "02",
+      title: "Shape",
+      decision:
+        "Establish how the product should work before full implementation begins.",
+      work:
+        "Define critical flows, information structure, interface direction, system boundaries and the data or permission model required by the scope.",
+      gate:
+        "Proceed when the core workflow can be explained, reviewed and implemented without relying on hidden assumptions.",
+    },
+    {
+      index: "03",
+      title: "Build",
+      decision: "Turn the agreed model into verified working increments.",
+      work:
+        "Implement the interface and application in controlled slices, preserving working behavior while validating responsive states, data flows and operational paths.",
+      gate:
+        "Proceed when each agreed path works as a system rather than as an isolated screen.",
+    },
+    {
+      index: "04",
+      title: "Release",
+      decision:
+        "Confirm that the agreed product is ready to operate outside the development environment.",
+      work:
+        "Verify accessibility, responsive behavior, performance, failure states, deployment configuration and the handover information required to operate the release.",
+      gate:
+        "Complete when verification evidence is recorded and unresolved limitations are stated honestly.",
+    },
+  ],
+} as const;
+
 export const heroTrustPoints = [
   "WhatsApp-first enquiry flow",
   "Built for local businesses",
