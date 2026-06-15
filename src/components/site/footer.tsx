@@ -24,7 +24,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.8fr_1fr]">
+          <div className="grid gap-8 sm:grid-cols-3 lg:grid-cols-[0.75fr_0.75fr_1fr]">
             <nav aria-label="Footer navigation">
               <h2 className="type-label text-studio-greenBright">Navigate</h2>
               <ul className="mt-4 grid gap-2">
@@ -38,6 +38,20 @@ export function Footer() {
                     </a>
                   </li>
                 ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Footer resources">
+              <h2 className="type-label text-studio-greenBright">Resources</h2>
+              <ul className="mt-4 grid gap-2">
+                <li>
+                  <a
+                    href="/engagements"
+                    className="inline-flex min-h-9 items-center rounded-studioSm text-sm font-medium text-studio-muted transition hover:text-studio-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+                  >
+                    Engagements
+                  </a>
+                </li>
               </ul>
             </nav>
 

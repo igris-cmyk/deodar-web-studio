@@ -38,23 +38,6 @@ export type Service = {
   icon: IconKey;
 };
 
-export type PackageTier = {
-  title: string;
-  badge?: string;
-  startingPrice: string;
-  quoteNote?: string;
-  outcome: string;
-  bestFor: string;
-  typicalStructure?: string[];
-  includes: string[];
-  excludes: string[];
-  timeline: string;
-  revisionLimit: string;
-  scopeBoundary?: string;
-  possibleScope?: string[];
-  cta: string;
-};
-
 export type Project = {
   name: string;
   category: string;
@@ -75,6 +58,25 @@ export type ProcessStep = {
 export type FAQItem = {
   question: string;
   answer: string;
+};
+
+export type EngagementOption = {
+  index: string;
+  slug: string;
+  name: string;
+  sourceName: string;
+  startingPrice: string;
+  bestFor: string;
+  summary: string;
+  coreScope: string[];
+  typicalStructure?: string;
+  importantBoundary?: string;
+  systemAreas?: string[];
+  timeline: string;
+  revisions: string;
+  exclusions: string[];
+  cta: string;
+  qualification?: string;
 };
 
 export type WhyPoint = {
@@ -100,19 +102,6 @@ export const contactConfig = {
     { label: "GitHub", href: "https://github.com/igris-cmyk" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/sahil-khursheed-419666413" },
   ],
-  serviceCategories: [
-    "Business Websites",
-    "Cafe & Menu Websites",
-    "Product / Service Showcase Websites",
-    "Custom Web Builds",
-  ],
-  budgetRanges: [
-    "₹5,000 - ₹9,000",
-    "₹9,000 - ₹12,000",
-    "₹12,000 - ₹20,000",
-    "₹20,000+",
-    "Need a recommendation",
-  ],
 };
 
 export const siteConfig = {
@@ -134,14 +123,11 @@ export const siteConfig = {
     whatsapp: "Send enquiry on WhatsApp",
   },
   nav: [
-    { label: "Home", href: "#home" },
-    { label: "Who", href: "#who" },
-    { label: "Services", href: "#services" },
-    { label: "Builds", href: "#work" },
-    { label: "Packages", href: "#packages" },
-    { label: "Process", href: "#process" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "Work", href: "/#work" },
+    { label: "Capabilities", href: "/#services" },
+    { label: "Process", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
   ] satisfies NavItem[],
   socialLinks: contactConfig.socialLinks,
 };
@@ -152,14 +138,14 @@ export const studioNavigation = {
     descriptor: "Web Studio",
   },
   items: [
-    { label: "Work", href: "#work" },
-    { label: "Capabilities", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "Contact", href: "#contact" },
+    { label: "Work", href: "/#work" },
+    { label: "Capabilities", href: "/#services" },
+    { label: "Process", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
   ] satisfies NavItem[],
   cta: {
     label: "Discuss a project",
-    href: "#contact",
+    href: "/#contact",
   },
 };
 
@@ -727,142 +713,214 @@ export const whyItMatters: WhyPoint[] = [
   },
 ];
 
-export const packages: PackageTier[] = [
-  {
-    title: "Starter Website",
-    startingPrice: "Starting at ₹5,000",
-    outcome: "A clean one-page website that explains the business clearly and makes contact easy.",
-    bestFor:
-      "Small shops, salons, independent professionals, home businesses, coaches, and service providers launching their first professional website.",
-    includes: [
-      "One professionally structured page",
-      "Up to 6 core sections",
-      "Mobile-first responsive design",
-      "Hero, introduction, services or product summary",
-      "WhatsApp enquiry CTA and click-to-call where appropriate",
-      "Contact, location details, business hours, and social links",
-      "Basic contact form",
-      "Basic page title, meta description, and social sharing metadata",
-      "Deployment on an appropriate free hosting platform",
-      "Basic domain connection assistance if the client already owns a domain",
+export const engagementPage = {
+  eyebrow: "Engagements and pricing",
+  heading: "Clear starting points. Final scope confirmed before the build.",
+  introduction:
+    "Deodar offers defined starting scopes for focused websites and menu experiences, with custom product and system work quoted after the workflows, data and operational requirements are understood.",
+  pricingStatement:
+    "Every listed price is a starting price. Final cost depends on content volume, page structure, workflows, data, integrations and the responsibilities included in the agreed release.",
+  directAccountability:
+    "Scope is reviewed directly with Sahil before work begins.",
+  sharedPricingStatement:
+    "Final pricing is confirmed after pages, content, workflows, integrations, responsibilities and release boundaries are agreed.",
+  scopePrinciples: {
+    heading: "Scope changes are decisions, not invisible extras.",
+    body:
+      "The approved scope records what will be designed, built and verified. New pages, workflows, integrations or responsibilities introduced afterward are reviewed separately before implementation continues.",
+    items: [
+      "Included work is written down.",
+      "Assumptions are clarified before implementation.",
+      "Additional scope is quoted before it is added.",
     ],
-    typicalStructure: ["Hero", "About", "Services", "Gallery or highlights", "Location/hours", "Contact"],
-    excludes: [
-      "Custom domain cost",
-      "Paid hosting",
-      "Logo design or full brand identity",
-      "Professional photography or advanced copywriting",
-      "Admin dashboard, database, online payment, or e-commerce",
-      "User accounts, advanced booking system, or monthly maintenance",
+  },
+  ownershipPrinciples: {
+    heading: "Content, accounts and ownership",
+    items: [
+      "The client owns their domain.",
+      "Paid third-party services are separate unless quoted.",
+      "Business information and usable assets are supplied by the client unless content production is included.",
+      "Credentials and important accounts should remain under client ownership.",
+      "Maintenance is separate unless agreed.",
+    ],
+  },
+  cta: {
+    eyebrow: "Ready to define the scope?",
+    heading: "Start with the problem and the first useful release.",
+    copy:
+      "Use the project brief to share the business context, required workflow, constraints and indicative budget.",
+    primary: { label: "Send a project brief", href: "/#contact" },
+    secondary: { label: "View selected work", href: "/#work" },
+  },
+} as const;
+
+export const engagementOptions: EngagementOption[] = [
+  {
+    index: "01",
+    slug: "focused-website",
+    name: "Focused Website",
+    sourceName: "Starter Website",
+    startingPrice: "₹5,000",
+    bestFor:
+      "Independent professionals, small businesses and focused services that need one clear professional web presence.",
+    summary:
+      "One clear professional web presence for a focused service, offer or small business.",
+    coreScope: [
+      "One professionally structured page",
+      "Up to six core sections",
+      "Responsive implementation",
+      "Clear service or offer explanation",
+      "Contact and WhatsApp actions",
+      "Business details, location or hours where relevant",
+      "Basic page title, metadata and social sharing metadata",
+      "Deployment on an appropriate free hosting platform",
+      "Domain-connection assistance when the domain already exists",
+    ],
+    typicalStructure:
+      "Hero / Context / Offer or Services / Evidence or Highlights / Business Details / Contact",
+    timeline:
+      "Indicatively 4-5 business days after content is complete and the scope is approved.",
+    revisions: "1 agreed revision round",
+    exclusions: [
+      "Domain and paid-hosting fees",
+      "Full branding",
+      "Professional photography",
+      "Advanced copywriting",
+      "Database",
+      "Admin dashboard",
+      "Payments",
+      "User accounts",
+      "Advanced booking",
+      "Ongoing maintenance",
       "Unlimited revisions",
     ],
-    timeline: "Typically 4-5 business days after all required content is received.",
-    revisionLimit: "1 revision round.",
-    cta: "Discuss Starter Website",
+    cta: "Discuss a Focused Website",
   },
   {
-    title: "Business Website",
-    badge: "Recommended",
-    startingPrice: "Starting at ₹9,000",
-    outcome: "A structured multi-page website that builds credibility and gives every important service its proper place.",
+    index: "02",
+    slug: "business-website",
+    name: "Business Website",
+    sourceName: "Business Website",
+    startingPrice: "₹9,000",
     bestFor:
-      "Clinics, gyms, salons, coaches, consultants, local service teams, and service businesses that need more room to explain their work.",
-    includes: [
-      "Up to 5 core pages or equivalent structured scope",
-      "Custom homepage, about page, service overview, and contact page",
-      "Individual service sections or pages where agreed",
-      "WhatsApp enquiry flow, contact form, and click-to-call option",
-      "Google Maps/location integration and opening hours",
-      "Gallery or portfolio section",
-      "Team section if relevant",
-      "Real testimonials if supplied by the client",
-      "FAQ section",
-      "Mobile-first responsive design",
-      "Basic on-page SEO metadata and social sharing metadata",
-      "Deployment and domain connection assistance",
-    ],
-    typicalStructure: ["Home", "About", "Services", "Gallery / Work", "Contact"],
-    excludes: [
-      "Domain fee or paid hosting",
-      "Premium plugins/tools",
-      "Full copywriting from zero or professional photography",
-      "Database, admin dashboard, user authentication, or online payment",
-      "E-commerce, advanced booking platform, or unlimited content entry",
-      "Ongoing maintenance unless quoted",
-    ],
-    timeline: "Typically 7-10 business days after all required content is received.",
-    revisionLimit: "2 revision rounds.",
-    cta: "Discuss Business Website",
-  },
-  {
-    title: "Menu & Showcase Website",
-    startingPrice: "Starting at ₹12,000",
-    outcome:
-      "A mobile-friendly menu or catalog experience that helps customers browse, understand prices, and enquire or order through WhatsApp.",
-    bestFor:
-      "Cafes, restaurants, bakeries, cloud kitchens, boutiques, product sellers, and businesses with a structured menu or catalog.",
-    includes: [
+      "Service businesses and professional teams that need several pages or a more structured explanation of their work.",
+    summary:
+      "A structured multi-page presence for services, credibility and clearer contact paths.",
+    coreScope: [
+      "Up to five core pages or equivalent structured scope",
       "Custom homepage",
-      "Structured menu, catalog, or service categories",
-      "Item or service cards with pricing display",
-      "Featured items and offer/promotional section",
-      "Gallery, business location, opening hours, and social links",
+      "About or context page",
+      "Service structure",
+      "Contact page",
+      "WhatsApp or contact flow",
+      "Maps, location or hours where relevant",
+      "Gallery or work evidence",
+      "Team section where relevant",
+      "Real testimonials only if supplied",
+      "Responsive implementation",
+      "Basic page metadata and social sharing metadata",
+      "Deployment and domain assistance",
+    ],
+    timeline:
+      "Indicatively 7-10 business days after content is complete and the scope is approved.",
+    revisions: "2 agreed revision rounds",
+    exclusions: [
+      "Domain and hosting fees",
+      "Premium third-party tools",
+      "Full copywriting and photography",
+      "Database",
+      "Admin dashboard",
+      "Authentication",
+      "Payments",
+      "Ecommerce",
+      "Advanced booking",
+      "Unlimited content entry",
+      "Ongoing maintenance unless agreed",
+    ],
+    cta: "Discuss a Business Website",
+  },
+  {
+    index: "03",
+    slug: "menu-showcase-website",
+    name: "Menu & Showcase Website",
+    sourceName: "Menu & Showcase Website",
+    startingPrice: "₹12,000",
+    bestFor:
+      "Cafes, restaurants, bakeries, product sellers and businesses with a structured menu, catalogue or price-led offer.",
+    summary:
+      "A content-led menu, catalogue or offer experience with clear WhatsApp enquiry or ordering paths.",
+    coreScope: [
+      "Custom homepage",
+      "Structured menu or catalogue categories",
+      "Item or service presentation",
+      "Prices",
+      "Featured items or offers",
+      "Gallery",
+      "Location and hours",
       "WhatsApp enquiry or order-summary flow",
       "Optional cart-style WhatsApp summary where appropriate to the agreed scope",
-      "Mobile-first design",
-      "Basic SEO metadata and social sharing metadata",
-      "Deployment and domain connection assistance",
+      "Responsive implementation",
+      "Basic page metadata and social sharing metadata",
+      "Deployment and domain assistance",
     ],
-    scopeBoundary:
-      "The standard package is content-driven. It does not automatically include an admin dashboard. Menu or product updates after delivery are handled according to the agreed maintenance or edit arrangement.",
-    excludes: [
-      "Domain fee or paid hosting",
-      "Admin dashboard or database-backed content management",
-      "Stock management, customer accounts, or delivery tracking",
-      "Online payment or full e-commerce checkout",
-      "Third-party ordering platform fees",
-      "Unlimited product/menu entry",
-      "Ongoing maintenance unless quoted",
+    importantBoundary:
+      "The standard scope is content-driven. It does not automatically include an admin dashboard or database-backed content management.",
+    timeline:
+      "Indicatively 8-12 business days after content and item details are complete and the scope is approved.",
+    revisions: "2 agreed revision rounds",
+    exclusions: [
+      "Admin dashboard",
+      "Database content management",
+      "Inventory management",
+      "Customer accounts",
+      "Delivery tracking",
+      "Online payments",
+      "Full ecommerce checkout",
+      "Third-party ordering fees",
+      "Unlimited item entry",
+      "Ongoing maintenance unless agreed",
     ],
-    timeline: "Typically 8-12 business days after all required content and item details are received.",
-    revisionLimit: "2 revision rounds.",
-    cta: "Discuss Menu Website",
+    cta: "Discuss a Menu & Showcase Website",
   },
   {
-    title: "Custom Web Build",
-    startingPrice: "Starting at ₹20,000",
-    quoteNote: "Final quote after scope review.",
-    outcome: "A tailored web system designed around the actual operational requirements of the business.",
+    index: "04",
+    slug: "custom-product-web-system",
+    name: "Custom Product or Web System",
+    sourceName: "Custom Web Build",
+    startingPrice: "₹20,000",
+    qualification: "Final quote after product and technical scope review.",
     bestFor:
-      "Businesses that need editable systems, advanced workflows, dashboards, databases, integrations, or functionality beyond a standard website.",
-    includes: [
-      "Discovery-led scope and proposal",
-      "Custom UI/UX and multi-page website where needed",
-      "Technical planning for workflows, data, and integrations",
-      "Deployment approach suited to the build",
-      "Revision policy defined in the final proposal",
+      "Products and business systems that need editable workflows, data, authentication, administration, integrations or functionality beyond a content-led website.",
+    summary:
+      "Scope-reviewed product and system work where the interface, data and operating logic must fit together.",
+    coreScope: [
+      "Product and workflow discovery",
+      "Custom interface architecture",
+      "Frontend and application implementation",
+      "Data modelling",
+      "Authentication",
+      "Permissions",
+      "Administrative workflows",
+      "Integrations where included in the approved scope",
+      "Deployment approach",
+      "Release verification",
     ],
-    possibleScope: [
-      "Admin dashboard",
-      "Editable menu or product management",
-      "Database and authentication",
-      "Role-based access",
-      "Advanced forms, booking workflows, or dashboards",
-      "CRM-style functionality",
-      "API or payment integrations",
-      "E-commerce, custom ordering, analytics, or business automations",
+    systemAreas: [
+      "Administrative workflows",
+      "Database-backed content",
+      "Authentication and permissions",
+      "Dashboards or operational interfaces",
+      "Third-party integrations",
+      "Custom ordering or business automation",
     ],
-    scopeBoundary:
-      "The package starts from ₹20,000. Final scope, cost, timeline, and revision policy are confirmed after discovery.",
-    excludes: [
-      "Any advanced feature not included in the final agreed proposal",
-      "Third-party service, payment gateway, tool, domain, or hosting fees",
-      "Unlimited changes outside the approved scope",
-      "Ongoing maintenance unless quoted",
-    ],
+    importantBoundary:
+      "The starting price is not a fixed price for every listed system feature. Scope is confirmed after product and technical review.",
     timeline: "Scope-dependent.",
-    revisionLimit: "Defined in the final proposal.",
-    cta: "Request a Custom Quote",
+    revisions: "Defined in the approved proposal",
+    exclusions: [
+      "Any workflow, integration, third-party service, paid tool or operational responsibility not included in the approved scope is excluded.",
+    ],
+    cta: "Request a Custom Scope Review",
   },
 ];
 
@@ -945,103 +1003,45 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-export const faqs: FAQItem[] = [
+export const engagementFaqs: FAQItem[] = [
   {
-    question: "Do I need a domain?",
+    question: "Are the listed prices fixed?",
     answer:
-      "A domain is recommended if you want a professional website address. We can guide you, but the domain should stay under your ownership.",
-  },
-  {
-    question: "Is hosting monthly?",
-    answer:
-      "Hosting can be free for simple static websites, or paid if the project needs more features. Domain and paid hosting costs are separate unless included in your quote.",
-  },
-  {
-    question: "Which package is right for me?",
-    answer:
-      "Choose Starter Website for a simple first professional website, Business Website for several pages and detailed services, Menu & Showcase Website for menus, catalogs, prices, or WhatsApp order flow, and Custom Web Build for admin panels, databases, payments, or integrations.",
-  },
-  {
-    question: "Are these fixed prices?",
-    answer:
-      "No. These are starting prices. Final pricing depends on pages, content volume, features, integrations, and the final agreed scope.",
-  },
-  {
-    question: "Are domain and hosting included?",
-    answer:
-      "Domain fees, paid hosting, premium tools, and third-party services are separate unless explicitly included in the proposal.",
-  },
-  {
-    question: "Can I upgrade from Starter later?",
-    answer:
-      "Yes. A Starter Website can be expanded later, but major structural or functional additions will be quoted separately.",
-  },
-  {
-    question: "Does the Menu & Showcase package include an admin dashboard?",
-    answer:
-      "Not by default. The standard package is content-driven. An editable admin dashboard is part of a custom scope.",
-  },
-  {
-    question: "Are revisions unlimited?",
-    answer:
-      "No. Each package includes the stated revision allowance. Additional revisions are quoted separately.",
+      "No. They are starting prices for the described scope. Final cost is confirmed after pages, content, workflows, integrations and responsibilities are agreed.",
   },
   {
     question: "When does the delivery timeline begin?",
     answer:
-      "After final scope approval and receipt of all required content.",
+      "After the scope is approved and all required content, access and decisions needed for the agreed work are available.",
   },
   {
-    question: "Can you connect WhatsApp?",
+    question: "Are domain and hosting costs included?",
     answer:
-      "Yes. WhatsApp buttons and pre-filled enquiry messages can be added so customers can contact you directly from the website.",
+      "Domain fees, paid hosting, premium tools and third-party services are separate unless explicitly included in the proposal.",
   },
   {
-    question: "Can I update my menu or services later?",
+    question: "Who owns the domain and accounts?",
     answer:
-      "Yes. Simple updates can be handled after launch. If you need to update content yourself often, we can discuss an admin/dashboard scope separately.",
+      "The client should own the domain and important service accounts. Deodar can assist with setup and connection without taking permanent ownership.",
   },
   {
-    question: "How long does a starter website take?",
+    question: "What counts as a revision?",
     answer:
-      "A Starter Website typically takes 4-5 business days after all required content is received. Timeline is confirmed after scope and content are clear.",
+      "A revision is a grouped round of corrections within the approved structure and scope. New pages, workflows or major direction changes are additional scope.",
   },
   {
-    question: "What do I need to provide?",
+    question: "Does the menu option include an admin dashboard?",
     answer:
-      "Business name, services or menu details, photos if available, location, timings, contact number, logo if you have one, and any examples you like.",
+      "Not by default. The standard Menu & Showcase scope is content-driven. Editable administration and database-backed management require custom scope.",
   },
   {
-    question: "Is SEO included?",
+    question: "Can an existing website or product be rebuilt?",
     answer:
-      "Basic SEO-ready structure can be included, such as readable headings, page title, meta description, and clean structure. Google rankings are not guaranteed.",
+      "Yes. Existing systems can be reviewed for structural, interface or technical improvement. The required scope depends on the current implementation and intended outcome.",
   },
   {
-    question: "Can you redesign my old website?",
+    question: "Is maintenance included after launch?",
     answer:
-      "Yes. We can simplify the structure, improve mobile layout, clarify services, and make the contact flow easier.",
+      "Not automatically. Maintenance, ongoing updates and operational support are included only when explicitly agreed.",
   },
-  {
-    question: "Do you provide maintenance?",
-    answer:
-      "Maintenance can be discussed after launch. It is not automatically included unless agreed in the project scope.",
-  },
-];
-
-export const serviceOptions = [
-  "Starter Website - from ₹5,000",
-  "Business Website - from ₹9,000",
-  "Menu & Showcase Website - from ₹12,000",
-  "Custom Web Build - from ₹20,000",
-  "Website Redesign",
-  "Not sure - recommend a package",
-];
-
-export const budgetOptions = contactConfig.budgetRanges;
-
-export const timelineOptions = [
-  "4-5 business days after content is ready",
-  "7-10 business days after content is ready",
-  "8-12 business days after content is ready",
-  "Flexible / not sure yet",
 ];

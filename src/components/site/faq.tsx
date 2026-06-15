@@ -1,30 +1,28 @@
-import { faqs } from "@/config/site";
-import { SectionHeading } from "./section-heading";
+import { engagementFaqs } from "@/config/site";
+import { Container } from "./container";
 
 export function FAQ() {
   return (
-    <section id="faq" className="section-spacing border-b border-deodar-line">
-      <div className="section-shell">
-        <SectionHeading
-          label="FAQ"
-          title="Straight answers before you start."
-          copy="Plain answers about domains, hosting, WhatsApp, updates, SEO-ready structure, timelines, and maintenance."
-        />
+    <section id="engagement-faq" className="studio-canvas border-t border-studio-line py-[var(--studio-section-space-compact)]">
+      <Container size="content">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <p className="type-label text-studio-greenBright">Engagement FAQ</p>
+            <h2 className="type-section mt-4 text-studio-text">Scope, pricing and ownership in plain terms.</h2>
+          </div>
 
-        <div className="mt-10 grid gap-3 lg:grid-cols-2">
-          {faqs.map((faq) => (
-            <details key={faq.question} className="group rounded-lg border border-deodar-line bg-deodar-surface/75 p-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-deodar-cream focus:outline-none group-open:text-deodar-gold">
-                {faq.question}
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-deodar-line text-deodar-muted transition group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="mt-4 text-sm leading-6 text-deodar-muted">{faq.answer}</p>
-            </details>
-          ))}
+          <div className="grid gap-0 border-t border-studio-line">
+            {engagementFaqs.map((faq) => (
+              <details className="group border-b border-studio-line py-5" key={faq.question}>
+                <summary className="cursor-pointer list-none rounded-studioSm text-base font-semibold leading-7 text-studio-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
+                  {faq.question}
+                </summary>
+                <p className="type-small mt-4 max-w-3xl text-studio-muted">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
