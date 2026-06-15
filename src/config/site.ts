@@ -144,6 +144,68 @@ export const siteConfig = {
   socialLinks: contactConfig.socialLinks,
 };
 
+export const studioNavigation = {
+  brand: {
+    name: "Deodar",
+    descriptor: "Web Studio",
+  },
+  items: [
+    { label: "Work", href: "#work" },
+    { label: "Capabilities", href: "#services" },
+    { label: "Process", href: "#process" },
+    { label: "Contact", href: "#contact" },
+  ] satisfies NavItem[],
+  cta: {
+    label: "Discuss a project",
+    href: "#contact",
+  },
+};
+
+export const studioHero = {
+  eyebrow: "Founder-led product and engineering studio",
+  headline:
+    "We design and build digital products that make businesses easier to run, trust and grow.",
+  supportingText:
+    "Deodar combines product direction, interface systems and full-stack engineering to take focused web products from first decision to production deployment.",
+  founderLine:
+    "Led by Sahil Khursheed, with direct involvement across product thinking, design, engineering and launch.",
+  primaryCta: {
+    label: "View selected work",
+    href: "#work",
+  },
+  secondaryCta: {
+    label: "Discuss a project",
+    href: "#contact",
+  },
+};
+
+export const studioCapabilityIndex = [
+  {
+    index: "01",
+    title: "Product direction",
+    description:
+      "Clarifying the problem, product structure and decisions before implementation.",
+  },
+  {
+    index: "02",
+    title: "Interface systems",
+    description:
+      "Designing coherent flows, responsive UI and reusable interaction patterns.",
+  },
+  {
+    index: "03",
+    title: "Full-stack engineering",
+    description:
+      "Building the application, data model, authentication and operational workflows.",
+  },
+  {
+    index: "04",
+    title: "Production launch",
+    description:
+      "Verifying performance, accessibility, deployment and release readiness.",
+  },
+] as const;
+
 export const heroTrustPoints = [
   "WhatsApp-first enquiry flow",
   "Built for local businesses",

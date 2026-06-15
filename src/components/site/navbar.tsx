@@ -1,83 +1,105 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { siteConfig } from "@/config/site";
+import { useEffect, useState } from "react";
+import { ActionLink } from "@/components/site/action-link";
+import { Container } from "@/components/site/container";
+import { studioNavigation } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  const menuId = "site-navigation-menu";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-deodar-line bg-deodar-ink/90 backdrop-blur-xl">
-      <nav className="section-shell flex min-h-16 items-center justify-between gap-4" aria-label="Main navigation">
-        <a href="#home" className="focus-ring flex items-center gap-3 rounded-md">
-          <span className="flex size-10 items-center justify-center rounded-md border border-deodar-gold/30 bg-deodar-surface text-sm font-semibold text-deodar-gold">
-            D
-          </span>
-          <span className="min-w-0">
-            <span className="block text-sm font-semibold text-deodar-cream sm:text-base">{siteConfig.name}</span>
-            <span className="block text-[11px] text-deodar-muted sm:text-xs">{siteConfig.descriptor}</span>
-          </span>
-        </a>
-
-        <div className="hidden items-center gap-1 xl:flex">
-          {siteConfig.nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="focus-ring inline-flex min-h-10 items-center rounded-md px-3 py-2 text-sm font-medium text-deodar-muted transition hover:text-deodar-cream"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="hidden items-center gap-3 xl:flex">
+    <header className="sticky top-0 z-50 border-b border-studio-line bg-studio-canvas/95">
+      <Container as="div" size="wide">
+        <nav className="flex min-h-[72px] items-center justify-between gap-5" aria-label="Main navigation">
           <a
-            href="#contact"
-            className="focus-ring rounded-full border border-deodar-gold/40 bg-deodar-gold px-5 py-2.5 text-sm font-semibold text-deodar-ink transition hover:bg-[#c89858]"
+            href="#home"
+            className="group flex min-w-0 items-center gap-3 rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+            onClick={() => setIsOpen(false)}
           >
-            {siteConfig.ctas.nav}
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-studioSm border border-studio-lineStrong text-sm font-semibold text-studio-greenBright transition group-hover:border-studio-greenBright">
+            D
+            </span>
+            <span className="min-w-0 leading-none">
+              <span className="block text-base font-semibold tracking-[-0.02em] text-studio-text">{studioNavigation.brand.name}</span>
+              <span className="mt-1 block text-xs font-medium text-studio-muted">{studioNavigation.brand.descriptor}</span>
+            </span>
           </a>
-        </div>
 
-        <button
-          type="button"
-          className="focus-ring inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-deodar-line bg-deodar-surface text-deodar-cream xl:hidden"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
-        >
-          {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
-      </nav>
+          <div className="hidden items-center gap-1 lg:flex">
+            {studioNavigation.items.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-studioSm px-3 py-2 text-sm font-medium text-studio-muted transition hover:text-studio-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden items-center lg:flex">
+            <ActionLink href={studioNavigation.cta.href} size="sm" variant="secondary">
+              {studioNavigation.cta.label}
+            </ActionLink>
+          </div>
+
+          <button
+            type="button"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-studioSm border border-studio-line bg-studio-surface text-studio-text transition hover:border-studio-lineStrong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright lg:hidden"
+            aria-controls={menuId}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((value) => !value)}
+          >
+            {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </nav>
+      </Container>
 
       <div
+        id={menuId}
         className={cn(
-          "border-t border-deodar-line bg-deodar-ink px-4 py-4 xl:hidden",
+          "border-t border-studio-line bg-studio-canvas lg:hidden",
           isOpen ? "block" : "hidden",
         )}
       >
-        <div className="mx-auto grid max-w-7xl gap-2">
-          {siteConfig.nav.map((item) => (
+        <Container size="wide" className="grid gap-2 py-4">
+          {studioNavigation.items.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="focus-ring rounded-md px-3 py-3 text-sm font-medium text-deodar-muted transition hover:bg-deodar-surface hover:text-deodar-cream"
+              className="rounded-studioSm border-b border-studio-line px-1 py-4 text-base font-medium text-studio-text transition hover:text-studio-greenBright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="focus-ring mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-deodar-gold px-5 py-3 text-sm font-semibold text-deodar-ink"
+          <ActionLink
+            href={studioNavigation.cta.href}
+            className="mt-3 w-fit"
             onClick={() => setIsOpen(false)}
+            size="md"
+            variant="primary"
           >
-            {siteConfig.ctas.nav}
-          </a>
-        </div>
+            {studioNavigation.cta.label}
+          </ActionLink>
+        </Container>
       </div>
     </header>
   );

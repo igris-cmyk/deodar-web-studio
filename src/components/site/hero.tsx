@@ -1,112 +1,56 @@
-import Image from "next/image";
-import { contactConfig, heroTrustPoints, projects, siteConfig } from "@/config/site";
-import { SiteIcon } from "./icon";
+import { ActionLink } from "@/components/site/action-link";
+import { Container } from "@/components/site/container";
+import { studioCapabilityIndex, studioHero } from "@/config/site";
 
 export function Hero() {
-  const featuredProject = projects.find((project) => project.name === "DueFlow") || projects[0];
-  const layeredProject = projects.find((project) => project.name === "Orbit") || projects[1];
-
   return (
-    <section id="home" className="relative overflow-hidden border-b border-deodar-line">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(47,93,70,0.34)_0%,transparent_32%),linear-gradient(180deg,#111812_0%,#0F1613_56%,#121914_100%)]" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-[repeating-linear-gradient(90deg,rgba(244,239,230,0.05)_0,rgba(244,239,230,0.05)_1px,transparent_1px,transparent_72px)] opacity-35" />
-      <div className="section-shell grid min-h-[calc(100svh-64px)] items-center gap-10 py-12 pb-16 sm:py-16 md:min-h-[700px] lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
-        <div className="max-w-3xl">
-          <p className="section-label">{siteConfig.descriptor}</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-[1.05] text-deodar-cream sm:text-5xl lg:text-6xl">
-            {siteConfig.heroHeadline}
+    <section id="home" className="border-b border-studio-line bg-studio-canvas">
+      <Container
+        size="wide"
+        className="grid gap-12 py-[clamp(4.5rem,9vw,8rem)] lg:min-h-[calc(100svh-72px)] lg:grid-cols-[minmax(0,1.55fr)_minmax(19rem,0.75fr)] lg:items-center lg:gap-16"
+      >
+        <div className="max-w-6xl">
+          <p className="type-label text-studio-greenBright">{studioHero.eyebrow}</p>
+          <h1 className="mt-7 max-w-5xl text-[clamp(3.05rem,6.4vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-studio-text">
+            We design and build{" "}
+            <span className="font-editorial font-normal italic tracking-[-0.065em] text-studio-text">digital products</span>{" "}
+            that make businesses easier to run, trust and grow.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-deodar-muted sm:text-xl">
-            {siteConfig.description}
-          </p>
-          <p className="mt-5 inline-flex max-w-2xl items-center gap-2 rounded-full border border-deodar-line bg-deodar-surface/70 px-4 py-2 text-sm font-medium leading-6 text-deodar-cream">
-            <SiteIcon name="map" className="size-4 shrink-0 text-deodar-gold" />
-            {contactConfig.locationLine}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#contact"
-              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-deodar-gold px-6 py-3 text-sm font-semibold text-deodar-ink transition hover:bg-[#c89858]"
-            >
-              {siteConfig.ctas.primary}
-              <SiteIcon name="message" className="size-4" />
-            </a>
-            <a
-              href="#work"
-              className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-deodar-line bg-deodar-surface/80 px-6 py-3 text-sm font-semibold text-deodar-cream transition hover:border-deodar-gold/40"
-            >
-              {siteConfig.ctas.secondary}
-            </a>
+
+          <div className="mt-8 grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(16rem,0.42fr)] lg:items-end">
+            <p className="type-body-lg max-w-[var(--studio-reading-max)] text-studio-textSoft">
+              {studioHero.supportingText}
+            </p>
+            <p className="type-small border-l border-studio-line pl-4 text-studio-muted">
+              {studioHero.founderLine}
+            </p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
-            {heroTrustPoints.map((point) => (
-              <span
-                key={point}
-                className="inline-flex items-center gap-2 rounded-full border border-deodar-line bg-deodar-surface/60 px-3 py-2 text-xs font-medium text-deodar-muted"
-              >
-                <SiteIcon name="check" className="size-3.5 text-deodar-gold" />
-                {point}
-              </span>
-            ))}
+          <div className="mt-9 flex flex-col gap-3 min-[390px]:flex-row min-[390px]:items-center">
+            <ActionLink href={studioHero.primaryCta.href} className="w-full text-sm min-[390px]:!w-auto min-[390px]:whitespace-nowrap min-[390px]:px-3 sm:px-5 sm:text-base" size="lg" variant="primary">
+              {studioHero.primaryCta.label}
+            </ActionLink>
+            <ActionLink href={studioHero.secondaryCta.href} className="w-full text-sm min-[390px]:!w-auto min-[390px]:whitespace-nowrap min-[390px]:px-3 sm:px-5 sm:text-base" size="lg" variant="secondary">
+              {studioHero.secondaryCta.label}
+            </ActionLink>
           </div>
-
-          <p className="mt-6 max-w-xl text-sm leading-6 text-deodar-muted">
-            Led by {siteConfig.founder}. Direct communication, practical scope, and a website that feels professional on mobile.
-          </p>
         </div>
 
-        <div className="relative">
-          <div className="absolute -right-6 -top-6 hidden h-28 w-28 rounded-sm border border-deodar-gold/20 bg-deodar-gold/10 lg:block" />
-          <div className="relative rounded-lg border border-deodar-line bg-deodar-surface/85 p-3 shadow-premium sm:p-4">
-            <div className="overflow-hidden rounded-md border border-deodar-line bg-deodar-ink">
-              <div className="flex h-10 items-center justify-between border-b border-deodar-line bg-deodar-surface/90 px-4">
-                <div className="flex gap-1.5" aria-hidden="true">
-                  <span className="size-2.5 rounded-full bg-deodar-gold/80" />
-                  <span className="size-2.5 rounded-full bg-deodar-muted/45" />
-                  <span className="size-2.5 rounded-full bg-deodar-accent" />
+        <aside className="border-y border-studio-line py-2 lg:border-y-0 lg:border-l lg:py-0 lg:pl-8" aria-label="Capability index">
+          <p className="type-label py-5 text-studio-faint">Capability index</p>
+          <ol>
+            {studioCapabilityIndex.map((item) => (
+              <li key={item.index} className="grid gap-4 border-t border-studio-line py-5 sm:grid-cols-[3rem_1fr] lg:grid-cols-1 xl:grid-cols-[3rem_1fr]">
+                <span className="type-label text-studio-greenBright">{item.index}</span>
+                <div>
+                  <h2 className="type-subheading text-studio-text">{item.title}</h2>
+                  <p className="type-small mt-2 max-w-sm text-studio-muted">{item.description}</p>
                 </div>
-                <span className="text-xs font-medium text-deodar-muted">Selected build preview</span>
-              </div>
-              {featuredProject.screenshot ? (
-                <Image
-                  src={featuredProject.screenshot}
-                  alt={`${featuredProject.name} website screenshot used as a real Deodar Web Studio work preview`}
-                  width={1366}
-                  height={768}
-                  priority
-                  className="aspect-[16/10] w-full object-cover object-top"
-                />
-              ) : null}
-            </div>
-            {layeredProject.screenshot ? (
-              <div className="absolute -bottom-9 right-4 hidden w-[46%] overflow-hidden rounded-md border border-deodar-line bg-deodar-ink shadow-lift sm:block">
-                <Image
-                  src={layeredProject.screenshot}
-                  alt={`${layeredProject.name} real project screenshot layered over the hero preview`}
-                  width={1366}
-                  height={768}
-                  priority
-                  className="aspect-[16/10] w-full object-cover object-top"
-                />
-              </div>
-            ) : null}
-          </div>
-
-          <div className="mt-14 grid gap-3 sm:grid-cols-3">
-            {[
-              ["Business sites", "Services, location, timings, photos, and direct contact."],
-              ["Cafe menus", "Categories, prices, hours, and WhatsApp ordering flow."],
-              ["Showcases", "Products or services organized so customers can browse first."],
-            ].map(([title, copy]) => (
-              <div key={title} className="rounded-lg border border-deodar-line bg-deodar-surface/75 p-4">
-                <p className="text-sm font-semibold text-deodar-cream">{title}</p>
-                <p className="mt-1 text-sm leading-6 text-deodar-muted">{copy}</p>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
-      </div>
+          </ol>
+        </aside>
+      </Container>
     </section>
   );
 }
