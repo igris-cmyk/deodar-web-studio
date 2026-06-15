@@ -58,9 +58,24 @@ type SiteIconProps = {
   name: IconKey;
   className?: string;
   strokeWidth?: number;
+  size?: number | string;
+  ariaLabel?: string;
+  decorative?: boolean;
 };
 
-export function SiteIcon({ name, className, strokeWidth = 1.8 }: SiteIconProps) {
+export function SiteIcon({ name, className, strokeWidth = 1.8, size, ariaLabel, decorative }: SiteIconProps) {
   const Icon = icons[name];
-  return <Icon aria-hidden="true" className={className} strokeWidth={strokeWidth} />;
+  const isDecorative = decorative ?? !ariaLabel;
+
+  return (
+    <Icon
+      aria-hidden={isDecorative ? "true" : undefined}
+      aria-label={isDecorative ? undefined : ariaLabel}
+      className={className}
+      focusable="false"
+      role={isDecorative ? undefined : "img"}
+      size={size}
+      strokeWidth={strokeWidth}
+    />
+  );
 }
