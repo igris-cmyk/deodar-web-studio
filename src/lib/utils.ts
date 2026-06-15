@@ -41,3 +41,39 @@ export function buildQuoteMessage(values: {
     `Message: ${values.message || ""}`,
   ].join("\n");
 }
+
+export type ProjectEnquiryMessageValues = {
+  name?: string;
+  preferredContact?: string;
+  businessOrProduct?: string;
+  projectContext?: string;
+  firstRelease?: string;
+  currentStage?: string;
+  indicativeBudget?: string;
+  preferredStartWindow?: string;
+};
+
+function provided(value?: string) {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : "Not provided";
+}
+
+export function buildProjectEnquiryMessage(values: ProjectEnquiryMessageValues) {
+  return [
+    "New Deodar project enquiry",
+    "",
+    `Name: ${provided(values.name)}`,
+    `Preferred contact: ${provided(values.preferredContact)}`,
+    `Business / organisation / product: ${provided(values.businessOrProduct)}`,
+    "",
+    "Project context:",
+    provided(values.projectContext),
+    "",
+    "First-release outcome:",
+    provided(values.firstRelease),
+    "",
+    `Current stage: ${provided(values.currentStage)}`,
+    `Indicative budget: ${provided(values.indicativeBudget)}`,
+    `Preferred start window: ${provided(values.preferredStartWindow)}`,
+  ].join("\n");
+}

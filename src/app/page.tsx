@@ -1,6 +1,7 @@
 import { Contact } from "@/components/site/contact";
 import { FAQ } from "@/components/site/faq";
 import { Footer } from "@/components/site/footer";
+import { Founder } from "@/components/site/founder";
 import { Hero } from "@/components/site/hero";
 import { Navbar } from "@/components/site/navbar";
 import { Packages } from "@/components/site/packages";
@@ -19,6 +20,7 @@ export default function Home() {
         <Process />
         <Packages />
         <FAQ />
+        <Founder />
         <Contact />
       </main>
       <Footer />

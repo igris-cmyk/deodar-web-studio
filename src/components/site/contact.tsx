@@ -1,236 +1,356 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { budgetOptions, serviceOptions, siteConfig, timelineOptions } from "@/config/site";
-import { buildQuoteMessage, createWhatsAppQuoteUrl } from "@/lib/utils";
+import { FormEvent, useMemo, useState } from "react";
+import { contactConfig, projectEnquiry } from "@/config/site";
+import { buildProjectEnquiryMessage, createWhatsAppQuoteUrl } from "@/lib/utils";
+import { ActionLink } from "./action-link";
+import { Container } from "./container";
 import { SiteIcon } from "./icon";
-import { SectionHeading } from "./section-heading";
 
 type FormState = {
   name: string;
-  businessName: string;
-  businessType: string;
-  phone: string;
-  serviceNeeded: string;
-  budgetRange: string;
-  timeline: string;
-  message: string;
+  preferredContact: string;
+  businessOrProduct: string;
+  projectContext: string;
+  firstRelease: string;
+  currentStage: string;
+  indicativeBudget: string;
+  preferredStartWindow: string;
 };
+
+type FieldName = keyof FormState;
 
 const initialState: FormState = {
   name: "",
-  businessName: "",
-  businessType: "",
-  phone: "",
-  serviceNeeded: serviceOptions[0],
-  budgetRange: budgetOptions[0],
-  timeline: timelineOptions[0],
-  message: "",
+  preferredContact: "",
+  businessOrProduct: "",
+  projectContext: "",
+  firstRelease: "",
+  currentStage: "",
+  indicativeBudget: "",
+  preferredStartWindow: "",
 };
+
+const requiredFields: Array<FieldName> = [
+  "name",
+  "preferredContact",
+  "projectContext",
+  "firstRelease",
+  "currentStage",
+  "indicativeBudget",
+];
+
+const fieldLabels: Record<FieldName, string> = {
+  name: "Name",
+  preferredContact: "Email or WhatsApp number",
+  businessOrProduct: "Business, organisation or product",
+  projectContext: "What are you trying to build or improve?",
+  firstRelease: "What must the first useful release do?",
+  currentStage: "Current stage",
+  indicativeBudget: "Indicative budget",
+  preferredStartWindow: "Preferred start window",
+};
+
+type FormErrors = Partial<Record<FieldName, string>>;
 
 export function Contact() {
   const [form, setForm] = useState<FormState>(initialState);
+  const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState("");
 
-  function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
+  const directWhatsAppUrl = useMemo(
+    () => createWhatsAppQuoteUrl(projectEnquiry.directWhatsAppMessage),
+    [],
+  );
+
+  function updateField<K extends FieldName>(key: K, value: FormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
+    setErrors((current) => {
+      if (!current[key]) {
+        return current;
+      }
+
+      const next = { ...current };
+      delete next[key];
+      return next;
+    });
+  }
+
+  function validateForm() {
+    const nextErrors: FormErrors = {};
+
+    for (const field of requiredFields) {
+      if (!form[field].trim()) {
+        nextErrors[field] = `${fieldLabels[field]} is required.`;
+      }
+    }
+
+    return nextErrors;
+  }
+
+  function focusFirstInvalid(formElement: HTMLFormElement, nextErrors: FormErrors) {
+    const firstInvalidField = requiredFields.find((field) => nextErrors[field]);
+    if (!firstInvalidField) {
+      return;
+    }
+
+    const element = formElement.elements.namedItem(firstInvalidField);
+    if (element instanceof HTMLElement) {
+      element.focus();
+    }
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const nextErrors = validateForm();
+    setErrors(nextErrors);
 
-    const message = buildQuoteMessage({
+    if (Object.keys(nextErrors).length > 0) {
+      focusFirstInvalid(event.currentTarget, nextErrors);
+      setStatus("Please complete the required fields before opening WhatsApp.");
+      return;
+    }
+
+    const formData = new FormData(event.currentTarget);
+    const message = buildProjectEnquiryMessage({
       name: String(formData.get("name") || ""),
-      businessName: String(formData.get("businessName") || ""),
-      businessType: String(formData.get("businessType") || ""),
-      phone: String(formData.get("phone") || ""),
-      serviceNeeded: String(formData.get("serviceNeeded") || ""),
-      budgetRange: String(formData.get("budgetRange") || ""),
-      timeline: String(formData.get("timeline") || ""),
-      message: String(formData.get("message") || ""),
+      preferredContact: String(formData.get("preferredContact") || ""),
+      businessOrProduct: String(formData.get("businessOrProduct") || ""),
+      projectContext: String(formData.get("projectContext") || ""),
+      firstRelease: String(formData.get("firstRelease") || ""),
+      currentStage: String(formData.get("currentStage") || ""),
+      indicativeBudget: String(formData.get("indicativeBudget") || ""),
+      preferredStartWindow: String(formData.get("preferredStartWindow") || ""),
     });
 
     const url = createWhatsAppQuoteUrl(message);
 
     if (!url) {
-      setStatus("WhatsApp is not connected yet. Update src/config/site.ts with the Deodar Web Studio number before deployment.");
+      setStatus("WhatsApp is not connected yet. Update the configured Deodar Web Studio number before deployment.");
       return;
     }
 
     window.open(url, "_blank", "noopener,noreferrer");
-    setStatus("WhatsApp opened with your enquiry prepared. Review it, then send the message there.");
+    setStatus("WhatsApp opened with your project brief prepared. Review it, then send the message there.");
   }
 
   return (
-    <section id="contact" className="section-spacing bg-deodar-surface/30">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-        <div>
-          <SectionHeading
-            label="Website Enquiry"
-            title="Start with a clear WhatsApp brief."
-            copy="Share the business details once. The form opens WhatsApp with a clean enquiry message, so the discussion can start with context."
-          />
-
-          <div className="mt-8 grid gap-4">
-            <div className="rounded-lg border border-deodar-line bg-deodar-ink/60 p-5">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-md bg-deodar-accent/35 text-deodar-gold">
-                  <SiteIcon name="message" className="size-5" />
-                </span>
-                <div>
-                  <p className="font-semibold text-deodar-cream">WhatsApp-first contact</p>
-                  <p className="mt-1 text-sm leading-6 text-deodar-muted">
-                    No vague contact form black hole. Your enquiry opens directly in WhatsApp.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-lg border border-deodar-line bg-deodar-ink/60 p-5">
-              <div className="flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-md bg-deodar-accent/35 text-deodar-gold">
-                  <SiteIcon name="shield" className="size-5" />
-                </span>
-                <div>
-                  <p className="font-semibold text-deodar-cream">Scope before build</p>
-                  <p className="mt-1 text-sm leading-6 text-deodar-muted">
-                    Pages, content, timeline, budget, and launch needs are clarified before work begins.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form
-          action="#contact"
-          onSubmit={onSubmit}
-          className="rounded-lg border border-deodar-line bg-deodar-ink/75 p-4 shadow-premium sm:p-6"
-        >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Name" name="name" value={form.name} onChange={(value) => updateField("name", value)} autoComplete="name" required />
-            <Field
-              label="Business name"
-              name="businessName"
-              value={form.businessName}
-              onChange={(value) => updateField("businessName", value)}
-              autoComplete="organization"
-              required
-            />
-            <Field
-              label="Business type"
-              name="businessType"
-              value={form.businessType}
-              onChange={(value) => updateField("businessType", value)}
-              placeholder="Cafe, clinic, gym, salon..."
-              required
-            />
-            <Field
-              label="Phone / WhatsApp number"
-              name="phone"
-              value={form.phone}
-              onChange={(value) => updateField("phone", value)}
-              autoComplete="tel"
-              required
-            />
-            <SelectField
-              label="Package / service"
-              name="serviceNeeded"
-              value={form.serviceNeeded}
-              options={serviceOptions}
-              onChange={(value) => updateField("serviceNeeded", value)}
-            />
-            <SelectField
-              label="Budget range"
-              name="budgetRange"
-              value={form.budgetRange}
-              options={budgetOptions}
-              onChange={(value) => updateField("budgetRange", value)}
-            />
-            <SelectField
-              label="Timeline"
-              name="timeline"
-              value={form.timeline}
-              options={timelineOptions}
-              onChange={(value) => updateField("timeline", value)}
-            />
-            <div className="rounded-md border border-deodar-line bg-deodar-surface px-4 py-3 text-sm leading-6 text-deodar-muted">
-              <p className="font-medium text-deodar-cream">Built for clarity</p>
-              <p className="mt-1">Services, menu, location, photos, timings, and direct contact.</p>
-            </div>
-          </div>
-
-          <label className="mt-4 block">
-            <span className="text-sm font-medium text-deodar-cream">Message</span>
-            <textarea
-              value={form.message}
-              name="message"
-              onChange={(event) => updateField("message", event.target.value)}
-              rows={4}
-              required
-              aria-required="true"
-              className="focus-ring mt-2 w-full resize-y rounded-md border border-deodar-line bg-deodar-surface px-4 py-3 text-sm leading-6 text-deodar-cream placeholder:text-deodar-muted/70"
-              placeholder="Example: I need a clean website for my clinic with services, timings, photos, Google Maps, and WhatsApp enquiry."
-            />
-          </label>
-
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button
-              type="submit"
-              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-deodar-gold px-6 py-3 text-sm font-semibold text-deodar-ink transition hover:bg-[#c79a5f]"
-            >
-              {siteConfig.ctas.whatsapp}
-              <SiteIcon name="message" className="size-4" />
-            </button>
-            <a
-              href="#work"
-              className="focus-ring inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-deodar-line px-6 py-3 text-sm font-semibold text-deodar-cream transition hover:border-deodar-gold/40"
-            >
-              View selected builds
-            </a>
-          </div>
-
-          {status ? (
-            <p className="mt-4 rounded-md border border-deodar-gold/25 bg-deodar-gold/10 px-4 py-3 text-sm leading-6 text-deodar-cream" role="status">
-              {status}
+    <section id="contact" className="studio-canvas border-t border-studio-line py-[var(--studio-section-space)]">
+      <Container size="wide">
+        <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="max-w-[var(--studio-reading-max)]">
+            <p className="type-label text-studio-greenBright">{projectEnquiry.eyebrow}</p>
+            <h2 className="type-section mt-5 text-studio-text">{projectEnquiry.heading}</h2>
+            <p className="type-body-lg mt-6 text-studio-textSoft">{projectEnquiry.introduction}</p>
+            <p className="mt-6 border-l border-studio-green pl-5 text-base font-semibold leading-7 text-studio-text">
+              {projectEnquiry.directStatement}
             </p>
-          ) : null}
-        </form>
-      </div>
+
+            <div className="mt-10 border-t border-studio-line pt-6">
+              <h3 className="type-subheading text-studio-text">Useful context</h3>
+              <ul className="mt-5 grid gap-3 text-sm leading-6 text-studio-muted">
+                {projectEnquiry.usefulContext.map((item) => (
+                  <li key={item} className="grid grid-cols-[1.25rem_1fr] gap-3">
+                    <SiteIcon name="check" className="mt-1 size-4 text-studio-greenBright" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {directWhatsAppUrl ? (
+                <ActionLink href={directWhatsAppUrl} variant="secondary" external>
+                  Open WhatsApp directly
+                  <SiteIcon name="message" className="size-4" />
+                </ActionLink>
+              ) : null}
+              {contactConfig.hasConfiguredProfessionalEmail ? (
+                <ActionLink href={`mailto:${contactConfig.email}`} variant="text" external>
+                  Send an email instead
+                </ActionLink>
+              ) : null}
+            </div>
+          </div>
+
+          <form
+            action="#contact"
+            noValidate
+            onSubmit={onSubmit}
+            className="border-t border-studio-line pt-6 lg:border-t-0 lg:pt-0"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <TextField
+                error={errors.name}
+                label={fieldLabels.name}
+                name="name"
+                onChange={(value) => updateField("name", value)}
+                required
+                value={form.name}
+                autoComplete="name"
+              />
+              <TextField
+                error={errors.preferredContact}
+                helper="Used only to reply to this enquiry."
+                label={fieldLabels.preferredContact}
+                name="preferredContact"
+                onChange={(value) => updateField("preferredContact", value)}
+                required
+                value={form.preferredContact}
+                autoComplete="email tel"
+              />
+              <TextField
+                error={errors.businessOrProduct}
+                label={fieldLabels.businessOrProduct}
+                name="businessOrProduct"
+                onChange={(value) => updateField("businessOrProduct", value)}
+                value={form.businessOrProduct}
+                autoComplete="organization"
+                className="sm:col-span-2"
+              />
+              <TextareaField
+                error={errors.projectContext}
+                helper="Describe the current situation, who it affects and what is not working well enough."
+                label={fieldLabels.projectContext}
+                name="projectContext"
+                onChange={(value) => updateField("projectContext", value)}
+                required
+                value={form.projectContext}
+              />
+              <TextareaField
+                error={errors.firstRelease}
+                helper="Name the critical workflow, action or outcome the first release must support."
+                label={fieldLabels.firstRelease}
+                name="firstRelease"
+                onChange={(value) => updateField("firstRelease", value)}
+                required
+                value={form.firstRelease}
+              />
+              <SelectField
+                error={errors.currentStage}
+                label={fieldLabels.currentStage}
+                name="currentStage"
+                onChange={(value) => updateField("currentStage", value)}
+                options={projectEnquiry.stageOptions}
+                required
+                value={form.currentStage}
+              />
+              <SelectField
+                error={errors.indicativeBudget}
+                label={fieldLabels.indicativeBudget}
+                name="indicativeBudget"
+                onChange={(value) => updateField("indicativeBudget", value)}
+                options={projectEnquiry.budgetOptions}
+                required
+                value={form.indicativeBudget}
+              />
+              <SelectField
+                error={errors.preferredStartWindow}
+                label={fieldLabels.preferredStartWindow}
+                name="preferredStartWindow"
+                onChange={(value) => updateField("preferredStartWindow", value)}
+                options={projectEnquiry.startWindowOptions}
+                value={form.preferredStartWindow}
+                className="sm:col-span-2"
+                placeholder="Select if helpful"
+              />
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="submit"
+                className="inline-flex min-h-[50px] flex-1 items-center justify-center gap-2 rounded-studioSm border border-studio-green bg-studio-green px-5 py-3 text-sm font-semibold leading-none text-studio-greenInk transition duration-200 hover:border-studio-greenBright hover:bg-studio-greenBright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright motion-safe:hover:-translate-y-0.5"
+              >
+                Send project brief through WhatsApp
+                <SiteIcon name="message" className="size-4" />
+              </button>
+              <ActionLink href="#work" variant="secondary" size="lg" className="flex-1">
+                Review selected work
+              </ActionLink>
+            </div>
+
+            <p className="type-small mt-5 text-studio-muted">{projectEnquiry.privacyNote}</p>
+
+            {status ? (
+              <p className="mt-4 border border-studio-line bg-studio-surface px-4 py-3 text-sm leading-6 text-studio-text" role="status">
+                {status}
+              </p>
+            ) : null}
+          </form>
+        </div>
+      </Container>
     </section>
   );
 }
 
-function Field({
+type ControlProps = {
+  label: string;
+  name: FieldName;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  helper?: string;
+  required?: boolean;
+  className?: string;
+};
+
+function describedBy(name: FieldName, helper?: string, error?: string) {
+  return [helper ? `${name}-helper` : null, error ? `${name}-error` : null].filter(Boolean).join(" ") || undefined;
+}
+
+function TextField({
   label,
   name,
   value,
   onChange,
-  autoComplete,
-  placeholder,
+  error,
+  helper,
   required,
-}: {
-  label: string;
-  name: string;
-  value: string;
-  onChange: (value: string) => void;
+  autoComplete,
+  className,
+}: ControlProps & {
   autoComplete?: string;
-  placeholder?: string;
-  required?: boolean;
 }) {
   return (
-    <label className="block">
-      <span className="text-sm font-medium text-deodar-cream">{label}</span>
+    <label className={className}>
+      <span className="text-sm font-semibold text-studio-text">
+        {label}
+        {required ? <span className="text-studio-greenBright"> *</span> : null}
+      </span>
       <input
-        value={value}
+        aria-describedby={describedBy(name, helper, error)}
+        aria-invalid={Boolean(error)}
+        aria-required={required}
+        autoComplete={autoComplete}
+        className="mt-2 h-12 w-full rounded-studioSm border border-studio-line bg-studio-surface px-4 text-sm text-studio-text placeholder:text-studio-faint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
         name={name}
         onChange={(event) => onChange(event.target.value)}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
         required={required}
-        aria-required={required}
-        className="focus-ring mt-2 h-12 w-full rounded-md border border-deodar-line bg-deodar-surface px-4 text-sm text-deodar-cream placeholder:text-deodar-muted/70"
+        value={value}
       />
+      <HelperText error={error} helper={helper} name={name} />
+    </label>
+  );
+}
+
+function TextareaField({ label, name, value, onChange, error, helper, required }: ControlProps) {
+  return (
+    <label className="sm:col-span-2">
+      <span className="text-sm font-semibold text-studio-text">
+        {label}
+        {required ? <span className="text-studio-greenBright"> *</span> : null}
+      </span>
+      <textarea
+        aria-describedby={describedBy(name, helper, error)}
+        aria-invalid={Boolean(error)}
+        aria-required={required}
+        className="mt-2 min-h-32 w-full resize-y rounded-studioSm border border-studio-line bg-studio-surface px-4 py-3 text-sm leading-6 text-studio-text placeholder:text-studio-faint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+        name={name}
+        onChange={(event) => onChange(event.target.value)}
+        required={required}
+        value={value}
+      />
+      <HelperText error={error} helper={helper} name={name} />
     </label>
   );
 }
@@ -239,28 +359,57 @@ function SelectField({
   label,
   name,
   value,
-  options,
   onChange,
-}: {
-  label: string;
-  name: string;
-  value: string;
-  options: string[];
-  onChange: (value: string) => void;
+  options,
+  error,
+  required,
+  className,
+  placeholder = "Select one",
+}: ControlProps & {
+  options: readonly string[];
+  placeholder?: string;
 }) {
   return (
-    <label className="block">
-      <span className="text-sm font-medium text-deodar-cream">{label}</span>
+    <label className={className}>
+      <span className="text-sm font-semibold text-studio-text">
+        {label}
+        {required ? <span className="text-studio-greenBright"> *</span> : null}
+      </span>
       <select
-        value={value}
+        aria-describedby={describedBy(name, undefined, error)}
+        aria-invalid={Boolean(error)}
+        aria-required={required}
+        className="mt-2 h-12 w-full rounded-studioSm border border-studio-line bg-studio-surface px-4 text-sm text-studio-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
         name={name}
         onChange={(event) => onChange(event.target.value)}
-        className="focus-ring mt-2 h-12 w-full rounded-md border border-deodar-line bg-deodar-surface px-4 text-sm text-deodar-cream"
+        required={required}
+        value={value}
       >
+        <option value="">{placeholder}</option>
         {options.map((option) => (
-          <option key={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </select>
+      <HelperText error={error} name={name} />
     </label>
+  );
+}
+
+function HelperText({ name, helper, error }: { name: FieldName; helper?: string; error?: string }) {
+  if (!helper && !error) {
+    return null;
+  }
+
+  return (
+    <span className="mt-2 block text-xs leading-5 text-studio-muted">
+      {helper ? <span id={`${name}-helper`}>{helper}</span> : null}
+      {error ? (
+        <span className="block text-studio-danger" id={`${name}-error`}>
+          {error}
+        </span>
+      ) : null}
+    </span>
   );
 }

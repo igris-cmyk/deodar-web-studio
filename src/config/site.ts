@@ -88,15 +88,17 @@ const configuredEmail = process.env.NEXT_PUBLIC_DEODAR_EMAIL?.trim();
 export const contactConfig = {
   studioName: "Deodar Web Studio",
   founderName: "Sahil Khursheed",
-  locationLine: "Based in India. Building clean websites for local businesses.",
+  locationLine: "Based in India. Working directly with clients and product teams.",
   // Replace with a working professional email before using email for public outreach.
   email: configuredEmail || "prammer711@gmail.com",
   hasConfiguredProfessionalEmail: Boolean(configuredEmail),
   recommendedEmail: "hello@deodarwebstudio.com",
   whatsAppNumber: "919541206212",
   githubUrl: "https://github.com/igris-cmyk",
+  linkedinUrl: "https://www.linkedin.com/in/sahil-khursheed-419666413",
   socialLinks: [
     { label: "GitHub", href: "https://github.com/igris-cmyk" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/sahil-khursheed-419666413" },
   ],
   serviceCategories: [
     "Business Websites",
@@ -287,6 +289,86 @@ export const orbitCaseStudy = {
     liveUrl: "https://orbit-sage-eta.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/orbit",
   },
+} as const;
+
+export const studioFounder = {
+  eyebrow: "Founder-led by design",
+  heading:
+    "One person accountable from product decision to production release.",
+  intro:
+    "Deodar is led by Sahil Khursheed, a full-stack product builder working across product structure, interface systems, application architecture and deployment.",
+  accountability:
+    "The person shaping the workflow is also involved in designing, building and verifying the system—reducing handoffs and keeping product decisions connected to implementation.",
+  principles: [
+    {
+      index: "01",
+      title: "Direct accountability",
+      statement:
+        "You work directly with the person responsible for the product and its implementation.",
+      explanation:
+        "Requirements, tradeoffs, interface decisions and technical constraints are discussed without a sales or account-management layer in between.",
+    },
+    {
+      index: "02",
+      title: "Decisions before output",
+      statement:
+        "The work begins by making the product clearer, not by producing screens immediately.",
+      explanation:
+        "Scope, workflow, system boundaries and release priorities are made explicit before implementation expands.",
+    },
+    {
+      index: "03",
+      title: "Working evidence",
+      statement:
+        "Progress is judged through functioning paths and verification, not presentation theatre.",
+      explanation:
+        "The work is reviewed through decisions, working behavior and honest records of any unresolved limitations.",
+    },
+  ],
+  links: [
+    { label: "View GitHub", href: contactConfig.githubUrl },
+    { label: "Connect on LinkedIn", href: contactConfig.linkedinUrl },
+  ],
+} as const;
+
+export const projectEnquiry = {
+  eyebrow: "Start a project conversation",
+  heading: "Bring the problem—not a finished specification.",
+  introduction:
+    "A useful first message explains the business context, the workflow or product problem, what must improve and what the first release needs to make possible.",
+  directStatement:
+    "Your enquiry goes directly to Sahil. There is no sales handoff.",
+  usefulContext: [
+    "The business or product context",
+    "The workflow or problem that needs to improve",
+    "What the first useful release must do",
+    "Relevant constraints, timing and budget range",
+  ],
+  privacyNote:
+    "The details you provide are used only to review and respond to your enquiry.",
+  directWhatsAppMessage:
+    "Hi Sahil, I want to discuss a Deodar project.",
+  stageOptions: [
+    "Early idea",
+    "Requirements are forming",
+    "Existing product needs improvement",
+    "Existing system needs rebuilding",
+    "Not sure yet",
+  ],
+  budgetOptions: [
+    "₹5,000–₹10,000",
+    "₹10,000–₹20,000",
+    "₹20,000–₹40,000",
+    "₹40,000+",
+    "Need help defining scope",
+  ],
+  startWindowOptions: [
+    "As soon as scope is clear",
+    "Within one month",
+    "Within two to three months",
+    "Planning for later",
+    "Not sure yet",
+  ],
 } as const;
 
 export const supportingWorkChapter = {

@@ -1,86 +1,76 @@
-import { contactConfig, siteConfig } from "@/config/site";
+import { contactConfig, siteConfig, studioNavigation } from "@/config/site";
+import { createWhatsAppQuoteUrl } from "@/lib/utils";
+import { ActionLink } from "./action-link";
+import { Container } from "./container";
 import { SiteIcon } from "./icon";
 
 export function Footer() {
+  const year = new Date().getFullYear();
+  const whatsappUrl = createWhatsAppQuoteUrl("Hi Sahil, I want to discuss a Deodar project.");
+
   return (
-    <footer className="border-t border-deodar-line bg-deodar-ink">
-      <div className="section-shell py-10 sm:py-12 lg:py-14">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
-          <div>
-            <a href="#home" className="focus-ring inline-flex items-center gap-3 rounded-md">
-              <span className="flex size-10 items-center justify-center rounded-md border border-deodar-gold/30 bg-deodar-surface text-sm font-semibold text-deodar-gold">
-                D
-              </span>
+    <footer className="studio-canvas border-t border-studio-line">
+      <Container size="wide" className="py-10 sm:py-12 lg:py-14">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <div className="max-w-2xl">
+            <a href="#home" className="inline-flex rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
               <span>
-                <span className="block font-semibold text-deodar-cream">{siteConfig.name}</span>
-                <span className="block text-xs text-deodar-muted">{siteConfig.descriptor}</span>
+                <span className="block text-lg font-semibold tracking-[-0.03em] text-studio-text">{studioNavigation.brand.name}</span>
+                <span className="mt-1 block text-sm text-studio-muted">{studioNavigation.brand.descriptor}</span>
               </span>
             </a>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-deodar-muted">
-              Clean, conversion-ready websites for local businesses that need trust and WhatsApp enquiries.
+            <p className="type-body mt-6 max-w-xl text-studio-textSoft">
+              Founder-led product direction, interface systems and full-stack engineering for focused digital products and business systems.
             </p>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-deodar-muted">{contactConfig.locationLine}</p>
-            <a
-              href="#contact"
-              className="focus-ring mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-deodar-gold px-5 py-3 text-sm font-semibold text-deodar-ink"
-            >
-              Start enquiry
-              <SiteIcon name="arrow" className="size-4" />
-            </a>
           </div>
 
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-normal text-deodar-gold">Services</h2>
-            <ul className="mt-4 grid gap-2 text-sm text-deodar-muted">
-              {contactConfig.serviceCategories.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.8fr_1fr]">
+            <nav aria-label="Footer navigation">
+              <h2 className="type-label text-studio-greenBright">Navigate</h2>
+              <ul className="mt-4 grid gap-2">
+                {studioNavigation.items.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      className="inline-flex min-h-9 items-center rounded-studioSm text-sm font-medium text-studio-muted transition hover:text-studio-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-normal text-deodar-gold">Quick Links</h2>
-            <ul className="mt-4 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
-              {siteConfig.nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="focus-ring inline-flex min-h-10 min-w-10 items-center rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={contactConfig.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
-                >
-                  GitHub Profile
-                  <SiteIcon name="github" className="size-4" />
-                </a>
-              </li>
-              {contactConfig.hasConfiguredProfessionalEmail ? (
-                <li>
-                  <a
-                    href={`mailto:${contactConfig.email}`}
-                    className="focus-ring inline-flex min-h-10 items-center rounded-md py-2 text-deodar-muted transition hover:text-deodar-cream"
-                  >
-                    {contactConfig.email}
-                  </a>
-                </li>
-              ) : null}
-            </ul>
+            <div>
+              <h2 className="type-label text-studio-greenBright">Contact</h2>
+              <div className="mt-4 flex flex-col items-start gap-3">
+                {whatsappUrl ? (
+                  <ActionLink href={whatsappUrl} variant="text" external>
+                    WhatsApp
+                    <SiteIcon name="message" className="size-4" />
+                  </ActionLink>
+                ) : null}
+                {contactConfig.hasConfiguredProfessionalEmail ? (
+                  <ActionLink href={`mailto:${contactConfig.email}`} variant="text" external>
+                    Email
+                  </ActionLink>
+                ) : null}
+                {contactConfig.socialLinks.map((link) => (
+                  <ActionLink key={link.href} href={link.href} variant="text" external>
+                    {link.label}
+                    <SiteIcon name={link.label === "GitHub" ? "github" : "external"} className="size-4" />
+                  </ActionLink>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-9 flex flex-col gap-2 border-t border-deodar-line pt-5 text-xs text-deodar-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-          <p>{siteConfig.serviceArea}</p>
+        <div className="mt-10 flex flex-col gap-3 border-t border-studio-line pt-5 text-xs leading-5 text-studio-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {siteConfig.name}</p>
+          <p>{contactConfig.locationLine}</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }
