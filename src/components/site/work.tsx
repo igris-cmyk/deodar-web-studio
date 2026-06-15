@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ActionLink } from "@/components/site/action-link";
 import { Container } from "@/components/site/container";
+import { SupportingWork } from "@/components/site/supporting-work";
 import { orbitCaseStudy } from "@/config/site";
 
 export function Work() {
@@ -117,6 +118,8 @@ export function Work() {
             </div>
           </div>
         </div>
+
+        <SupportingWork />
       </Container>
     </section>
   );

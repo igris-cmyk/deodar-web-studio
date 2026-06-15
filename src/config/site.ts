@@ -289,6 +289,158 @@ export const orbitCaseStudy = {
   },
 } as const;
 
+export const supportingWorkChapter = {
+  eyebrow: "Supporting product evidence",
+  heading: "Different systems. The same product discipline.",
+  introduction:
+    "These builds extend the studio's range - from a focused financial workflow product to a complete customer-facing and administrative business system.",
+} as const;
+
+export const dueFlowEvidence = {
+  name: "DueFlow",
+  category: "Cashflow workflow product",
+  status: "Independent product preview",
+  thesis: "A clearer operating layer for money already earned.",
+  summary:
+    "DueFlow explores how contractors, freelancers, agencies and service businesses can keep pending balances, client promises, project proof and follow-up actions connected in one cashflow workflow.",
+  screenshot: {
+    src: "/screenshots/dueflow.png",
+    alt: "DueFlow cashflow workflow product interface showing pending balances, proof and follow-up context.",
+    width: 1366,
+    height: 768,
+  },
+  problem: {
+    heading: "Completed work does not always mean completed payment.",
+    body:
+      "Payment context is often split between invoices, WhatsApp conversations, work photos, verbal promises and memory. DueFlow brings those records together so every pending balance has a client, project, proof trail and next action.",
+  },
+  decision: {
+    heading: "Turn pending money into an action queue.",
+    body:
+      "Instead of beginning with generic analytics, the product centres the day around overdue balances, missed promises, missing proof and follow-ups that need attention.",
+  },
+  evidenceAreas: [
+    {
+      label: "Cash Desk",
+      description:
+        "Opens the day around pending payments, promises, proof gaps and follow-ups.",
+    },
+    {
+      label: "Project and client ledgers",
+      description:
+        "Keeps balances, partial payments, clients and project context tied together.",
+    },
+    {
+      label: "Proof Vault",
+      description:
+        "Organizes invoices, work photos, approvals and WhatsApp screenshots against the right project.",
+    },
+    {
+      label: "User-approved follow-up suggestions",
+      description:
+        "Drafts respectful reminders from recorded facts without messaging clients automatically.",
+    },
+  ],
+  responsibility:
+    "Product positioning, workflow architecture, interface system and responsive product experience.",
+  links: {
+    liveLabel: "View DueFlow",
+    sourceLabel: "View source",
+    liveUrl: "https://due-flow-peach.vercel.app/",
+    repoUrl: "https://github.com/igris-cmyk/DueFlow",
+  },
+} as const;
+
+export const deodarBrewEvidence = {
+  name: "Deodar-Brew",
+  category: "Food-business website and ordering system",
+  status: "Studio-built full-stack business system",
+  qualifier: "Owned demonstration product",
+  thesis:
+    "A customer-facing ordering experience connected to an editable business system.",
+  summary:
+    "Deodar-Brew combines a public food-business website, structured digital menu, persistent cart, WhatsApp ordering and protected content management so customers can browse and order while the operator retains control of menu and business information.",
+  screenshot: {
+    src: "/screenshots/deodar-brew.png",
+    alt: "Deodar-Brew food-business ordering website showing a digital menu, cart summary and WhatsApp checkout experience.",
+    width: 1366,
+    height: 768,
+  },
+  problem: {
+    heading: "Customers should not need a conversation to understand the menu.",
+    body:
+      "Food businesses repeatedly answer the same questions about items, prices, availability, offers, hours and ordering. A clear mobile experience can provide that context before the customer contacts the business.",
+  },
+  decision: {
+    heading: "Connect the public menu to an editable operating layer.",
+    body:
+      "The customer-facing menu, offers and ordering flow are structured around managed business data, while protected administration keeps menu items, categories, gallery content and cafe information editable.",
+  },
+  flow: [
+    {
+      step: "Browse menu",
+      description:
+        "Customers explore categories, item details, pricing, availability and current offers through a responsive menu.",
+    },
+    {
+      step: "Build order",
+      description:
+        "Items, quantities and an optional customer note are collected into a persistent cart.",
+    },
+    {
+      step: "Send through WhatsApp",
+      description:
+        "The cart is converted into a structured order message that the business can confirm directly.",
+    },
+    {
+      step: "Manage content",
+      description:
+        "Protected administration keeps menu items, categories, offers, gallery content and cafe information editable.",
+    },
+  ],
+  implementationAreas: [
+    {
+      label: "Digital menu",
+      description:
+        "Categories, item details, pricing, descriptions and availability are presented in a responsive menu.",
+    },
+    {
+      label: "Persistent cart",
+      description:
+        "Items, quantities and customer notes remain available through the order flow.",
+    },
+    {
+      label: "WhatsApp order generation",
+      description:
+        "The cart becomes a structured message for direct business confirmation.",
+    },
+    {
+      label: "Protected content administration",
+      description:
+        "Admin workflows manage menu items, categories, offers, gallery content and cafe settings.",
+    },
+    {
+      label: "Prisma-backed business data",
+      description:
+        "Menu and business content are modelled as editable database records.",
+    },
+  ],
+  responsibility:
+    "Product definition, UX architecture, full-stack implementation, database modelling, protected administration workflows and deployment preparation.",
+  limitations: [
+    "No customer accounts",
+    "No payment gateway",
+    "No delivery tracking",
+    "No internal order dashboard claim",
+  ],
+  links: {
+    liveLabel: "View Deodar-Brew",
+    sourceLabel: "View source",
+    liveUrl: "https://deodar-brew.vercel.app/",
+    repoUrl: "https://github.com/igris-cmyk/Deodar-Brew",
+  },
+} as const;
+
 export const heroTrustPoints = [
   "WhatsApp-first enquiry flow",
   "Built for local businesses",
