@@ -1,132 +1,123 @@
 import Image from "next/image";
-import { projects } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { SiteIcon } from "./icon";
-import { SectionHeading } from "./section-heading";
+import { ActionLink } from "@/components/site/action-link";
+import { Container } from "@/components/site/container";
+import { orbitCaseStudy } from "@/config/site";
 
 export function Work() {
-  const regularProjects = projects.filter((project) => project.priority !== "primary");
-  const finalWideProject =
-    regularProjects.length % 2 === 1 ? regularProjects[regularProjects.length - 1]?.name : null;
-
   return (
-    <section id="work" className="section-spacing border-b border-deodar-line bg-deodar-surface/30">
-      <div className="section-shell">
-        <SectionHeading
-          label="Selected Builds"
-          title="Working Demos & Selected Builds"
-          copy="These are selected builds and production-style demos, not public client case studies. They show interface quality, structure, and engineering range without pretending to be client proof."
-        />
-
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          {projects.map((project) => {
-            const isWide = project.priority === "primary" || project.name === finalWideProject;
-
-            return (
-            <article
-              key={project.name}
-              className={cn(
-                "premium-card overflow-hidden p-4 sm:p-5",
-                isWide && "lg:col-span-2 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:p-6",
-                project.priority === "secondary" && "opacity-90",
-              )}
-            >
-              <div className="overflow-hidden rounded-lg border border-deodar-line bg-deodar-ink/60">
-                {project.screenshot ? (
-                  <div className={cn("relative bg-deodar-ink", isWide ? "aspect-[16/9]" : "aspect-[16/10]")}>
-                    <Image
-                      src={project.screenshot}
-                      alt={`${project.name} real project screenshot preview`}
-                      fill
-                      sizes={isWide ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 42vw, 100vw"}
-                      className="object-cover object-top"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-deodar-ink/30 via-transparent to-transparent" />
-                  </div>
-                ) : (
-                  <TechnicalPreview category={project.category} />
-                )}
-                <div className="flex flex-col items-start gap-2 border-t border-deodar-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                  <span className="rounded-full border border-deodar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-deodar-gold">
-                    {project.category}
-                  </span>
-                  <span className="text-xs text-deodar-muted">Selected build</span>
-                </div>
+    <section id="work" className="border-b border-studio-line bg-studio-canvas py-[var(--studio-section-space)]">
+      <Container size="wide">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-end">
+          <div>
+            <p className="type-label text-studio-greenBright">{orbitCaseStudy.eyebrow}</p>
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between lg:block">
+              <div>
+                <p className="type-label text-studio-faint">{orbitCaseStudy.statusLabel}</p>
+                <h2 className="type-display-lg mt-3 text-studio-text">{orbitCaseStudy.projectName}</h2>
               </div>
-
-              <div className={cn("mt-6", isWide && "lg:mt-0")}>
-                <h3 className="text-2xl font-semibold text-deodar-cream">{project.name}</h3>
-                <p className="mt-3 text-base leading-7 text-deodar-muted">{project.description}</p>
-                <div className="mt-5 rounded-lg border border-deodar-line bg-deodar-ink/40 p-4">
-                  <p className="text-sm leading-6 text-deodar-muted">{project.details}</p>
-                </div>
-
-                {project.tech?.length ? (
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tech.map((item) => (
-                      <span key={item} className="rounded-full border border-deodar-line px-3 py-1 text-xs text-deodar-muted">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full bg-deodar-gold px-4 py-2 text-sm font-semibold text-deodar-ink"
-                    >
-                      View Live
-                      <SiteIcon name="external" className="size-4" />
-                    </a>
-                  ) : null}
-                  {project.repoUrl ? (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-full border border-deodar-line px-4 py-2 text-sm font-semibold text-deodar-cream"
-                    >
-                      GitHub
-                      <SiteIcon name="github" className="size-4" />
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            </article>
-          );
-          })}
+              <p className="type-subheading max-w-lg text-studio-text lg:mt-8">{orbitCaseStudy.thesis}</p>
+            </div>
+          </div>
+          <div>
+            <p className="type-body-lg max-w-[var(--studio-reading-max)] text-studio-textSoft">
+              {orbitCaseStudy.introduction}
+            </p>
+            <p className="type-small mt-5 max-w-[var(--studio-reading-max)] border-l border-studio-line pl-4 text-studio-muted">
+              {orbitCaseStudy.honestyStatement}
+            </p>
+          </div>
         </div>
-      </div>
+
+        <figure className="mt-14 border border-studio-line bg-studio-surface p-2 sm:p-3">
+          <Image
+            src={orbitCaseStudy.screenshot.src}
+            alt={orbitCaseStudy.screenshot.alt}
+            width={orbitCaseStudy.screenshot.width}
+            height={orbitCaseStudy.screenshot.height}
+            sizes="(min-width: 1024px) 88vw, 100vw"
+            className="aspect-[16/9] w-full object-contain"
+            priority
+          />
+        </figure>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+          <div className="space-y-10">
+            {orbitCaseStudy.narrative.map((item) => (
+              <article key={item.index} className="border-t border-studio-line pt-6">
+                <div className="grid gap-4 sm:grid-cols-[4rem_1fr]">
+                  <div>
+                    <p className="type-label text-studio-greenBright">{item.index}</p>
+                    <p className="type-label mt-2 text-studio-faint">{item.eyebrow}</p>
+                  </div>
+                  <div>
+                    <h3 className="type-section text-studio-text">{item.heading}</h3>
+                    <p className="type-body mt-5 max-w-[var(--studio-reading-max)] text-studio-textSoft">{item.body}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div>
+            <div className="border-y border-studio-line py-6">
+              <p className="type-label text-studio-greenBright">Core workflow</p>
+              <ol className="mt-6">
+                {orbitCaseStudy.workflow.map((step, index) => (
+                  <li key={step.step} className="grid gap-4 border-t border-studio-line py-5 first:border-t-0 sm:grid-cols-[4rem_1fr]">
+                    <span className="type-label text-studio-faint">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 className="type-subheading text-studio-text">{step.step}</h3>
+                      <p className="type-small mt-2 max-w-md text-studio-muted">{step.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="mt-10">
+              <p className="type-label text-studio-greenBright">{orbitCaseStudy.systemScopeLabel}</p>
+              <ul className="mt-5 grid grid-cols-2 border-y border-studio-line sm:grid-cols-4">
+                {orbitCaseStudy.systemScope.map((item) => (
+                  <li key={item} className="border-b border-studio-line px-3 py-4 text-sm font-medium text-studio-textSoft sm:border-r sm:last:border-r-0">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 grid gap-10 border-t border-studio-line pt-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <div>
+            <h3 className="type-section text-studio-text">{orbitCaseStudy.role.heading}</h3>
+            <p className="type-body-lg mt-5 max-w-[var(--studio-reading-max)] text-studio-textSoft">{orbitCaseStudy.role.body}</p>
+          </div>
+
+          <div className="space-y-8">
+            <dl className="grid border-y border-studio-line sm:grid-cols-2">
+              {orbitCaseStudy.metadata.map((item) => (
+                <div key={item.label} className="border-b border-studio-line py-5 sm:odd:pr-6 sm:even:border-l sm:even:pl-6">
+                  <dt className="type-label text-studio-faint">{item.label}</dt>
+                  <dd className="type-body mt-2 text-studio-text">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="flex flex-col gap-3 min-[390px]:flex-row">
+              {orbitCaseStudy.links.liveUrl ? (
+                <ActionLink href={orbitCaseStudy.links.liveUrl} external size="lg" variant="primary">
+                  {orbitCaseStudy.links.liveLabel}
+                </ActionLink>
+              ) : null}
+              {orbitCaseStudy.links.repoUrl ? (
+                <ActionLink href={orbitCaseStudy.links.repoUrl} external size="lg" variant="secondary">
+                  {orbitCaseStudy.links.sourceLabel}
+                </ActionLink>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </Container>
     </section>
-  );
-}
-
-function TechnicalPreview({ category }: { category: string }) {
-  return (
-    <div className="min-h-[260px] p-4">
-      <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full border border-deodar-gold/25 px-3 py-1 text-xs font-semibold uppercase tracking-normal text-deodar-gold">
-          {category}
-        </span>
-        <SiteIcon name="workflow" className="size-5 text-deodar-muted" />
-      </div>
-      <div className="mt-6 overflow-hidden rounded-md border border-deodar-line bg-[#0A0F0D]">
-        <div className="flex h-9 items-center gap-1.5 border-b border-deodar-line px-3" aria-hidden="true">
-          <span className="size-2 rounded-full bg-deodar-gold/80" />
-          <span className="size-2 rounded-full bg-deodar-muted/40" />
-          <span className="size-2 rounded-full bg-deodar-accent" />
-        </div>
-        <div className="space-y-3 p-4 font-mono text-xs leading-6 text-deodar-muted">
-          <p><span className="text-deodar-gold">route</span> command - local workflow</p>
-          <p><span className="text-deodar-gold">memory</span> context - user approved</p>
-          <p><span className="text-deodar-gold">tools</span> desktop actions - guarded</p>
-          <p className="text-deodar-cream">status: technical exploration</p>
-        </div>
-      </div>
-    </div>
   );
 }

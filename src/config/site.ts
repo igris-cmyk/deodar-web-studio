@@ -206,6 +206,89 @@ export const studioCapabilityIndex = [
   },
 ] as const;
 
+export const orbitCaseStudy = {
+  eyebrow: "Flagship product study",
+  projectName: "Orbit",
+  statusLabel: "Independent product concept",
+  thesis: "A calmer operating system for service businesses.",
+  introduction:
+    "Orbit explores how leads, bookings, forms, staff, inventory, alerts and operational activity can work as one connected system instead of a collection of disconnected tools.",
+  honestyStatement:
+    "Orbit is an independent product concept and interface system - not a public client case study.",
+  screenshot: {
+    src: "/screenshots/orbit.png",
+    alt: "Orbit operations platform interface showing connected service-business workflows and operational activity.",
+    width: 1366,
+    height: 768,
+  },
+  narrative: [
+    {
+      index: "01",
+      eyebrow: "The operational problem",
+      heading: "Fragmented tools create fragmented operations.",
+      body:
+        "Service businesses often manage enquiries, schedules, forms, supplies, staff updates and follow-ups across separate tools. Important context gets lost between systems, and owners are forced to reconstruct the state of the business manually.",
+    },
+    {
+      index: "02",
+      eyebrow: "The product decision",
+      heading: "Design the workflow as one connected timeline.",
+      body:
+        "Orbit is structured around shared operational events rather than isolated feature silos. A booking, completed form, staff action, stock change or alert should update the same underlying picture of the business.",
+    },
+  ],
+  workflow: [
+    {
+      step: "Capture",
+      description:
+        "Bring new leads, bookings and customer information into one operational flow.",
+    },
+    {
+      step: "Coordinate",
+      description:
+        "Connect schedules, forms, staff responsibilities and service preparation.",
+    },
+    {
+      step: "Deliver",
+      description:
+        "Give the team a clear view of the work, customer context and required actions.",
+    },
+    {
+      step: "Update",
+      description:
+        "Reflect completed work, inventory changes, alerts and ongoing business activity.",
+    },
+  ],
+  systemScopeLabel: "Product system explored",
+  systemScope: [
+    "Leads",
+    "Bookings",
+    "Forms",
+    "Staff",
+    "Inventory",
+    "Alerts",
+    "Activity",
+    "Business health",
+  ],
+  role: {
+    heading: "Deodar's role",
+    body:
+      "Product direction, workflow modelling, interface architecture and responsive frontend implementation.",
+  },
+  metadata: [
+    { label: "Type", value: "Operations platform" },
+    { label: "Status", value: "Independent product concept" },
+    { label: "Audience", value: "Service businesses" },
+    { label: "Focus", value: "Connected operational workflows" },
+  ],
+  links: {
+    liveLabel: "View Orbit",
+    sourceLabel: "View source",
+    liveUrl: "https://orbit-sage-eta.vercel.app/",
+    repoUrl: "https://github.com/igris-cmyk/orbit",
+  },
+} as const;
+
 export const heroTrustPoints = [
   "WhatsApp-first enquiry flow",
   "Built for local businesses",
