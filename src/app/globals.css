@@ -80,6 +80,29 @@ a {
   color: var(--studio-text);
 }
 
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  border: 1px solid var(--studio-line-strong);
+  border-radius: 4px;
+  background: var(--studio-paper);
+  color: var(--studio-paper-text);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--studio-green-bright);
+  outline-offset: 4px;
+}
+
 :where(a, button, input, select, textarea, summary):focus-visible {
   outline: 2px solid var(--studio-green-bright);
   outline-offset: 3px;
@@ -115,10 +138,6 @@ a {
 
   .section-copy {
     @apply mt-4 max-w-2xl text-base leading-7 text-deodar-muted sm:text-lg;
-  }
-
-  .premium-card {
-    @apply rounded-lg border border-deodar-line bg-deodar-surface/90 shadow-[inset_0_1px_0_rgba(244,239,230,0.05)] transition duration-200 hover:-translate-y-1 hover:border-deodar-gold/40 hover:shadow-lift;
   }
 
   .focus-ring {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { FAQ } from "@/components/site/faq";
 import { Footer } from "@/components/site/footer";
 import { Navbar } from "@/components/site/navbar";
@@ -5,18 +6,46 @@ import { Packages } from "@/components/site/packages";
 import { ActionLink } from "@/components/site/action-link";
 import { Container } from "@/components/site/container";
 import { engagementOptions, engagementPage } from "@/config/site";
+import { absoluteUrl } from "@/lib/site-url";
 
-export const metadata = {
-  title: "Engagements and Pricing | Deodar Web Studio",
+export const metadata: Metadata = {
+  title: "Engagements and Pricing",
   description:
     "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+  alternates: {
+    canonical: "/engagements",
+  },
+  openGraph: {
+    title: "Engagements and Pricing | Deodar Web Studio",
+    description:
+      "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+    url: "/engagements",
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image"),
+        width: 1200,
+        height: 630,
+        alt: "Deodar Web Studio founder-led product direction, interface systems and full-stack engineering.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Engagements and Pricing | Deodar Web Studio",
+    description:
+      "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+    images: [absoluteUrl("/opengraph-image")],
+  },
 };
 
 export default function EngagementsPage() {
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <EngagementIntroduction />
         <EngagementSummary />
         <Packages />

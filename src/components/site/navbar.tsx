@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ActionLink } from "@/components/site/action-link";
 import { Container } from "@/components/site/container";
@@ -27,8 +28,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-studio-line bg-studio-canvas/95">
       <Container as="div" size="wide">
         <nav className="flex min-h-[72px] items-center justify-between gap-5" aria-label="Main navigation">
-          <a
-            href="#home"
+          <Link
+            href="/#home"
             className="group flex min-w-0 items-center gap-3 rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
             onClick={() => setIsOpen(false)}
           >
@@ -39,7 +40,7 @@ export function Navbar() {
               <span className="block text-base font-semibold tracking-[-0.02em] text-studio-text">{studioNavigation.brand.name}</span>
               <span className="mt-1 block text-xs font-medium text-studio-muted">{studioNavigation.brand.descriptor}</span>
             </span>
-          </a>
+          </Link>
 
           <div className="hidden items-center gap-1 lg:flex">
             {studioNavigation.items.map((item) => (

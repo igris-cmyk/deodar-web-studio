@@ -145,7 +145,6 @@ function DeodarBrewStudy() {
             height={deodarBrewEvidence.screenshot.height}
             sizes="(min-width: 1024px) 54vw, 100vw"
             className="aspect-[16/9] w-full object-contain"
-            unoptimized
           />
         </figure>
 

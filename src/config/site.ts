@@ -29,15 +29,6 @@ export type NavItem = {
   href: string;
 };
 
-export type Service = {
-  title: string;
-  for: string;
-  description: string;
-  includes: string[];
-  outcome: string;
-  icon: IconKey;
-};
-
 export type Project = {
   name: string;
   category: string;
@@ -48,11 +39,6 @@ export type Project = {
   repoUrl?: string;
   tech?: string[];
   priority?: "primary" | "secondary";
-};
-
-export type ProcessStep = {
-  title: string;
-  description: string;
 };
 
 export type FAQItem = {
@@ -79,20 +65,13 @@ export type EngagementOption = {
   qualification?: string;
 };
 
-export type WhyPoint = {
-  title: string;
-  description: string;
-  icon: IconKey;
-};
-
 const configuredEmail = process.env.NEXT_PUBLIC_DEODAR_EMAIL?.trim();
 
 export const contactConfig = {
   studioName: "Deodar Web Studio",
   founderName: "Sahil Khursheed",
   locationLine: "Based in India. Working directly with clients and product teams.",
-  // Replace with a working professional email before using email for public outreach.
-  email: configuredEmail || "prammer711@gmail.com",
+  email: configuredEmail || "",
   hasConfiguredProfessionalEmail: Boolean(configuredEmail),
   recommendedEmail: "hello@deodarwebstudio.com",
   whatsAppNumber: "919541206212",
@@ -106,30 +85,6 @@ export const contactConfig = {
 
 export const siteConfig = {
   name: contactConfig.studioName,
-  descriptor: "Clean Websites • Local Business • WhatsApp Enquiries",
-  tagline: "Clean websites for businesses that want to be trusted.",
-  heroHeadline: "Your business deserves a website that looks as serious as the work you do.",
-  description:
-    "Deodar Web Studio builds clean, mobile-friendly websites for cafes, clinics, shops, gyms, coaches, and service businesses - designed to build trust and turn visitors into real enquiries.",
-  promise:
-    "We help your business look clear, professional, and easy to contact online.",
-  founder: contactConfig.founderName,
-  serviceArea: contactConfig.locationLine,
-  ctas: {
-    primary: "Start a website enquiry",
-    nav: "Start enquiry",
-    secondary: "View selected builds",
-    tertiary: "See selected builds",
-    whatsapp: "Send enquiry on WhatsApp",
-  },
-  nav: [
-    { label: "Home", href: "/#home" },
-    { label: "Work", href: "/#work" },
-    { label: "Capabilities", href: "/#services" },
-    { label: "Process", href: "/#process" },
-    { label: "Contact", href: "/#contact" },
-  ] satisfies NavItem[],
-  socialLinks: contactConfig.socialLinks,
 };
 
 export const studioNavigation = {
@@ -617,102 +572,6 @@ export const studioDeliveryModel = {
   ],
 } as const;
 
-export const heroTrustPoints = [
-  "WhatsApp-first enquiry flow",
-  "Built for local businesses",
-  "Direct communication with Sahil",
-  "Clean mobile-first structure",
-];
-
-export const trustPoints = [
-  { label: "Clear services", icon: "file" },
-  { label: "WhatsApp CTA", icon: "message" },
-  { label: "Mobile responsive", icon: "phone" },
-  { label: "Location & timings", icon: "map" },
-  { label: "Basic SEO-ready structure", icon: "globe" },
-  { label: "Domain guidance", icon: "shield" },
-] as const;
-
-export const businessTypes = [
-  "Cafes",
-  "Restaurants",
-  "Clinics",
-  "Gyms",
-  "Salons",
-  "Shops",
-  "Coaches",
-  "Service Providers",
-];
-
-export const services: Service[] = [
-  {
-    title: "Business Websites",
-    for: "For clinics, gyms, salons, shops, coaches, consultants, and service providers.",
-    description:
-      "A clean website where customers can understand your services, see your location and timings, view photos, and contact you directly.",
-    icon: "building",
-    includes: [
-      "Service sections and business details",
-      "Photos, timings, location, and map",
-      "Contact form and WhatsApp CTA",
-      "Mobile responsive layout",
-    ],
-    outcome:
-      "Customers get the information they need before messaging, calling, or visiting.",
-  },
-  {
-    title: "Cafe & Menu Websites",
-    for: "For cafes, restaurants, bakeries, cloud kitchens, and food businesses.",
-    description:
-      "Digital menu, food categories, item pricing, photos, opening hours, location, and WhatsApp ordering or enquiry flow.",
-    icon: "coffee",
-    includes: [
-      "Menu categories and item pricing",
-      "Food photos and opening hours",
-      "Location and ordering information",
-      "WhatsApp order or enquiry flow",
-    ],
-    outcome:
-      "Customers can check the menu and start an order without asking for basic details again.",
-  },
-  {
-    title: "Product / Service Showcase Websites",
-    for: "For small sellers and businesses that need to display products, services, prices, photos, and enquiry options.",
-    description:
-      "A simple mobile-first showcase that makes your offer easy to browse and easy to enquire about.",
-    icon: "store",
-    includes: [
-      "Product or service cards",
-      "Prices, photos, and key details",
-      "WhatsApp enquiry buttons",
-      "Basic SEO-ready structure",
-    ],
-    outcome:
-      "Customers can browse first, then message with clearer intent.",
-  },
-];
-
-export const whyItMatters: WhyPoint[] = [
-  {
-    title: "Customers check first",
-    description:
-      "People often look online before they call, visit, book, or place an order. Unclear information creates doubt before the first conversation.",
-    icon: "users",
-  },
-  {
-    title: "Instagram alone is not enough",
-    description:
-      "Posts move, highlights get messy, and important details are easy to miss. A website gives your business one reliable public front.",
-    icon: "layout",
-  },
-  {
-    title: "WhatsApp works better with context",
-    description:
-      "When services, menu, prices, timings, and location are clear, enquiries are easier to answer and less repetitive.",
-    icon: "message",
-  },
-];
-
 export const engagementPage = {
   eyebrow: "Engagements and pricing",
   heading: "Clear starting points. Final scope confirmed before the build.",
@@ -972,34 +831,6 @@ export const projects: Project[] = [
     liveUrl: "https://trade-mind-alpha.vercel.app/",
     repoUrl: "https://github.com/igris-cmyk/TradeMind",
     tech: ["Authentication", "Database workflows", "Dashboards"],
-  },
-];
-
-export const processSteps: ProcessStep[] = [
-  {
-    title: "Share your business details",
-    description:
-      "Tell us what you do, who you serve, what information customers ask for, and what you want the website to achieve.",
-  },
-  {
-    title: "Confirm scope and timeline",
-    description:
-      "We agree on pages, sections, content needed, budget range, timeline, and what is not included.",
-  },
-  {
-    title: "Design and build",
-    description:
-      "The site is structured for clarity first, then designed and built as a clean mobile-friendly web presence.",
-  },
-  {
-    title: "Review and revise",
-    description:
-      "You review the website, share corrections, and we handle the agreed revision round before launch.",
-  },
-  {
-    title: "Deploy and hand over",
-    description:
-      "We help with deployment, explain the setup, and hand over the live website and important account details.",
   },
 ];
 

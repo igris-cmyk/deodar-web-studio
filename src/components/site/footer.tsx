@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contactConfig, siteConfig, studioNavigation } from "@/config/site";
 import { createWhatsAppQuoteUrl } from "@/lib/utils";
 import { ActionLink } from "./action-link";
@@ -13,12 +14,12 @@ export function Footer() {
       <Container size="wide" className="py-10 sm:py-12 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="max-w-2xl">
-            <a href="#home" className="inline-flex rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
+            <Link href="/#home" className="inline-flex rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
               <span>
                 <span className="block text-lg font-semibold tracking-[-0.03em] text-studio-text">{studioNavigation.brand.name}</span>
                 <span className="mt-1 block text-sm text-studio-muted">{studioNavigation.brand.descriptor}</span>
               </span>
-            </a>
+            </Link>
             <p className="type-body mt-6 max-w-xl text-studio-textSoft">
               Founder-led product direction, interface systems and full-stack engineering for focused digital products and business systems.
             </p>
