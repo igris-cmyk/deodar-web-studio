@@ -150,7 +150,7 @@ export const studioCapabilityIndex = [
 ] as const;
 
 export const orbitCaseStudy = {
-  eyebrow: "Flagship product study",
+  eyebrow: "Advanced product-system concept",
   projectName: "Orbit",
   statusLabel: "Independent product concept",
   thesis: "A calmer operating system for service businesses.",
@@ -313,10 +313,10 @@ export const projectEnquiry = {
 } as const;
 
 export const supportingWorkChapter = {
-  eyebrow: "Supporting product evidence",
-  heading: "Different systems. The same product discipline.",
+  eyebrow: "Selected product systems",
+  heading: "Three systems. Three levels of product responsibility.",
   introduction:
-    "These builds extend the studio's range - from a focused financial workflow product to a complete customer-facing and administrative business system.",
+    "The work moves from a complete customer-and-operator business system, through a focused financial workflow product, to a broader operational product concept.",
 } as const;
 
 export const dueFlowEvidence = {
