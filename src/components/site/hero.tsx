@@ -12,7 +12,7 @@ export function Hero() {
         <div className="max-w-6xl">
           <p className="type-label text-studio-greenBright">{studioHero.eyebrow}</p>
           <h1 className="mt-7 max-w-5xl text-[clamp(3.05rem,6.4vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-studio-text">
-            We design and build{" "}
+            Deodar designs and builds{" "}
             <span className="font-editorial font-normal italic tracking-[-0.065em] text-studio-text">digital products</span>{" "}
             that make businesses easier to run, trust and grow.
           </h1>

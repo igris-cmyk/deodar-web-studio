@@ -96,6 +96,7 @@ export const studioNavigation = {
     { label: "Work", href: "/#work" },
     { label: "Capabilities", href: "/#services" },
     { label: "Process", href: "/#process" },
+    { label: "Engagements", href: "/engagements" },
     { label: "Contact", href: "/#contact" },
   ] satisfies NavItem[],
   cta: {
@@ -107,7 +108,7 @@ export const studioNavigation = {
 export const studioHero = {
   eyebrow: "Founder-led product and engineering studio",
   headline:
-    "We design and build digital products that make businesses easier to run, trust and grow.",
+    "Deodar designs and builds digital products that make businesses easier to run, trust and grow.",
   supportingText:
     "Deodar combines product direction, interface systems and full-stack engineering to take focused web products from first decision to production deployment.",
   founderLine:

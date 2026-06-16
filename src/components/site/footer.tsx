@@ -8,6 +8,7 @@ import { SiteIcon } from "./icon";
 export function Footer() {
   const year = new Date().getFullYear();
   const whatsappUrl = createWhatsAppQuoteUrl("Hi Sahil, I want to discuss a Deodar project.");
+  const footerNavigationItems = studioNavigation.items.filter((item) => item.href !== "/engagements");
 
   return (
     <footer className="studio-canvas border-t border-studio-line">
@@ -29,7 +30,7 @@ export function Footer() {
             <nav aria-label="Footer navigation">
               <h2 className="type-label text-studio-greenBright">Navigate</h2>
               <ul className="mt-4 grid gap-2">
-                {studioNavigation.items.map((item) => (
+                {footerNavigationItems.map((item) => (
                   <li key={item.href}>
                     <a
                       href={item.href}
