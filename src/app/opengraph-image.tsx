@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Deodar Web Studio founder-led product direction, interface systems and full-stack engineering.";
+  "Deodar Web Studio builds founder-led websites, commerce experiences and operational systems.";
 export const size = {
   width: 1200,
   height: 630,
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
           <div style={{ color: "#91A796", fontSize: 24, letterSpacing: "0.14em", textTransform: "uppercase" }}>
             Founder-led studio
           </div>
-          <div style={{ color: "#9E9B94", fontSize: 24 }}>Product and engineering</div>
+          <div style={{ color: "#9E9B94", fontSize: 24 }}>Design and engineering</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -58,9 +58,9 @@ export default function OpenGraphImage() {
             paddingLeft: "28px",
           }}
         >
-          Founder-led product direction,
+          Websites and business systems for enquiries,
           <br />
-          interface systems and full-stack engineering.
+          transactions and simpler operations.
         </div>
       </div>
     ),

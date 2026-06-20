@@ -1,7 +1,9 @@
 import { Contact } from "@/components/site/contact";
+import { EngagementPreview } from "@/components/site/engagement-preview";
 import { Footer } from "@/components/site/footer";
 import { Founder } from "@/components/site/founder";
 import { Hero } from "@/components/site/hero";
+import { IdealClients } from "@/components/site/ideal-clients";
 import { Navbar } from "@/components/site/navbar";
 import { Process } from "@/components/site/process";
 import { Services } from "@/components/site/services";
@@ -16,10 +18,12 @@ export default function Home() {
       <Navbar />
       <main id="main-content">
         <Hero />
-        <Work />
         <Services />
-        <Process />
+        <Work />
+        <IdealClients />
         <Founder />
+        <Process />
+        <EngagementPreview />
         <Contact />
       </main>
       <Footer />

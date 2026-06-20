@@ -1,4 +1,5 @@
 import { Container } from "@/components/site/container";
+import { ActionLink } from "@/components/site/action-link";
 import { studioCapabilities } from "@/config/site";
 
 export function Services() {
@@ -49,9 +50,14 @@ export function Services() {
           ))}
         </div>
 
-        <p className="type-small mt-8 max-w-[var(--studio-reading-max)] text-studio-paperMuted">
-          {studioCapabilities.qualifier}
-        </p>
+        <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="type-small max-w-[var(--studio-reading-max)] text-studio-paperMuted">
+            {studioCapabilities.qualifier}
+          </p>
+          <ActionLink href="/engagements" variant="inverse">
+            Review engagement options
+          </ActionLink>
+        </div>
       </Container>
     </section>
   );

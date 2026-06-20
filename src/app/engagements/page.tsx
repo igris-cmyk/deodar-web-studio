@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FAQ } from "@/components/site/faq";
+import { EngagementSupport } from "@/components/site/engagement-support";
 import { Footer } from "@/components/site/footer";
 import { Navbar } from "@/components/site/navbar";
 import { Packages } from "@/components/site/packages";
@@ -11,21 +12,21 @@ import { absoluteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Engagements and Pricing",
   description:
-    "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+    "Explore Deodar's website, commerce, operational-system and ongoing support engagements, with clear scope, fit and starting investment guidance.",
   alternates: {
     canonical: "/engagements",
   },
   openGraph: {
     title: "Engagements and Pricing | Deodar Web Studio",
     description:
-      "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+      "Explore Deodar's website, commerce, operational-system and ongoing support engagements, with clear scope, fit and starting investment guidance.",
     url: "/engagements",
     images: [
       {
         url: absoluteUrl("/opengraph-image"),
         width: 1200,
         height: 630,
-        alt: "Deodar Web Studio founder-led product direction, interface systems and full-stack engineering.",
+        alt: "Deodar Web Studio builds founder-led websites, commerce experiences and operational systems.",
       },
     ],
   },
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Engagements and Pricing | Deodar Web Studio",
     description:
-      "Clear starting prices, scope boundaries and ways to work with Deodar Web Studio.",
+      "Explore Deodar's website, commerce, operational-system and ongoing support engagements, with clear scope, fit and starting investment guidance.",
     images: [absoluteUrl("/opengraph-image")],
   },
 };
@@ -49,6 +50,7 @@ export default function EngagementsPage() {
         <EngagementIntroduction />
         <EngagementSummary />
         <Packages />
+        <EngagementSupport />
         <FAQ />
         <ProjectBriefCta />
       </main>
@@ -90,7 +92,7 @@ function EngagementSummary() {
               </div>
               <p className="type-small max-w-xl text-studio-muted">{option.bestFor}</p>
               <p className="text-sm leading-6 text-studio-text">
-                <span className="block type-label text-studio-faint">Starting at</span>
+                <span className="block type-label text-studio-faint">{option.priceLabel}</span>
                 {option.startingPrice}
               </p>
               <p className="type-small text-studio-muted">{option.timeline}</p>

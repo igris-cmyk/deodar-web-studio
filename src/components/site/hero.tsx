@@ -12,9 +12,9 @@ export function Hero() {
         <div className="max-w-6xl">
           <p className="type-label text-studio-greenBright">{studioHero.eyebrow}</p>
           <h1 className="mt-7 max-w-5xl text-[clamp(3.05rem,6.4vw,6rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-studio-text">
-            Deodar designs and builds{" "}
-            <span className="font-editorial font-normal italic tracking-[-0.065em] text-studio-text">digital products</span>{" "}
-            that make businesses easier to run, trust and grow.
+            Websites and{" "}
+            <span className="font-editorial font-normal italic tracking-[-0.065em] text-studio-text">business systems</span>{" "}
+            built to generate enquiries, enable transactions and simplify operations.
           </h1>
 
           <div className="mt-8 grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(16rem,0.42fr)] lg:items-end">

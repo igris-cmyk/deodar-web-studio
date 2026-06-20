@@ -17,12 +17,12 @@ const newsreader = Newsreader({
 });
 
 const siteDescription =
-  "Founder-led product direction, interface systems and full-stack engineering for focused digital products and business systems.";
+  "Founder-led websites, commerce experiences and operational systems built to generate enquiries, enable transactions and simplify business operations.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Deodar Web Studio — Product Direction and Full-Stack Engineering",
+    default: "Deodar Web Studio — Websites and Business Systems",
     template: "%s | Deodar Web Studio",
   },
   description: siteDescription,
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "Deodar Web Studio — Product Direction and Full-Stack Engineering",
+    title: "Deodar Web Studio — Websites and Business Systems",
     description: siteDescription,
     url: "/",
     siteName: contactConfig.studioName,
@@ -53,14 +53,14 @@ export const metadata: Metadata = {
         url: absoluteUrl("/opengraph-image"),
         width: 1200,
         height: 630,
-        alt: "Deodar Web Studio founder-led product direction, interface systems and full-stack engineering.",
+        alt: "Deodar Web Studio builds founder-led websites, commerce experiences and operational systems.",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Deodar Web Studio — Product Direction and Full-Stack Engineering",
+    title: "Deodar Web Studio — Websites and Business Systems",
     description: siteDescription,
     images: [absoluteUrl("/opengraph-image")],
   },

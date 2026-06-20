@@ -15,28 +15,23 @@ export function Process() {
           </div>
         </div>
 
-        <ol className="mt-14 border-y border-studio-line">
+        <ol className="mt-12 grid border-y border-studio-line md:grid-cols-2">
           {studioDeliveryModel.stages.map((stage) => (
-            <li key={stage.index} className="grid gap-7 border-t border-studio-line py-8 first:border-t-0 lg:grid-cols-[minmax(10rem,0.34fr)_minmax(0,0.66fr)] lg:gap-12 lg:py-10">
+            <li
+              key={stage.index}
+              className="border-t border-studio-line py-7 first:border-t-0 md:px-7 md:odd:border-r md:odd:pl-0 md:even:pr-0 md:[&:nth-child(2)]:border-t-0"
+            >
               <div>
-                <p className="type-label text-studio-greenBright">{stage.index}</p>
-                <h3 className="type-section mt-4 text-studio-text">{stage.title}</h3>
-                <p className="type-body mt-4 max-w-sm text-studio-textSoft">{stage.decision}</p>
+                <div className="flex items-baseline gap-4">
+                  <p className="type-label text-studio-greenBright">{stage.index}</p>
+                  <h3 className="type-subheading text-studio-text">{stage.title}</h3>
+                </div>
+                <p className="mt-4 text-base font-semibold leading-7 text-studio-textSoft">{stage.decision}</p>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <p className="type-label text-studio-faint">Work</p>
-                  <p className="type-body mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
-                    {stage.work}
-                  </p>
-                </div>
-                <div className="border-t border-studio-line pt-6 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-                  <p className="type-label text-studio-faint">Gate</p>
-                  <p className="type-body mt-4 max-w-[var(--studio-reading-max)] text-studio-muted">
-                    {stage.gate}
-                  </p>
-                </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                <p className="type-small text-studio-muted">{stage.work}</p>
+                <p className="type-small border-l border-studio-line pl-4 text-studio-faint">{stage.gate}</p>
               </div>
             </li>
           ))}

@@ -18,39 +18,17 @@ export function createWhatsAppQuoteUrl(message: string) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-export function buildQuoteMessage(values: {
-  name?: string;
-  businessName?: string;
-  businessType?: string;
-  phone?: string;
-  serviceNeeded?: string;
-  budgetRange?: string;
-  timeline?: string;
-  message?: string;
-}) {
-  return [
-    "Hi Deodar Web Studio, I want to discuss a website for my business.",
-    "",
-    `Name: ${values.name || ""}`,
-    `Business: ${values.businessName || ""}`,
-    `Business type: ${values.businessType || ""}`,
-    `Package / service: ${values.serviceNeeded || ""}`,
-    `Budget: ${values.budgetRange || ""}`,
-    `Timeline: ${values.timeline || ""}`,
-    `WhatsApp number: ${values.phone || ""}`,
-    `Message: ${values.message || ""}`,
-  ].join("\n");
-}
-
 export type ProjectEnquiryMessageValues = {
   name?: string;
   preferredContact?: string;
   businessOrProduct?: string;
+  currentWebsite?: string;
   projectContext?: string;
-  firstRelease?: string;
-  currentStage?: string;
+  engagementType?: string;
+  primaryObjective?: string;
+  launchTimeframe?: string;
   indicativeBudget?: string;
-  preferredStartWindow?: string;
+  projectMessage?: string;
 };
 
 function provided(value?: string) {
@@ -64,16 +42,18 @@ export function buildProjectEnquiryMessage(values: ProjectEnquiryMessageValues) 
     "",
     `Name: ${provided(values.name)}`,
     `Preferred contact: ${provided(values.preferredContact)}`,
-    `Business / organisation / product: ${provided(values.businessOrProduct)}`,
+    `Business / organisation: ${provided(values.businessOrProduct)}`,
+    `Current website: ${provided(values.currentWebsite)}`,
     "",
-    "Project context:",
+    `Engagement type: ${provided(values.engagementType)}`,
+    `Primary objective: ${provided(values.primaryObjective)}`,
+    `Desired launch timeframe: ${provided(values.launchTimeframe)}`,
+    `Approximate investment: ${provided(values.indicativeBudget)}`,
+    "",
+    "What needs to be built or improved:",
     provided(values.projectContext),
     "",
-    "First-release outcome:",
-    provided(values.firstRelease),
-    "",
-    `Current stage: ${provided(values.currentStage)}`,
-    `Indicative budget: ${provided(values.indicativeBudget)}`,
-    `Preferred start window: ${provided(values.preferredStartWindow)}`,
+    "Additional project context:",
+    provided(values.projectMessage),
   ].join("\n");
 }

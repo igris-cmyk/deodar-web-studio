@@ -11,11 +11,13 @@ type FormState = {
   name: string;
   preferredContact: string;
   businessOrProduct: string;
+  currentWebsite: string;
   projectContext: string;
-  firstRelease: string;
-  currentStage: string;
+  engagementType: string;
+  primaryObjective: string;
+  launchTimeframe: string;
   indicativeBudget: string;
-  preferredStartWindow: string;
+  projectMessage: string;
 };
 
 type FieldName = keyof FormState;
@@ -24,31 +26,37 @@ const initialState: FormState = {
   name: "",
   preferredContact: "",
   businessOrProduct: "",
+  currentWebsite: "",
   projectContext: "",
-  firstRelease: "",
-  currentStage: "",
+  engagementType: "",
+  primaryObjective: "",
+  launchTimeframe: "",
   indicativeBudget: "",
-  preferredStartWindow: "",
+  projectMessage: "",
 };
 
 const requiredFields: Array<FieldName> = [
   "name",
   "preferredContact",
+  "businessOrProduct",
   "projectContext",
-  "firstRelease",
-  "currentStage",
+  "engagementType",
+  "primaryObjective",
+  "launchTimeframe",
   "indicativeBudget",
 ];
 
 const fieldLabels: Record<FieldName, string> = {
   name: "Name",
   preferredContact: "Email or WhatsApp number",
-  businessOrProduct: "Business, organisation or product",
+  businessOrProduct: "Business or organisation",
+  currentWebsite: "Current website, if available",
   projectContext: "What are you trying to build or improve?",
-  firstRelease: "What must the first useful release do?",
-  currentStage: "Current stage",
-  indicativeBudget: "Indicative budget",
-  preferredStartWindow: "Preferred start window",
+  engagementType: "Engagement type",
+  primaryObjective: "Primary business objective",
+  launchTimeframe: "Desired launch timeframe",
+  indicativeBudget: "Approximate investment range",
+  projectMessage: "Project message",
 };
 
 type FormErrors = Partial<Record<FieldName, string>>;
@@ -116,11 +124,13 @@ export function Contact() {
       name: String(formData.get("name") || ""),
       preferredContact: String(formData.get("preferredContact") || ""),
       businessOrProduct: String(formData.get("businessOrProduct") || ""),
+      currentWebsite: String(formData.get("currentWebsite") || ""),
       projectContext: String(formData.get("projectContext") || ""),
-      firstRelease: String(formData.get("firstRelease") || ""),
-      currentStage: String(formData.get("currentStage") || ""),
+      engagementType: String(formData.get("engagementType") || ""),
+      primaryObjective: String(formData.get("primaryObjective") || ""),
+      launchTimeframe: String(formData.get("launchTimeframe") || ""),
       indicativeBudget: String(formData.get("indicativeBudget") || ""),
-      preferredStartWindow: String(formData.get("preferredStartWindow") || ""),
+      projectMessage: String(formData.get("projectMessage") || ""),
     });
 
     const url = createWhatsAppQuoteUrl(message);
@@ -207,9 +217,17 @@ export function Contact() {
                 label={fieldLabels.businessOrProduct}
                 name="businessOrProduct"
                 onChange={(value) => updateField("businessOrProduct", value)}
+                required
                 value={form.businessOrProduct}
                 autoComplete="organization"
-                className="sm:col-span-2"
+              />
+              <TextField
+                error={errors.currentWebsite}
+                label={fieldLabels.currentWebsite}
+                name="currentWebsite"
+                onChange={(value) => updateField("currentWebsite", value)}
+                value={form.currentWebsite}
+                autoComplete="url"
               />
               <TextareaField
                 error={errors.projectContext}
@@ -220,23 +238,32 @@ export function Contact() {
                 required
                 value={form.projectContext}
               />
-              <TextareaField
-                error={errors.firstRelease}
-                helper="Name the critical workflow, action or outcome the first release must support."
-                label={fieldLabels.firstRelease}
-                name="firstRelease"
-                onChange={(value) => updateField("firstRelease", value)}
+              <SelectField
+                error={errors.engagementType}
+                label={fieldLabels.engagementType}
+                name="engagementType"
+                onChange={(value) => updateField("engagementType", value)}
+                options={projectEnquiry.engagementOptions}
                 required
-                value={form.firstRelease}
+                value={form.engagementType}
               />
               <SelectField
-                error={errors.currentStage}
-                label={fieldLabels.currentStage}
-                name="currentStage"
-                onChange={(value) => updateField("currentStage", value)}
-                options={projectEnquiry.stageOptions}
+                error={errors.primaryObjective}
+                label={fieldLabels.primaryObjective}
+                name="primaryObjective"
+                onChange={(value) => updateField("primaryObjective", value)}
+                options={projectEnquiry.objectiveOptions}
                 required
-                value={form.currentStage}
+                value={form.primaryObjective}
+              />
+              <SelectField
+                error={errors.launchTimeframe}
+                label={fieldLabels.launchTimeframe}
+                name="launchTimeframe"
+                onChange={(value) => updateField("launchTimeframe", value)}
+                options={projectEnquiry.startWindowOptions}
+                required
+                value={form.launchTimeframe}
               />
               <SelectField
                 error={errors.indicativeBudget}
@@ -247,15 +274,13 @@ export function Contact() {
                 required
                 value={form.indicativeBudget}
               />
-              <SelectField
-                error={errors.preferredStartWindow}
-                label={fieldLabels.preferredStartWindow}
-                name="preferredStartWindow"
-                onChange={(value) => updateField("preferredStartWindow", value)}
-                options={projectEnquiry.startWindowOptions}
-                value={form.preferredStartWindow}
-                className="sm:col-span-2"
-                placeholder="Select if helpful"
+              <TextareaField
+                error={errors.projectMessage}
+                helper="Add useful constraints, links or context that would help frame the first conversation."
+                label={fieldLabels.projectMessage}
+                name="projectMessage"
+                onChange={(value) => updateField("projectMessage", value)}
+                value={form.projectMessage}
               />
             </div>
 

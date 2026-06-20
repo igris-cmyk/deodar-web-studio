@@ -50,7 +50,7 @@ export type EngagementOption = {
   index: string;
   slug: string;
   name: string;
-  sourceName: string;
+  priceLabel: string;
   startingPrice: string;
   bestFor: string;
   summary: string;
@@ -108,45 +108,39 @@ export const studioNavigation = {
 export const studioHero = {
   eyebrow: "Founder-led product and engineering studio",
   headline:
-    "Deodar designs and builds digital products that make businesses easier to run, trust and grow.",
+    "Websites and business systems built to generate enquiries, enable transactions and simplify operations.",
   supportingText:
-    "Deodar combines product direction, interface systems and full-stack engineering to take focused web products from first decision to production deployment.",
+    "Deodar is a founder-led design and engineering studio building high-quality websites, commerce experiences and custom operational tools - from strategy and architecture to launch and continued improvement.",
   founderLine:
     "Led by Sahil Khursheed, with direct involvement across product thinking, design, engineering and launch.",
   primaryCta: {
-    label: "View selected work",
-    href: "#work",
+    label: "Discuss your project",
+    href: "#contact",
   },
   secondaryCta: {
-    label: "Discuss a project",
-    href: "#contact",
+    label: "View selected work",
+    href: "#work",
   },
 };
 
 export const studioCapabilityIndex = [
   {
     index: "01",
-    title: "Product direction",
+    title: "Websites and conversion",
     description:
-      "Clarifying the problem, product structure and decisions before implementation.",
+      "Credible customer journeys designed around qualified enquiries.",
   },
   {
     index: "02",
-    title: "Interface systems",
+    title: "Commerce and transactions",
     description:
-      "Designing coherent flows, responsive UI and reusable interaction patterns.",
+      "Structured ways for customers to browse, book, order or buy.",
   },
   {
     index: "03",
-    title: "Full-stack engineering",
+    title: "Operational systems",
     description:
-      "Building the application, data model, authentication and operational workflows.",
-  },
-  {
-    index: "04",
-    title: "Production launch",
-    description:
-      "Verifying performance, accessibility, deployment and release readiness.",
+      "Internal tools, dashboards and workflows connected to real business data.",
   },
 ] as const;
 
@@ -234,13 +228,12 @@ export const orbitCaseStudy = {
 } as const;
 
 export const studioFounder = {
-  eyebrow: "Founder-led by design",
-  heading:
-    "One person accountable from product decision to production release.",
+  eyebrow: "Founder-led delivery",
+  heading: "Founder-led from discovery to deployment.",
   intro:
-    "Deodar is led by Sahil Khursheed, a full-stack product builder working across product structure, interface systems, application architecture and deployment.",
+    "Deodar is led by Sahil Khursheed, a full-stack product engineer working across product strategy, interface design, application architecture, databases, authentication, operational workflows and deployment.",
   accountability:
-    "The person shaping the workflow is also involved in designing, building and verifying the system—reducing handoffs and keeping product decisions connected to implementation.",
+    "Every engagement receives direct technical ownership instead of being passed through layers of account management. The person shaping the workflow is also involved in designing, building and verifying the system.",
   principles: [
     {
       index: "01",
@@ -274,35 +267,45 @@ export const studioFounder = {
 } as const;
 
 export const projectEnquiry = {
-  eyebrow: "Start a project conversation",
-  heading: "Bring the problem—not a finished specification.",
+  eyebrow: "Discuss your project",
+  heading: "Bring the business problem, not a predetermined feature list.",
   introduction:
-    "A useful first message explains the business context, the workflow or product problem, what must improve and what the first release needs to make possible.",
+    "Share the objective, current bottleneck and approximate scope. Deodar will review the requirement and recommend the appropriate engagement.",
   directStatement:
     "Your enquiry goes directly to Sahil. There is no sales handoff.",
   usefulContext: [
-    "The business or product context",
-    "The workflow or problem that needs to improve",
-    "What the first useful release must do",
-    "Relevant constraints, timing and budget range",
+    "The business objective and current bottleneck",
+    "Who the system needs to serve",
+    "What a useful first release must enable",
+    "Relevant timing, content and investment constraints",
   ],
   privacyNote:
     "The details you provide are used only to review and respond to your enquiry.",
   directWhatsAppMessage:
     "Hi Sahil, I want to discuss a Deodar project.",
-  stageOptions: [
-    "Early idea",
-    "Requirements are forming",
-    "Existing product needs improvement",
-    "Existing system needs rebuilding",
+  engagementOptions: [
+    "Focused Launch",
+    "Growth Website",
+    "Commerce or Operational System",
+    "Custom Product Engineering",
+    "Ongoing Support",
     "Not sure yet",
   ],
+  objectiveOptions: [
+    "Generate qualified enquiries",
+    "Enable ordering, booking or payment",
+    "Improve credibility and customer understanding",
+    "Simplify an internal workflow",
+    "Launch or improve a digital product",
+    "Need help defining the objective",
+  ],
   budgetOptions: [
-    "₹5,000–₹10,000",
-    "₹10,000–₹20,000",
-    "₹20,000–₹40,000",
-    "₹40,000+",
-    "Need help defining scope",
+    "₹5,000–₹15,000",
+    "₹15,000–₹35,000",
+    "₹35,000–₹75,000",
+    "₹75,000–₹1,50,000",
+    "₹1,50,000+",
+    "Need guidance",
   ],
   startWindowOptions: [
     "As soon as scope is clear",
@@ -310,6 +313,33 @@ export const projectEnquiry = {
     "Within two to three months",
     "Planning for later",
     "Not sure yet",
+  ],
+} as const;
+
+export const idealClients = {
+  eyebrow: "Who Deodar works best with",
+  heading: "Commercial problems with a clear owner and a reason to solve them well.",
+  introduction:
+    "The strongest engagements combine a meaningful business objective, timely decisions and a willingness to build a durable foundation rather than a disposable template.",
+  profiles: [
+    {
+      index: "01",
+      title: "Hospitality and local commerce",
+      description:
+        "Cafes, restaurants, hotels, retailers and product businesses that need clearer menus, catalogues, orders, bookings or commerce journeys.",
+    },
+    {
+      index: "02",
+      title: "High-value service businesses",
+      description:
+        "Clinics, consultants, education businesses, property firms and professional services that need credibility and better-qualified enquiries.",
+    },
+    {
+      index: "03",
+      title: "Founders and operating teams",
+      description:
+        "Businesses that need dashboards, administrative systems, workflow tools or custom products beyond a normal marketing website.",
+    },
   ],
 } as const;
 
@@ -379,11 +409,11 @@ export const deodarBrewEvidence = {
   name: "Deodar-Brew",
   category: "Food-business website and ordering system",
   status: "Studio-built full-stack business system",
-  qualifier: "Owned demonstration product",
+  qualifier: "Owned reference implementation",
   thesis:
     "A customer-facing ordering experience connected to an editable business system.",
   summary:
-    "Deodar-Brew combines a public food-business website, structured digital menu, persistent cart, WhatsApp ordering and protected content management so customers can browse and order while the operator retains control of menu and business information.",
+    "An owned reference implementation showing how a food business can present its menu, promote offers and receive structured WhatsApp orders through a polished customer experience and protected administrative system.",
   screenshot: {
     src: "/screenshots/deodar-brew.png",
     alt: "Deodar-Brew food-business ordering website showing a digital menu, cart summary and WhatsApp checkout experience.",
@@ -467,123 +497,136 @@ export const deodarBrewEvidence = {
 
 export const studioCapabilities = {
   eyebrow: "Capabilities",
-  heading: "From unclear requirements to a working product system.",
+  heading: "Three ways digital systems create practical business value.",
   introduction:
-    "Deodar works across product structure, interface architecture and full-stack delivery - keeping the decisions, design and implementation connected instead of handing them between disconnected specialists.",
+    "Deodar connects strategy, information architecture, interface design and engineering so the public experience and the system behind it support the same commercial objective.",
   qualifier:
-    "Capabilities are applied according to the product's actual scope; not every engagement requires every layer.",
+    "Each engagement uses only the capabilities required by the agreed objective and release scope.",
   groups: [
     {
       index: "01",
-      title: "Product and Workflow Architecture",
+      title: "Websites and conversion systems",
       thesis:
-        "Define what the system must do before deciding how it should look.",
+        "Build credibility, clarify the offer and create a stronger path to enquiry.",
       responsibility:
-        "Clarify users, operational constraints, core workflows, information structure, product boundaries and the decisions required for an implementable first release.",
+        "Structure the message, page hierarchy, trust signals, lead capture and measurement around how the right customer evaluates and contacts the business.",
       outputs: [
-        "Problem and scope framing",
-        "Workflow and state mapping",
-        "Information architecture",
-        "Release boundary and decision record",
+        "Marketing and service websites",
+        "Landing pages and lead capture",
+        "Analytics and search foundations",
       ],
       appropriateProblem:
-        "Useful when a project has many ideas or operational requirements but no coherent product structure.",
+        "For businesses that need a credible presence and better-qualified enquiries.",
     },
     {
       index: "02",
-      title: "Interface Systems and Frontend Engineering",
+      title: "Commerce and customer transactions",
       thesis:
-        "Turn product structure into an interface that remains coherent across screens and states.",
+        "Give customers a structured way to browse, order, book, buy or enquire.",
       responsibility:
-        "Design responsive flows, interaction patterns, visual hierarchy and reusable frontend systems that make complex functionality understandable and maintainable.",
+        "Design and implement catalogues, menus, transaction flows, payments and customer communication with clear operating boundaries.",
       outputs: [
-        "Responsive product flows",
-        "Interface and component systems",
-        "Accessible interaction states",
-        "Production frontend implementation",
+        "Product catalogues and menus",
+        "Ordering, booking and payment flows",
+        "Customer communication paths",
       ],
       appropriateProblem:
-        "Useful when an interface must feel clear, credible and consistent while supporting real application behavior.",
+        "For businesses whose customers need to complete a meaningful action online.",
     },
     {
       index: "03",
-      title: "Full-Stack Systems and Production Delivery",
+      title: "Operational products and internal tools",
       thesis:
-        "Connect the visible product to the data, permissions and operational logic behind it.",
+        "Replace fragmented operational work with a focused, maintainable system.",
       responsibility:
-        "Implement the application layer, data model, authentication, administrative workflows, integrations, deployment and release verification required by the agreed product scope.",
+        "Model workflows, data, authentication, permissions, administrative tools and integrations as one product rather than disconnected screens.",
       outputs: [
-        "Application and data architecture",
-        "Authentication and permissions",
-        "Operational or administrative workflows",
-        "Deployment and release verification",
+        "Dashboards and administrative systems",
+        "Authentication, roles and permissions",
+        "Workflow automation and custom products",
       ],
       appropriateProblem:
-        "Useful when the project must move beyond a polished interface into a functioning and maintainable system.",
+        "For teams that need working software beyond a public-facing website.",
     },
   ],
 } as const;
 
 export const studioDeliveryModel = {
   eyebrow: "How the work moves",
-  heading: "Decisions first. Working evidence throughout.",
+  heading: "A disciplined path from business problem to supported release.",
   introduction:
-    "Each engagement moves through explicit decision gates. The goal is not to produce activity - it is to reduce uncertainty, build the right system and verify that it is ready to be used.",
+    "The process keeps commercial intent, scope, design, engineering and release decisions connected without turning the engagement into ceremony.",
   founderStatement:
-    "Sahil remains directly involved across product decisions, interface architecture, implementation and release verification.",
+    "Sahil remains directly involved from diagnosis and architecture through implementation, launch and agreed post-launch support.",
   stages: [
     {
       index: "01",
-      title: "Frame",
-      decision: "Agree on the problem, constraints and release boundary.",
+      title: "Diagnose",
+      decision: "Understand the business, customer and current bottleneck.",
       work:
-        "Review the business context, users, existing systems, required workflows, technical constraints and evidence already available.",
+        "Review the objective, users, existing experience, operational constraints and the outcome that matters.",
       gate:
-        "Proceed when the problem, ownership and first-release scope are explicit.",
+        "Proceed when the problem and responsible decision-makers are clear.",
     },
     {
       index: "02",
-      title: "Shape",
-      decision:
-        "Establish how the product should work before full implementation begins.",
+      title: "Define",
+      decision: "Agree scope, architecture, responsibilities and success criteria.",
       work:
-        "Define critical flows, information structure, interface direction, system boundaries and the data or permission model required by the scope.",
+        "Set the release boundary, assumptions, content responsibilities, technical constraints and verification criteria.",
       gate:
-        "Proceed when the core workflow can be explained, reviewed and implemented without relying on hidden assumptions.",
+        "Proceed when the proposal and responsibilities are explicit.",
     },
     {
       index: "03",
-      title: "Build",
-      decision: "Turn the agreed model into verified working increments.",
+      title: "Design",
+      decision: "Structure the information, user flow and visual direction.",
       work:
-        "Implement the interface and application in controlled slices, preserving working behavior while validating responsive states, data flows and operational paths.",
+        "Resolve the critical journey, hierarchy, interaction states and reusable interface system before full implementation expands.",
       gate:
-        "Proceed when each agreed path works as a system rather than as an isolated screen.",
+        "Proceed when the approved direction can be implemented without hidden assumptions.",
     },
     {
       index: "04",
-      title: "Release",
-      decision:
-        "Confirm that the agreed product is ready to operate outside the development environment.",
+      title: "Build",
+      decision: "Implement the approved system using appropriate production technology.",
       work:
-        "Verify accessibility, responsive behavior, performance, failure states, deployment configuration and the handover information required to operate the release.",
+        "Develop the interface, application logic, data model, integrations and operational paths in controlled increments.",
       gate:
-        "Complete when verification evidence is recorded and unresolved limitations are stated honestly.",
+        "Proceed when the agreed paths work together as a system.",
+    },
+    {
+      index: "05",
+      title: "Verify",
+      decision: "Confirm functionality and release readiness.",
+      work:
+        "Test responsive behavior, accessibility, performance, failure states, forms, data flows and deployment assumptions.",
+      gate:
+        "Proceed when critical issues are resolved and remaining limitations are recorded.",
+    },
+    {
+      index: "06",
+      title: "Launch and support",
+      decision: "Deploy, hand over and define what happens next.",
+      work:
+        "Connect production services, verify the live release, document ownership and continue improving where support is agreed.",
+      gate:
+        "Complete when the release is operating and post-launch responsibilities are understood.",
     },
   ],
 } as const;
 
 export const engagementPage = {
   eyebrow: "Engagements and pricing",
-  heading: "Clear starting points. Final scope confirmed before the build.",
+  heading: "Choose the right level of commercial and technical responsibility.",
   introduction:
-    "Deodar offers defined starting scopes for focused websites and menu experiences, with custom product and system work quoted after the workflows, data and operational requirements are understood.",
+    "Deodar offers a constrained launch option, a strategic growth website, functional commerce and operational systems, and scope-based custom product engineering.",
   pricingStatement:
-    "Every listed price is a starting price. Final cost depends on content volume, page structure, workflows, data, integrations and the responsibilities included in the agreed release.",
+    "Starting prices describe the minimum responsible scope for that engagement. Final investment depends on content, workflows, data, integrations, security, delivery constraints and the responsibilities included in the release.",
   directAccountability:
     "Scope is reviewed directly with Sahil before work begins.",
   sharedPricingStatement:
-    "Final pricing is confirmed after pages, content, workflows, integrations, responsibilities and release boundaries are agreed.",
+    "Final pricing is confirmed after objectives, pages, content, workflows, integrations, responsibilities and release boundaries are agreed.",
   scopePrinciples: {
     heading: "Scope changes are decisions, not invisible extras.",
     body:
@@ -605,11 +648,11 @@ export const engagementPage = {
     ],
   },
   cta: {
-    eyebrow: "Ready to define the scope?",
-    heading: "Start with the problem and the first useful release.",
+    eyebrow: "Start with context",
+    heading: "Bring the business problem, not a predetermined feature list.",
     copy:
-      "Use the project brief to share the business context, required workflow, constraints and indicative budget.",
-    primary: { label: "Send a project brief", href: "/#contact" },
+      "Share what you are trying to improve, where the current process is failing and what outcome matters. Deodar will recommend the appropriate engagement.",
+    primary: { label: "Discuss your project", href: "/#contact" },
     secondary: { label: "View selected work", href: "/#work" },
   },
 } as const;
@@ -617,172 +660,213 @@ export const engagementPage = {
 export const engagementOptions: EngagementOption[] = [
   {
     index: "01",
-    slug: "focused-website",
-    name: "Focused Website",
-    sourceName: "Starter Website",
+    slug: "focused-launch",
+    name: "Focused Launch",
+    priceLabel: "From",
     startingPrice: "₹5,000",
     bestFor:
-      "Independent professionals, small businesses and focused services that need one clear professional web presence.",
+      "New or small businesses that need a professional digital foundation with one clear conversion path.",
     summary:
-      "One clear professional web presence for a focused service, offer or small business.",
+      "A constrained, conversion-focused one-page presence built from complete client-provided content and a tightly controlled direction.",
     coreScope: [
-      "One professionally structured page",
-      "Up to six core sections",
+      "One conversion-focused page",
       "Responsive implementation",
-      "Clear service or offer explanation",
-      "Contact and WhatsApp actions",
-      "Business details, location or hours where relevant",
-      "Basic page title, metadata and social sharing metadata",
-      "Deployment on an appropriate free hosting platform",
-      "Domain-connection assistance when the domain already exists",
+      "Clear contact or WhatsApp action",
+      "Basic contact or enquiry form",
+      "Basic SEO and social metadata",
+      "Client-provided final content and images",
+      "Fixed or tightly controlled design direction",
     ],
     typicalStructure:
-      "Hero / Context / Offer or Services / Evidence or Highlights / Business Details / Contact",
+      "Offer / Context / Trust / Action / Contact",
     timeline:
-      "Indicatively 4-5 business days after content is complete and the scope is approved.",
+      "Approximately five business days after complete content is received and scope is approved.",
     revisions: "1 agreed revision round",
     exclusions: [
-      "Domain and paid-hosting fees",
-      "Full branding",
-      "Professional photography",
-      "Advanced copywriting",
-      "Database",
-      "Admin dashboard",
-      "Payments",
-      "User accounts",
-      "Advanced booking",
-      "Ongoing maintenance",
+      "Custom dashboard, CMS or backend",
+      "Authentication or user accounts",
+      "E-commerce, payments or booking engine",
+      "Advanced animations",
+      "Multiple page templates",
+      "Content creation",
       "Unlimited revisions",
+      "Ongoing maintenance",
     ],
-    cta: "Discuss a Focused Website",
+    cta: "Discuss a Focused Launch",
   },
   {
     index: "02",
-    slug: "business-website",
-    name: "Business Website",
-    sourceName: "Business Website",
-    startingPrice: "₹9,000",
+    slug: "growth-website",
+    name: "Growth Website",
+    priceLabel: "From",
+    startingPrice: "₹20,000",
     bestFor:
-      "Service businesses and professional teams that need several pages or a more structured explanation of their work.",
+      "Service businesses that need a complete, credible and conversion-focused web presence.",
     summary:
-      "A structured multi-page presence for services, credibility and clearer contact paths.",
+      "A strategically structured website that clarifies the offer, builds trust and creates stronger paths to qualified enquiry.",
     coreScope: [
-      "Up to five core pages or equivalent structured scope",
-      "Custom homepage",
-      "About or context page",
-      "Service structure",
-      "Contact page",
-      "WhatsApp or contact flow",
-      "Maps, location or hours where relevant",
-      "Gallery or work evidence",
-      "Team section where relevant",
-      "Real testimonials only if supplied",
-      "Responsive implementation",
-      "Basic page metadata and social sharing metadata",
-      "Deployment and domain assistance",
+      "Strategic page and conversion structure",
+      "Custom visual direction",
+      "Five to seven core pages or equivalent templates",
+      "Lead capture and WhatsApp or enquiry integration",
+      "Trust and credibility content architecture",
+      "Analytics and search metadata",
+      "Performance optimisation",
+      "Basic content structuring support",
     ],
     timeline:
-      "Indicatively 7-10 business days after content is complete and the scope is approved.",
+      "Approximately two to three weeks, subject to scope, content readiness and client responsiveness.",
     revisions: "2 agreed revision rounds",
     exclusions: [
-      "Domain and hosting fees",
-      "Premium third-party tools",
-      "Full copywriting and photography",
-      "Database",
-      "Admin dashboard",
-      "Authentication",
-      "Payments",
-      "Ecommerce",
-      "Advanced booking",
-      "Unlimited content entry",
-      "Ongoing maintenance unless agreed",
+      "Full e-commerce",
+      "Large-scale CMS architecture",
+      "Complex dashboards or multi-role applications",
+      "Advanced workflow automation",
+      "Unlimited content production or revisions",
     ],
-    cta: "Discuss a Business Website",
+    cta: "Discuss a Growth Website",
   },
   {
     index: "03",
-    slug: "menu-showcase-website",
-    name: "Menu & Showcase Website",
-    sourceName: "Menu & Showcase Website",
-    startingPrice: "₹12,000",
+    slug: "commerce-operational-system",
+    name: "Commerce or Operational System",
+    priceLabel: "From",
+    startingPrice: "₹50,000",
+    qualification: "Scope-based. Listed areas are not all included in the starting price.",
     bestFor:
-      "Cafes, restaurants, bakeries, product sellers and businesses with a structured menu, catalogue or price-led offer.",
+      "Businesses that require structured functionality beyond a marketing website.",
     summary:
-      "A content-led menu, catalogue or offer experience with clear WhatsApp enquiry or ordering paths.",
+      "A database-backed customer or operational system shaped around the workflows, roles and integrations the business actually needs.",
     coreScope: [
-      "Custom homepage",
-      "Structured menu or catalogue categories",
-      "Item or service presentation",
-      "Prices",
-      "Featured items or offers",
-      "Gallery",
-      "Location and hours",
-      "WhatsApp enquiry or order-summary flow",
-      "Optional cart-style WhatsApp summary where appropriate to the agreed scope",
-      "Responsive implementation",
-      "Basic page metadata and social sharing metadata",
-      "Deployment and domain assistance",
+      "Workflow and technical discovery",
+      "Custom interface and application architecture",
+      "Database-backed functionality",
+      "Relevant administrative workflows",
+      "Authentication and permissions where required",
+      "Included integrations",
+      "Deployment, training and documentation appropriate to scope",
+    ],
+    systemAreas: [
+      "Catalogues, menus and inventory",
+      "Ordering, booking and notifications",
+      "Administrative tools and lead workflows",
+      "Authentication, roles and permissions",
+      "Payments and third-party integrations",
     ],
     importantBoundary:
-      "The standard scope is content-driven. It does not automatically include an admin dashboard or database-backed content management.",
-    timeline:
-      "Indicatively 8-12 business days after content and item details are complete and the scope is approved.",
-    revisions: "2 agreed revision rounds",
+      "The proposal depends on workflow count, user roles, data complexity, integrations, administration, payment and security requirements, content readiness and timeline.",
+    timeline: "Confirmed after workflow and technical review.",
+    revisions: "Defined in the approved proposal",
     exclusions: [
-      "Admin dashboard",
-      "Database content management",
-      "Inventory management",
-      "Customer accounts",
-      "Delivery tracking",
-      "Online payments",
-      "Full ecommerce checkout",
-      "Third-party ordering fees",
-      "Unlimited item entry",
-      "Ongoing maintenance unless agreed",
+      "Any workflow, integration, content volume, paid service or operational responsibility not included in the approved scope.",
     ],
-    cta: "Discuss a Menu & Showcase Website",
+    cta: "Discuss a Commerce or Operational System",
   },
   {
     index: "04",
-    slug: "custom-product-web-system",
-    name: "Custom Product or Web System",
-    sourceName: "Custom Web Build",
-    startingPrice: "₹20,000",
-    qualification: "Final quote after product and technical scope review.",
+    slug: "custom-product-engineering",
+    name: "Custom Product Engineering",
+    priceLabel: "Investment",
+    startingPrice: "Scope-based engagement",
     bestFor:
-      "Products and business systems that need editable workflows, data, authentication, administration, integrations or functionality beyond a content-led website.",
+      "Founders and teams building SaaS products, internal platforms, multi-role applications or bespoke business software.",
     summary:
-      "Scope-reviewed product and system work where the interface, data and operating logic must fit together.",
+      "A phased product engagement connecting discovery, requirements, architecture, UX, full-stack implementation, verification and continued development.",
     coreScope: [
-      "Product and workflow discovery",
-      "Custom interface architecture",
-      "Frontend and application implementation",
-      "Data modelling",
-      "Authentication",
-      "Permissions",
-      "Administrative workflows",
-      "Integrations where included in the approved scope",
-      "Deployment approach",
-      "Release verification",
+      "Product discovery and requirements definition",
+      "Application and data architecture",
+      "UX and interface system",
+      "Full-stack implementation",
+      "Verification and deployment",
+      "Continued development where agreed",
     ],
     systemAreas: [
-      "Administrative workflows",
-      "Database-backed content",
-      "Authentication and permissions",
-      "Dashboards or operational interfaces",
-      "Third-party integrations",
-      "Custom ordering or business automation",
+      "SaaS and data-driven products",
+      "Internal platforms and dashboards",
+      "Workflow and multi-role systems",
+      "Bespoke integrations",
     ],
     importantBoundary:
-      "The starting price is not a fixed price for every listed system feature. Scope is confirmed after product and technical review.",
+      "Genuinely custom products are not assigned a fictional fixed package price. The first proposal defines the phase, capacity, responsibilities and decision points.",
     timeline: "Scope-dependent.",
     revisions: "Defined in the approved proposal",
     exclusions: [
       "Any workflow, integration, third-party service, paid tool or operational responsibility not included in the approved scope is excluded.",
     ],
-    cta: "Request a Custom Scope Review",
+    cta: "Discuss Custom Product Engineering",
   },
 ];
+
+export const postLaunchPlans = {
+  eyebrow: "After launch",
+  heading: "Keep the system healthy, useful and commercially relevant.",
+  introduction:
+    "Launch is a handover point, not always the end of the engagement. Ongoing support is scoped around maintenance, improvement or reserved product capacity.",
+  plans: [
+    {
+      name: "Website Care",
+      price: "From ₹2,000/month",
+      summary: "Technical care for an existing Deodar website.",
+      coverage: [
+        "Availability and form checks",
+        "Dependency, security and performance review",
+        "Small content updates",
+        "Monthly site-health summary",
+      ],
+      boundary: "Major development and redesign work are quoted separately.",
+    },
+    {
+      name: "Growth Support",
+      price: "From ₹6,000/month",
+      summary: "Measured improvements to content, campaigns and conversion paths.",
+      coverage: [
+        "Website Care coverage",
+        "Analytics and conversion review",
+        "Campaign, offer and search improvements",
+        "Controlled monthly development allocation",
+      ],
+      boundary: "Rankings, revenue and sales outcomes are not guaranteed.",
+    },
+    {
+      name: "Product Partnership",
+      price: "Custom monthly engagement",
+      summary: "Reserved product and engineering capacity for an evolving system.",
+      coverage: [
+        "Roadmap and priority planning",
+        "Ongoing functionality and automation",
+        "Platform optimisation",
+        "Priority technical support",
+      ],
+      boundary: "Capacity and response expectations are defined in the agreement; development is not unlimited.",
+    },
+  ],
+} as const;
+
+export const engagementFit = {
+  eyebrow: "Working fit",
+  heading: "Clear expectations protect the quality of the work.",
+  strongFit: {
+    title: "A strong fit",
+    items: [
+      "The project has a clear business objective.",
+      "Quality, reliability and timely decisions matter.",
+      "Required content, access and feedback can be provided.",
+      "Scope and professional execution are valued.",
+      "The investment level is realistic for the responsibility involved.",
+      "The goal is a durable technical foundation rather than a disposable template.",
+    ],
+  },
+  poorFit: {
+    title: "May not be the right fit",
+    items: [
+      "The priority is unlimited work for the lowest possible price.",
+      "Work must begin without a deposit or written scope.",
+      "Unlimited revisions or guaranteed rankings, revenue or sales are expected.",
+      "The deadline is incompatible with the required scope.",
+      "Required decisions, approvals or content cannot be provided.",
+    ],
+  },
+} as const;
 
 export const projects: Project[] = [
   {
@@ -837,43 +921,58 @@ export const projects: Project[] = [
 
 export const engagementFaqs: FAQItem[] = [
   {
-    question: "Are the listed prices fixed?",
+    question: "What does 'from' mean in the listed investment?",
     answer:
-      "No. They are starting prices for the described scope. Final cost is confirmed after pages, content, workflows, integrations and responsibilities are agreed.",
+      "It is the starting investment for the minimum responsible version of that engagement. Final pricing is confirmed after objectives, content, workflows, integrations and responsibilities are defined.",
   },
   {
-    question: "When does the delivery timeline begin?",
+    question: "What information is needed before work begins?",
     answer:
-      "After the scope is approved and all required content, access and decisions needed for the agreed work are available.",
+      "Deodar needs the business context, objective, key users, required workflows, available content, decision-makers and known constraints. The final proposal records anything else required before delivery starts.",
   },
   {
-    question: "Are domain and hosting costs included?",
+    question: "How are payments structured?",
     answer:
-      "Domain fees, paid hosting, premium tools and third-party services are separate unless explicitly included in the proposal.",
+      "Payment stages depend on engagement size and are defined in the proposal and agreement. Work does not begin without an approved scope and the agreed initial payment.",
   },
   {
-    question: "Who owns the domain and accounts?",
+    question: "How many revisions are included?",
     answer:
-      "The client should own the domain and important service accounts. Deodar can assist with setup and connection without taking permanent ownership.",
+      "Focused Launch includes one grouped revision round and Growth Website includes two. Product and system engagements define review stages in the approved proposal. New direction or scope is handled separately.",
   },
   {
-    question: "What counts as a revision?",
+    question: "Who provides content and images?",
     answer:
-      "A revision is a grouped round of corrections within the approved structure and scope. New pages, workflows or major direction changes are additional scope.",
+      "Clients provide accurate business information and usable final assets unless content or production support is included. Deodar can structure supplied content and identify gaps before implementation.",
   },
   {
-    question: "Does the menu option include an admin dashboard?",
+    question: "Can Deodar work with an existing website or product?",
     answer:
-      "Not by default. The standard Menu & Showcase scope is content-driven. Editable administration and database-backed management require custom scope.",
+      "Yes. Existing systems can be reviewed for commercial, structural, interface or technical improvement. The approach depends on the current implementation and intended outcome.",
   },
   {
-    question: "Can an existing website or product be rebuilt?",
+    question: "Does Deodar provide hosting?",
     answer:
-      "Yes. Existing systems can be reviewed for structural, interface or technical improvement. The required scope depends on the current implementation and intended outcome.",
+      "Deodar can recommend, configure and connect suitable hosting. Domain, hosting, premium tools and third-party service fees remain separate unless explicitly included.",
   },
   {
-    question: "Is maintenance included after launch?",
+    question: "What happens after launch?",
     answer:
-      "Not automatically. Maintenance, ongoing updates and operational support are included only when explicitly agreed.",
+      "The live release is verified and ownership is documented. Website Care, Growth Support or a Product Partnership can be agreed when ongoing maintenance or improvement is required.",
+  },
+  {
+    question: "Can Deodar guarantee rankings, revenue or sales?",
+    answer:
+      "No. Deodar can improve the structure, technical foundations, measurement and customer journey, but commercial and search outcomes depend on factors outside the website and are not guaranteed.",
+  },
+  {
+    question: "What counts as additional scope?",
+    answer:
+      "New pages, workflows, user roles, integrations, content volume, major direction changes or responsibilities outside the approved proposal are additional scope and are reviewed before implementation.",
+  },
+  {
+    question: "Can a larger project begin with a smaller phase?",
+    answer:
+      "Yes. A project can begin with discovery, architecture or a constrained first release when that creates useful evidence. The phase boundary and next decision are defined in the proposal.",
   },
 ];

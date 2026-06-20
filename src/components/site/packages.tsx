@@ -16,53 +16,62 @@ export function Packages() {
 
         <div className="mt-4">
           {engagementOptions.map((option) => (
-            <article
-              className="scroll-mt-28 border-b border-studio-paperLine py-10 lg:grid lg:grid-cols-[minmax(12rem,0.62fr)_minmax(0,1.38fr)] lg:gap-12"
+            <details
+              className="group scroll-mt-28 border-b border-studio-paperLine"
               id={option.slug}
               key={option.slug}
             >
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <p className="type-label text-studio-paperMuted">{option.index}</p>
-                <h3 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.035em] text-studio-paperText sm:text-4xl">{option.name}</h3>
-                <div className="mt-6">
-                  <p className="type-label text-studio-paperMuted">Starting at</p>
-                  <p className="mt-2 text-4xl font-semibold tracking-[-0.04em] text-studio-paperText">{option.startingPrice}</p>
+              <summary className="grid cursor-pointer list-none gap-5 rounded-studioSm py-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenDeep lg:grid-cols-[3rem_minmax(13rem,0.7fr)_minmax(0,1fr)_minmax(12rem,0.48fr)_2rem] lg:items-center">
+                <span className="type-label text-studio-paperMuted">{option.index}</span>
+                <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-studio-paperText">{option.name}</h3>
+                <p className="type-small text-studio-paperMuted">{option.bestFor}</p>
+                <p className="text-sm font-semibold text-studio-paperText">
+                  <span className="mr-1 text-studio-paperMuted">{option.priceLabel}</span>
+                  {option.startingPrice}
+                </p>
+                <span aria-hidden="true" className="text-xl text-studio-paperMuted transition group-open:rotate-45">+</span>
+              </summary>
+
+              <div className="grid gap-10 border-t border-studio-paperLine py-9 lg:grid-cols-[minmax(12rem,0.62fr)_minmax(0,1.38fr)] lg:gap-12">
+                <div>
+                  <p className="type-label text-studio-paperMuted">{option.priceLabel}</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-[-0.035em] text-studio-paperText">{option.startingPrice}</p>
                   {option.qualification ? <p className="type-small mt-3 text-studio-paperMuted">{option.qualification}</p> : null}
+                  <p className="type-small mt-6 text-studio-paperMuted">{option.bestFor}</p>
                 </div>
-                <p className="type-small mt-6 text-studio-paperMuted">{option.bestFor}</p>
-              </div>
 
-              <div className="mt-8 lg:mt-0">
-                <p className="type-body-lg max-w-3xl text-studio-paperText">{option.summary}</p>
+                <div>
+                  <p className="type-body-lg max-w-3xl text-studio-paperText">{option.summary}</p>
 
-                <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-                  <ScopeList title="Core scope" items={option.coreScope} />
-                  <div className="space-y-6">
-                    {option.typicalStructure ? (
-                      <TextBlock title="Typical structure" body={option.typicalStructure} />
-                    ) : null}
-                    {option.systemAreas?.length ? (
-                      <ScopeList title="Possible system areas" items={option.systemAreas} compact />
-                    ) : null}
-                    {option.importantBoundary ? (
-                      <TextBlock title="Important boundary" body={option.importantBoundary} strong />
-                    ) : null}
-                    <div className="grid gap-4 border-t border-studio-paperLine pt-5 sm:grid-cols-2">
-                      <TextBlock title="Timeline" body={option.timeline} />
-                      <TextBlock title="Revisions" body={option.revisions} />
+                  <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+                    <ScopeList title="Core scope" items={option.coreScope} />
+                    <div className="space-y-6">
+                      {option.typicalStructure ? (
+                        <TextBlock title="Typical structure" body={option.typicalStructure} />
+                      ) : null}
+                      {option.systemAreas?.length ? (
+                        <ScopeList title="Possible system areas" items={option.systemAreas} compact />
+                      ) : null}
+                      {option.importantBoundary ? (
+                        <TextBlock title="Important boundary" body={option.importantBoundary} strong />
+                      ) : null}
+                      <div className="grid gap-4 border-t border-studio-paperLine pt-5 sm:grid-cols-2">
+                        <TextBlock title="Timeline" body={option.timeline} />
+                        <TextBlock title="Revisions" body={option.revisions} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="mt-8 border-t border-studio-paperLine pt-6">
-                  <ScopeList title="Common exclusions" items={option.exclusions} muted />
-                </div>
+                  <div className="mt-8 border-t border-studio-paperLine pt-6">
+                    <ScopeList title="Common exclusions" items={option.exclusions} muted />
+                  </div>
 
-                <ActionLink href="/#contact" variant="inverse" className="mt-8">
-                  {option.cta}
-                </ActionLink>
+                  <ActionLink href="/#contact" variant="inverse" className="mt-8">
+                    {option.cta}
+                  </ActionLink>
+                </div>
               </div>
-            </article>
+            </details>
           ))}
         </div>
 
