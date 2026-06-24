@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { contactConfig, siteConfig, studioNavigation } from "@/config/site";
 import { createWhatsAppQuoteUrl } from "@/lib/utils";
@@ -15,7 +16,19 @@ export function Footer() {
       <Container size="wide" className="py-8 sm:py-10 lg:py-12">
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="max-w-2xl">
-            <Link href="/#home" className="inline-flex rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
+            <Link
+              href="/#home"
+              aria-label="Deodar Web Studio home"
+              className="inline-flex items-center gap-3 rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
+            >
+              <Image
+                src="/logo.jpeg"
+                alt=""
+                width={1254}
+                height={1254}
+                sizes="36px"
+                className="size-9 shrink-0 rounded-studioSm object-contain"
+              />
               <span>
                 <span className="block text-lg font-semibold tracking-[-0.03em] text-studio-text">{studioNavigation.brand.name}</span>
                 <span className="mt-1 block text-sm text-studio-muted">{studioNavigation.brand.descriptor}</span>

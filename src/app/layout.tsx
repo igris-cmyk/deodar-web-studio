@@ -42,7 +42,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
   },
-  icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "Deodar Web Studio — Websites and Business Systems",
     description: siteDescription,

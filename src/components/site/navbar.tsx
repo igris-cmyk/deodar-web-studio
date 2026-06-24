@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ActionLink } from "@/components/site/action-link";
@@ -30,12 +31,19 @@ export function Navbar() {
         <nav className="flex min-h-[72px] items-center justify-between gap-5" aria-label="Main navigation">
           <Link
             href="/#home"
+            aria-label="Deodar Web Studio home"
             className="group flex min-w-0 items-center gap-3 rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
             onClick={() => setIsOpen(false)}
           >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-studioSm border border-studio-lineStrong text-sm font-semibold text-studio-greenBright transition group-hover:border-studio-greenBright">
-            D
-            </span>
+            <Image
+              src="/logo.jpeg"
+              alt=""
+              width={1254}
+              height={1254}
+              sizes="40px"
+              priority
+              className="size-10 shrink-0 rounded-studioSm object-contain"
+            />
             <span className="min-w-0 leading-none">
               <span className="block text-base font-semibold tracking-[-0.02em] text-studio-text">{studioNavigation.brand.name}</span>
               <span className="mt-1 block text-xs font-medium text-studio-muted">{studioNavigation.brand.descriptor}</span>
