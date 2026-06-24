@@ -20,7 +20,9 @@ export function createWhatsAppQuoteUrl(message: string) {
 
 export type ProjectEnquiryMessageValues = {
   name?: string;
-  preferredContact?: string;
+  contactDetail?: string;
+  countryOrRegion?: string;
+  preferredContactMethod?: string;
   businessOrProduct?: string;
   currentWebsite?: string;
   projectContext?: string;
@@ -41,8 +43,10 @@ export function buildProjectEnquiryMessage(values: ProjectEnquiryMessageValues) 
     "New Deodar project enquiry",
     "",
     `Name: ${provided(values.name)}`,
-    `Preferred contact: ${provided(values.preferredContact)}`,
     `Business / organisation: ${provided(values.businessOrProduct)}`,
+    `Country / region: ${provided(values.countryOrRegion)}`,
+    `Contact information: ${provided(values.contactDetail)}`,
+    `Preferred contact method: ${provided(values.preferredContactMethod)}`,
     `Current website: ${provided(values.currentWebsite)}`,
     "",
     `Engagement type: ${provided(values.engagementType)}`,
@@ -56,4 +60,22 @@ export function buildProjectEnquiryMessage(values: ProjectEnquiryMessageValues) 
     "Additional project context:",
     provided(values.projectMessage),
   ].join("\n");
+}
+
+export function createEmailDraftUrl({
+  email,
+  subject,
+  message,
+}: {
+  email: string;
+  subject: string;
+  message: string;
+}) {
+  const trimmedEmail = email.trim();
+
+  if (!trimmedEmail) {
+    return null;
+  }
+
+  return `mailto:${trimmedEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
 }

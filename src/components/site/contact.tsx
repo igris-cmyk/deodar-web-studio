@@ -1,15 +1,21 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, MouseEvent, useMemo, useState } from "react";
 import { contactConfig, projectEnquiry } from "@/config/site";
-import { buildProjectEnquiryMessage, createWhatsAppQuoteUrl } from "@/lib/utils";
+import {
+  buildProjectEnquiryMessage,
+  createEmailDraftUrl,
+  createWhatsAppQuoteUrl,
+} from "@/lib/utils";
 import { ActionLink } from "./action-link";
 import { Container } from "./container";
 import { SiteIcon } from "./icon";
 
 type FormState = {
   name: string;
-  preferredContact: string;
+  contactDetail: string;
+  countryOrRegion: string;
+  preferredContactMethod: string;
   businessOrProduct: string;
   currentWebsite: string;
   projectContext: string;
@@ -24,7 +30,9 @@ type FieldName = keyof FormState;
 
 const initialState: FormState = {
   name: "",
-  preferredContact: "",
+  contactDetail: "",
+  countryOrRegion: "",
+  preferredContactMethod: "",
   businessOrProduct: "",
   currentWebsite: "",
   projectContext: "",
@@ -37,7 +45,9 @@ const initialState: FormState = {
 
 const requiredFields: Array<FieldName> = [
   "name",
-  "preferredContact",
+  "contactDetail",
+  "countryOrRegion",
+  "preferredContactMethod",
   "businessOrProduct",
   "projectContext",
   "engagementType",
@@ -48,7 +58,9 @@ const requiredFields: Array<FieldName> = [
 
 const fieldLabels: Record<FieldName, string> = {
   name: "Name",
-  preferredContact: "Email or WhatsApp number",
+  contactDetail: "Contact detail",
+  countryOrRegion: "Country or region",
+  preferredContactMethod: "Preferred contact method",
   businessOrProduct: "Business or organisation",
   currentWebsite: "Current website, if available",
   projectContext: "What are you trying to build or improve?",
@@ -108,21 +120,14 @@ export function Contact() {
     }
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const nextErrors = validateForm();
-    setErrors(nextErrors);
+  function buildMessageFromForm(formElement: HTMLFormElement) {
+    const formData = new FormData(formElement);
 
-    if (Object.keys(nextErrors).length > 0) {
-      focusFirstInvalid(event.currentTarget, nextErrors);
-      setStatus("Please complete the required fields before opening WhatsApp.");
-      return;
-    }
-
-    const formData = new FormData(event.currentTarget);
-    const message = buildProjectEnquiryMessage({
+    return buildProjectEnquiryMessage({
       name: String(formData.get("name") || ""),
-      preferredContact: String(formData.get("preferredContact") || ""),
+      contactDetail: String(formData.get("contactDetail") || ""),
+      countryOrRegion: String(formData.get("countryOrRegion") || ""),
+      preferredContactMethod: String(formData.get("preferredContactMethod") || ""),
       businessOrProduct: String(formData.get("businessOrProduct") || ""),
       currentWebsite: String(formData.get("currentWebsite") || ""),
       projectContext: String(formData.get("projectContext") || ""),
@@ -132,6 +137,28 @@ export function Contact() {
       indicativeBudget: String(formData.get("indicativeBudget") || ""),
       projectMessage: String(formData.get("projectMessage") || ""),
     });
+  }
+
+  function prepareMessage(formElement: HTMLFormElement) {
+    const nextErrors = validateForm();
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      focusFirstInvalid(formElement, nextErrors);
+      setStatus("Please complete the required fields before preparing your project brief.");
+      return null;
+    }
+
+    return buildMessageFromForm(formElement);
+  }
+
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const message = prepareMessage(event.currentTarget);
+
+    if (!message) {
+      return;
+    }
 
     const url = createWhatsAppQuoteUrl(message);
 
@@ -142,6 +169,53 @@ export function Contact() {
 
     window.open(url, "_blank", "noopener,noreferrer");
     setStatus("WhatsApp opened with your project brief prepared. Review it, then send the message there.");
+  }
+
+  function onEmailDraft(event: MouseEvent<HTMLButtonElement>) {
+    const formElement = event.currentTarget.form;
+    if (!formElement) {
+      return;
+    }
+
+    const message = prepareMessage(formElement);
+
+    if (!message) {
+      return;
+    }
+
+    const url = createEmailDraftUrl({
+      email: contactConfig.email,
+      subject: "Deodar project enquiry",
+      message,
+    });
+
+    if (!url) {
+      setStatus("A verified studio email is not configured yet. Use Copy project brief and send it through your preferred channel.");
+      return;
+    }
+
+    window.open(url, "_blank", "noopener,noreferrer");
+    setStatus("Your email app opened with the project brief prepared. Review it before sending.");
+  }
+
+  async function onCopyBrief(event: MouseEvent<HTMLButtonElement>) {
+    const formElement = event.currentTarget.form;
+    if (!formElement) {
+      return;
+    }
+
+    const message = prepareMessage(formElement);
+
+    if (!message) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(message);
+      setStatus("Project brief copied. You can paste it into email, WhatsApp or your preferred communication channel.");
+    } catch {
+      setStatus("Copy was not available in this browser. Select the form details manually or use WhatsApp.");
+    }
   }
 
   return (
@@ -203,14 +277,33 @@ export function Contact() {
                 autoComplete="name"
               />
               <TextField
-                error={errors.preferredContact}
-                helper="Used only to reply to this enquiry."
-                label={fieldLabels.preferredContact}
-                name="preferredContact"
-                onChange={(value) => updateField("preferredContact", value)}
+                error={errors.contactDetail}
+                helper="Email, WhatsApp number or another agreed contact detail."
+                label={fieldLabels.contactDetail}
+                name="contactDetail"
+                onChange={(value) => updateField("contactDetail", value)}
                 required
-                value={form.preferredContact}
+                value={form.contactDetail}
                 autoComplete="email tel"
+              />
+              <TextField
+                error={errors.countryOrRegion}
+                helper="Helps frame currency, time-zone and remote communication expectations."
+                label={fieldLabels.countryOrRegion}
+                name="countryOrRegion"
+                onChange={(value) => updateField("countryOrRegion", value)}
+                required
+                value={form.countryOrRegion}
+                autoComplete="country-name"
+              />
+              <SelectField
+                error={errors.preferredContactMethod}
+                label={fieldLabels.preferredContactMethod}
+                name="preferredContactMethod"
+                onChange={(value) => updateField("preferredContactMethod", value)}
+                options={projectEnquiry.contactMethodOptions}
+                required
+                value={form.preferredContactMethod}
               />
               <TextField
                 error={errors.businessOrProduct}
@@ -289,15 +382,29 @@ export function Contact() {
                 type="submit"
                 className="inline-flex min-h-[50px] flex-1 items-center justify-center gap-2 rounded-studioSm border border-studio-green bg-studio-green px-5 py-3 text-sm font-semibold leading-none text-studio-greenInk transition duration-200 hover:border-studio-greenBright hover:bg-studio-greenBright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright motion-safe:hover:-translate-y-0.5"
               >
-                Send project brief through WhatsApp
+                Send through WhatsApp
                 <SiteIcon name="message" className="size-4" />
               </button>
-              <ActionLink href="#work" variant="secondary" size="lg" className="flex-1">
-                Review selected work
-              </ActionLink>
+              {contactConfig.hasConfiguredProfessionalEmail ? (
+                <button
+                  type="button"
+                  className="inline-flex min-h-[50px] flex-1 items-center justify-center gap-2 rounded-studioSm border border-studio-line bg-transparent px-5 py-3 text-sm font-semibold leading-none text-studio-text transition duration-200 hover:border-studio-lineStrong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright motion-safe:hover:-translate-y-0.5"
+                  onClick={onEmailDraft}
+                >
+                  Draft an email
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className="inline-flex min-h-[50px] flex-1 items-center justify-center rounded-studioSm border border-studio-line bg-transparent px-5 py-3 text-sm font-semibold leading-none text-studio-text transition duration-200 hover:border-studio-lineStrong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright motion-safe:hover:-translate-y-0.5"
+                onClick={onCopyBrief}
+              >
+                Copy project brief
+              </button>
             </div>
 
             <p className="type-small mt-5 text-studio-muted">{projectEnquiry.privacyNote}</p>
+            <p className="type-small mt-2 text-studio-muted">{projectEnquiry.copyFallbackNote}</p>
 
             {status ? (
               <p className="mt-4 border border-studio-line bg-studio-surface px-4 py-3 text-sm leading-6 text-studio-text" role="status">

@@ -32,15 +32,13 @@ export function Packages() {
                 <span aria-hidden="true" className="text-xl text-studio-paperMuted transition group-open:rotate-45">+</span>
               </summary>
 
-              <div className="grid gap-10 border-t border-studio-paperLine py-9 lg:grid-cols-[minmax(12rem,0.62fr)_minmax(0,1.38fr)] lg:gap-12">
+              <div className="border-t border-studio-paperLine py-9">
                 <div>
-                  <p className="type-label text-studio-paperMuted">{option.priceLabel}</p>
-                  <p className="mt-2 text-3xl font-semibold tracking-[-0.035em] text-studio-paperText">{option.startingPrice}</p>
-                  {option.qualification ? <p className="type-small mt-3 text-studio-paperMuted">{option.qualification}</p> : null}
-                  <p className="type-small mt-6 text-studio-paperMuted">{option.bestFor}</p>
-                </div>
-
-                <div>
+                  {option.qualification ? (
+                    <p className="type-small mb-5 max-w-2xl text-studio-paperMuted">
+                      {option.qualification}
+                    </p>
+                  ) : null}
                   <p className="type-body-lg max-w-3xl text-studio-paperText">{option.summary}</p>
 
                   <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">

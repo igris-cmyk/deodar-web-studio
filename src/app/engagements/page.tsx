@@ -71,6 +71,9 @@ function EngagementIntroduction() {
             <div className="border-t border-studio-line pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
               <p className="type-body text-studio-muted">{engagementPage.pricingStatement}</p>
               <p className="mt-4 text-sm font-semibold leading-6 text-studio-text">{engagementPage.directAccountability}</p>
+              <p className="type-small mt-4 border-t border-studio-line pt-4 text-studio-muted">
+                {engagementPage.internationalPricingNote}
+              </p>
             </div>
           </div>
         </div>
@@ -83,24 +86,29 @@ function EngagementSummary() {
   return (
     <section className="studio-canvas border-t border-studio-line pb-[var(--studio-section-space-compact)]">
       <Container size="wide">
+        <div className="grid gap-5 border-b border-studio-line py-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <h2 className="type-section text-studio-text">{engagementPage.indexHeading}</h2>
+          <p className="type-body text-studio-muted">
+            {engagementPage.indexIntroduction}
+          </p>
+        </div>
         <div className="border-t border-studio-line">
           {engagementOptions.map((option) => (
-            <div className="grid gap-5 border-b border-studio-line py-6 lg:grid-cols-[1fr_1.05fr_0.55fr_0.7fr_0.45fr] lg:items-center" key={option.slug}>
+            <div className="grid gap-5 border-b border-studio-line py-6 lg:grid-cols-[1fr_1.15fr_0.55fr_0.45fr] lg:items-center" key={option.slug}>
               <div>
                 <p className="type-label text-studio-faint">{option.index}</p>
-                <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-studio-text">{option.name}</h2>
+                <h3 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-studio-text">{option.name}</h3>
               </div>
               <p className="type-small max-w-xl text-studio-muted">{option.bestFor}</p>
               <p className="text-sm leading-6 text-studio-text">
                 <span className="block type-label text-studio-faint">{option.priceLabel}</span>
                 {option.startingPrice}
               </p>
-              <p className="type-small text-studio-muted">{option.timeline}</p>
               <a
                 className="inline-flex min-h-10 w-fit items-center rounded-studioSm text-sm font-semibold text-studio-greenBright underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
                 href={`#${option.slug}`}
               >
-                Scope
+                View scope
               </a>
             </div>
           ))}

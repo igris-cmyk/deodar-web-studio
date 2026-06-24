@@ -46,6 +46,8 @@ export type FAQItem = {
   answer: string;
 };
 
+export type ContactMethod = "Email" | "WhatsApp" | "Either";
+
 export type EngagementOption = {
   index: string;
   slug: string;
@@ -66,17 +68,40 @@ export type EngagementOption = {
 };
 
 const configuredEmail = process.env.NEXT_PUBLIC_DEODAR_EMAIL?.trim();
+const studioWhatsAppNumber = "919541206212";
+const recommendedStudioEmail = "hello@deodarwebstudio.com";
 
 export const contactConfig = {
   studioName: "Deodar Web Studio",
   founderName: "Sahil Khursheed",
-  locationLine: "Based in India. Working directly with clients and product teams.",
+  locationLine:
+    "Based in India, working remotely with businesses and product teams across India and internationally.",
   email: configuredEmail || "",
   hasConfiguredProfessionalEmail: Boolean(configuredEmail),
-  recommendedEmail: "hello@deodarwebstudio.com",
-  whatsAppNumber: "919541206212",
+  recommendedEmail: recommendedStudioEmail,
+  whatsAppNumber: studioWhatsAppNumber,
   githubUrl: "https://github.com/igris-cmyk",
   linkedinUrl: "https://www.linkedin.com/in/sahil-khursheed-419666413",
+  channels: {
+    whatsapp: {
+      label: "WhatsApp",
+      number: studioWhatsAppNumber,
+    },
+    email: {
+      label: "Email",
+      address: configuredEmail || "",
+      isConfigured: Boolean(configuredEmail),
+      recommendedAddress: recommendedStudioEmail,
+    },
+    linkedin: {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/sahil-khursheed-419666413",
+    },
+    github: {
+      label: "GitHub",
+      href: "https://github.com/igris-cmyk",
+    },
+  },
   socialLinks: [
     { label: "GitHub", href: "https://github.com/igris-cmyk" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/sahil-khursheed-419666413" },
@@ -145,6 +170,7 @@ export const studioCapabilityIndex = [
 ] as const;
 
 export const orbitCaseStudy = {
+  slug: "orbit",
   eyebrow: "Advanced product-system concept",
   projectName: "Orbit",
   statusLabel: "Independent product concept",
@@ -233,15 +259,15 @@ export const studioFounder = {
   intro:
     "Deodar is led by Sahil Khursheed, a full-stack product engineer working across product strategy, interface design, application architecture, databases, authentication, operational workflows and deployment.",
   accountability:
-    "Every engagement receives direct technical ownership instead of being passed through layers of account management. The person shaping the workflow is also involved in designing, building and verifying the system.",
+    "Every qualified engagement receives founder-led technical ownership. Coordination can support communication, but product scope, architecture, review and release decisions remain directly connected to Sahil.",
   principles: [
     {
       index: "01",
       title: "Direct accountability",
       statement:
-        "You work directly with the person responsible for the product and its implementation.",
+        "You have access to the technical decision-maker when product, scope and implementation decisions matter.",
       explanation:
-        "Requirements, tradeoffs, interface decisions and technical constraints are discussed without a sales or account-management layer in between.",
+        "Requirements, tradeoffs, interface decisions and technical constraints are reviewed with the person responsible for shaping and building the system.",
     },
     {
       index: "02",
@@ -272,7 +298,7 @@ export const projectEnquiry = {
   introduction:
     "Share the objective, current bottleneck and approximate scope. Deodar will review the requirement and recommend the appropriate engagement.",
   directStatement:
-    "Your enquiry goes directly to Sahil. There is no sales handoff.",
+    "Qualified project conversations are technically led by Sahil, with direct involvement in scope, architecture, review and release.",
   usefulContext: [
     "The business objective and current bottleneck",
     "Who the system needs to serve",
@@ -283,6 +309,9 @@ export const projectEnquiry = {
     "The details you provide are used only to review and respond to your enquiry.",
   directWhatsAppMessage:
     "Hi Sahil, I want to discuss a Deodar project.",
+  copyFallbackNote:
+    "If WhatsApp is not the right channel, copy the same structured brief and send it through your preferred communication route.",
+  contactMethodOptions: ["Email", "WhatsApp", "Either"] as readonly ContactMethod[],
   engagementOptions: [
     "Focused Launch",
     "Growth Website",
@@ -351,6 +380,7 @@ export const supportingWorkChapter = {
 } as const;
 
 export const dueFlowEvidence = {
+  slug: "dueflow",
   name: "DueFlow",
   category: "Cashflow workflow product",
   status: "Independent product preview",
@@ -406,6 +436,7 @@ export const dueFlowEvidence = {
 } as const;
 
 export const deodarBrewEvidence = {
+  slug: "deodar-brew",
   name: "Deodar-Brew",
   category: "Food-business website and ordering system",
   status: "Studio-built full-stack business system",
@@ -624,9 +655,14 @@ export const engagementPage = {
   pricingStatement:
     "Starting prices describe the minimum responsible scope for that engagement. Final investment depends on content, workflows, data, integrations, security, delivery constraints and the responsibilities included in the release.",
   directAccountability:
-    "Scope is reviewed directly with Sahil before work begins.",
+    "Scope, architecture and delivery responsibility are reviewed directly with Sahil before work begins.",
   sharedPricingStatement:
     "Final pricing is confirmed after objectives, pages, content, workflows, integrations, responsibilities and release boundaries are agreed.",
+  internationalPricingNote:
+    "Prices shown are Indian starting investments in INR. International engagements may be proposed in an agreed currency based on scope, responsibilities and payment arrangements.",
+  indexHeading: "Engagement index",
+  indexIntroduction:
+    "Use this as a fast way to find the right starting point. The detailed scope lives in the sections below.",
   scopePrinciples: {
     heading: "Scope changes are decisions, not invisible extras.",
     body:
@@ -934,6 +970,21 @@ export const engagementFaqs: FAQItem[] = [
     question: "How are payments structured?",
     answer:
       "Payment stages depend on engagement size and are defined in the proposal and agreement. Work does not begin without an approved scope and the agreed initial payment.",
+  },
+  {
+    question: "Do you work with clients outside India?",
+    answer:
+      "Yes. Deodar works remotely with businesses and product teams across India and internationally using scheduled calls, written scope, asynchronous updates and agreed review points.",
+  },
+  {
+    question: "How are international projects priced?",
+    answer:
+      "The website shows Indian starting investments in INR. International projects may be proposed in an agreed currency based on scope, responsibilities and payment arrangements.",
+  },
+  {
+    question: "How do remote engagements work?",
+    answer:
+      "Remote work usually moves through discovery, a written proposal and scope, an agreed communication channel, milestone reviews, staged payments where applicable, and remote handover and support.",
   },
   {
     question: "How many revisions are included?",
