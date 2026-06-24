@@ -61,17 +61,17 @@ export default function EngagementsPage() {
 
 function EngagementIntroduction() {
   return (
-    <section id="home" className="studio-canvas pt-24 pb-[var(--studio-section-space-compact)]">
+    <section id="home" className="studio-canvas pt-20 pb-12 lg:pt-24">
       <Container size="wide">
         <div className="max-w-5xl">
           <p className="type-label text-studio-greenBright">{engagementPage.eyebrow}</p>
-          <h1 className="type-display-lg mt-6 max-w-5xl text-studio-text">{engagementPage.heading}</h1>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <h1 className="type-display-lg mt-5 max-w-5xl text-studio-text">{engagementPage.heading}</h1>
+          <div className="mt-6 grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
             <p className="type-body-lg text-studio-textSoft">{engagementPage.introduction}</p>
             <div className="border-t border-studio-line pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
               <p className="type-body text-studio-muted">{engagementPage.pricingStatement}</p>
-              <p className="mt-4 text-sm font-semibold leading-6 text-studio-text">{engagementPage.directAccountability}</p>
-              <p className="type-small mt-4 border-t border-studio-line pt-4 text-studio-muted">
+              <p className="mt-3 text-sm font-semibold leading-6 text-studio-text">{engagementPage.directAccountability}</p>
+              <p className="type-small mt-3 border-t border-studio-line pt-3 text-studio-muted">
                 {engagementPage.internationalPricingNote}
               </p>
             </div>
@@ -84,9 +84,9 @@ function EngagementIntroduction() {
 
 function EngagementSummary() {
   return (
-    <section className="studio-canvas border-t border-studio-line pb-[var(--studio-section-space-compact)]">
+    <section className="studio-canvas border-t border-studio-line pb-12 lg:pb-14">
       <Container size="wide">
-        <div className="grid gap-5 border-b border-studio-line py-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+        <div className="grid gap-4 border-b border-studio-line py-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
           <h2 className="type-section text-studio-text">{engagementPage.indexHeading}</h2>
           <p className="type-body text-studio-muted">
             {engagementPage.indexIntroduction}
@@ -94,10 +94,10 @@ function EngagementSummary() {
         </div>
         <div className="border-t border-studio-line">
           {engagementOptions.map((option) => (
-            <div className="grid gap-5 border-b border-studio-line py-6 lg:grid-cols-[1fr_1.15fr_0.55fr_0.45fr] lg:items-center" key={option.slug}>
+            <div className="grid gap-4 border-b border-studio-line py-4 lg:grid-cols-[1fr_1.15fr_0.55fr_0.45fr] lg:items-center" key={option.slug}>
               <div>
                 <p className="type-label text-studio-faint">{option.index}</p>
-                <h3 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-studio-text">{option.name}</h3>
+                <h3 className="mt-1.5 text-xl font-semibold tracking-[-0.03em] text-studio-text">{option.name}</h3>
               </div>
               <p className="type-small max-w-xl text-studio-muted">{option.bestFor}</p>
               <p className="text-sm leading-6 text-studio-text">
@@ -120,16 +120,16 @@ function EngagementSummary() {
 
 function ProjectBriefCta() {
   return (
-    <section className="studio-canvas border-t border-studio-line py-[var(--studio-section-space-compact)]">
+    <section className="studio-canvas border-t border-studio-line py-12 lg:py-14">
       <Container size="content">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
             <p className="type-label text-studio-greenBright">{engagementPage.cta.eyebrow}</p>
-            <h2 className="type-section mt-4 text-studio-text">{engagementPage.cta.heading}</h2>
+            <h2 className="type-section mt-3 text-studio-text">{engagementPage.cta.heading}</h2>
           </div>
           <div>
             <p className="type-body text-studio-textSoft">{engagementPage.cta.copy}</p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href={engagementPage.cta.primary.href}>{engagementPage.cta.primary.label}</ActionLink>
               <ActionLink href={engagementPage.cta.secondary.href} variant="secondary">
                 {engagementPage.cta.secondary.label}

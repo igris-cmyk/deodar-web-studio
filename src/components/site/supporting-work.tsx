@@ -17,10 +17,10 @@ type ProjectActionsProps = {
 
 export function SupportingWork() {
   return (
-    <div className="mt-14">
+    <div className="mt-10">
       <DeodarBrewFeatured />
 
-      <div className="mt-[var(--studio-section-space-compact)] border-y border-studio-line">
+      <div className="mt-12 border-y border-studio-line">
         <SupportingProject
           index="02"
           label={dueFlowEvidence.category}
@@ -81,14 +81,14 @@ function ProjectMarker({
 
 function DeodarBrewFeatured() {
   return (
-    <article className="border-t border-studio-line pt-10">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end">
+    <article className="border-t border-studio-line pt-8">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end">
         <div>
           <ProjectMarker index="01" label={deodarBrewEvidence.category} />
-          <h3 className="type-display-lg mt-5 max-w-4xl text-studio-text">
+          <h3 className="type-display-lg mt-4 max-w-4xl text-studio-text">
             {deodarBrewEvidence.name}
           </h3>
-          <div className="mt-5 space-y-2">
+          <div className="mt-4 space-y-1.5">
             <p className="type-label text-studio-greenBright">
               {deodarBrewEvidence.status}
             </p>
@@ -101,13 +101,13 @@ function DeodarBrewFeatured() {
           <p className="type-subheading max-w-lg text-studio-text">
             {deodarBrewEvidence.thesis}
           </p>
-          <p className="type-body-lg mt-5 max-w-[var(--studio-reading-max)] text-studio-textSoft">
+          <p className="type-body-lg mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
             {deodarBrewEvidence.summary}
           </p>
         </div>
       </div>
 
-      <figure className="mt-10 border border-studio-paperLine bg-studio-paper p-2 sm:p-3">
+      <figure className="mt-8 border border-studio-paperLine bg-studio-paper p-2 sm:p-3">
         <Image
           src={deodarBrewEvidence.screenshot.src}
           alt={deodarBrewEvidence.screenshot.alt}
@@ -119,7 +119,7 @@ function DeodarBrewFeatured() {
         />
       </figure>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
         <EvidenceSummary
           label="Business problem"
           heading={deodarBrewEvidence.problem.heading}
@@ -132,10 +132,10 @@ function DeodarBrewFeatured() {
         />
       </div>
 
-      <div className="mt-10 grid gap-8 border-t border-studio-line pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      <div className="mt-8 grid gap-6 border-t border-studio-line pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div>
           <p className="type-label text-studio-faint">Relevant responsibility</p>
-          <p className="type-body mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
+          <p className="type-body mt-3 max-w-[var(--studio-reading-max)] text-studio-textSoft">
             {deodarBrewEvidence.responsibility}
           </p>
         </div>
@@ -181,12 +181,12 @@ function SupportingProject({
   actions: ProjectActionsProps;
 }) {
   return (
-    <article className="grid gap-8 border-t border-studio-line py-10 first:border-t-0 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.78fr)_minmax(0,1fr)] lg:items-start">
+    <article className="grid gap-6 border-t border-studio-line py-8 first:border-t-0 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.78fr)_minmax(0,1fr)] lg:items-start">
       <div>
         <ProjectMarker index={index} label={label} />
-        <h3 className="type-title mt-4 text-studio-text">{name}</h3>
-        <p className="type-label mt-5 text-studio-greenBright">{status}</p>
-        <p className="type-subheading mt-5 max-w-lg text-studio-text">
+        <h3 className="type-title mt-3 text-studio-text">{name}</h3>
+        <p className="type-label mt-4 text-studio-greenBright">{status}</p>
+        <p className="type-subheading mt-4 max-w-lg text-studio-text">
           {thesis}
         </p>
       </div>
@@ -202,12 +202,12 @@ function SupportingProject({
         />
       </figure>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5">
         <EvidenceSummary label="Problem" heading={problem} />
         <EvidenceSummary label="Solution direction" heading={solution} />
-        <div className="border-t border-studio-line pt-5">
+        <div className="border-t border-studio-line pt-4">
           <p className="type-label text-studio-faint">Relevant responsibility</p>
-          <p className="type-small mt-3 text-studio-muted">{responsibility}</p>
+          <p className="type-small mt-2 text-studio-muted">{responsibility}</p>
         </div>
         <ProjectActions {...actions} compact />
       </div>
@@ -225,11 +225,11 @@ function EvidenceSummary({
   body?: string;
 }) {
   return (
-    <section className="border-t border-studio-line pt-5">
+    <section className="border-t border-studio-line pt-4">
       <p className="type-label text-studio-faint">{label}</p>
-      <h4 className="type-subheading mt-3 text-studio-text">{heading}</h4>
+      <h4 className="type-subheading mt-2 text-studio-text">{heading}</h4>
       {body ? (
-        <p className="type-small mt-3 max-w-[var(--studio-reading-max)] text-studio-muted">
+        <p className="type-small mt-2 max-w-[var(--studio-reading-max)] text-studio-muted">
           {body}
         </p>
       ) : null}

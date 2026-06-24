@@ -4,12 +4,12 @@ import { Container } from "./container";
 
 export function Packages() {
   return (
-    <section id="engagement-options" className="studio-paper py-[var(--studio-section-space)]">
+    <section id="engagement-options" className="studio-paper py-[var(--studio-section-space-compact)]">
       <Container size="wide">
-        <div className="grid gap-6 border-b border-studio-paperLine pb-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+        <div className="grid gap-5 border-b border-studio-paperLine pb-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
             <p className="type-label text-studio-paperMuted">Engagement options</p>
-            <h2 className="type-section mt-4 text-studio-paperText">Defined starting scopes. Visible boundaries.</h2>
+            <h2 className="type-section mt-3 text-studio-paperText">Defined starting scopes. Visible boundaries.</h2>
           </div>
           <p className="type-body text-studio-paperMuted">{engagementPage.sharedPricingStatement}</p>
         </div>
@@ -21,7 +21,7 @@ export function Packages() {
               id={option.slug}
               key={option.slug}
             >
-              <summary className="grid cursor-pointer list-none gap-5 rounded-studioSm py-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenDeep lg:grid-cols-[3rem_minmax(13rem,0.7fr)_minmax(0,1fr)_minmax(12rem,0.48fr)_2rem] lg:items-center">
+              <summary className="grid cursor-pointer list-none gap-4 rounded-studioSm py-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenDeep lg:grid-cols-[3rem_minmax(13rem,0.7fr)_minmax(0,1fr)_minmax(12rem,0.48fr)_2rem] lg:items-center">
                 <span className="type-label text-studio-paperMuted">{option.index}</span>
                 <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-studio-paperText">{option.name}</h3>
                 <p className="type-small text-studio-paperMuted">{option.bestFor}</p>
@@ -32,18 +32,18 @@ export function Packages() {
                 <span aria-hidden="true" className="text-xl text-studio-paperMuted transition group-open:rotate-45">+</span>
               </summary>
 
-              <div className="border-t border-studio-paperLine py-9">
+              <div className="border-t border-studio-paperLine py-7">
                 <div>
                   {option.qualification ? (
-                    <p className="type-small mb-5 max-w-2xl text-studio-paperMuted">
+                    <p className="type-small mb-4 max-w-2xl text-studio-paperMuted">
                       {option.qualification}
                     </p>
                   ) : null}
                   <p className="type-body-lg max-w-3xl text-studio-paperText">{option.summary}</p>
 
-                  <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
                     <ScopeList title="Core scope" items={option.coreScope} />
-                    <div className="space-y-6">
+                    <div className="space-y-5">
                       {option.typicalStructure ? (
                         <TextBlock title="Typical structure" body={option.typicalStructure} />
                       ) : null}
@@ -53,18 +53,18 @@ export function Packages() {
                       {option.importantBoundary ? (
                         <TextBlock title="Important boundary" body={option.importantBoundary} strong />
                       ) : null}
-                      <div className="grid gap-4 border-t border-studio-paperLine pt-5 sm:grid-cols-2">
+                      <div className="grid gap-4 border-t border-studio-paperLine pt-4 sm:grid-cols-2">
                         <TextBlock title="Timeline" body={option.timeline} />
                         <TextBlock title="Revisions" body={option.revisions} />
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-8 border-t border-studio-paperLine pt-6">
+                  <div className="mt-6 border-t border-studio-paperLine pt-5">
                     <ScopeList title="Common exclusions" items={option.exclusions} muted />
                   </div>
 
-                  <ActionLink href="/#contact" variant="inverse" className="mt-8">
+                  <ActionLink href="/#contact" variant="inverse" className="mt-6">
                     {option.cta}
                   </ActionLink>
                 </div>
@@ -83,7 +83,7 @@ function ScopeList({ title, items, compact, muted }: { title: string; items: rea
   return (
     <div>
       <h4 className="type-label text-studio-paperText">{title}</h4>
-      <ul className={compact ? "mt-4 grid gap-2" : "mt-4 grid gap-3"}>
+      <ul className={compact ? "mt-3 grid gap-2" : "mt-3 grid gap-2.5"}>
         {items.map((item) => (
           <li className={muted ? "text-sm leading-6 text-studio-paperMuted" : "text-sm leading-6 text-studio-paperText"} key={item}>
             {item}
@@ -98,20 +98,20 @@ function TextBlock({ title, body, strong }: { title: string; body: string; stron
   return (
     <div>
       <h4 className="type-label text-studio-paperMuted">{title}</h4>
-      <p className={strong ? "mt-3 text-sm font-semibold leading-6 text-studio-paperText" : "mt-3 text-sm leading-6 text-studio-paperMuted"}>{body}</p>
+      <p className={strong ? "mt-2 text-sm font-semibold leading-6 text-studio-paperText" : "mt-2 text-sm leading-6 text-studio-paperMuted"}>{body}</p>
     </div>
   );
 }
 
 function SharedPrinciples() {
   return (
-    <div className="mt-12 grid gap-10 border-t border-studio-paperLine pt-10 lg:grid-cols-[1fr_1fr]">
+    <div className="mt-9 grid gap-8 border-t border-studio-paperLine pt-8 lg:grid-cols-[1fr_1fr]">
       <section aria-labelledby="scope-change-heading">
         <h3 className="type-subheading text-studio-paperText" id="scope-change-heading">
           {engagementPage.scopePrinciples.heading}
         </h3>
-        <p className="type-body mt-4 text-studio-paperMuted">{engagementPage.scopePrinciples.body}</p>
-        <ul className="mt-6 grid gap-3">
+        <p className="type-body mt-3 text-studio-paperMuted">{engagementPage.scopePrinciples.body}</p>
+        <ul className="mt-5 grid gap-2.5">
           {engagementPage.scopePrinciples.items.map((item) => (
             <li className="border-t border-studio-paperLine pt-3 text-sm font-semibold leading-6 text-studio-paperText" key={item}>
               {item}
@@ -124,7 +124,7 @@ function SharedPrinciples() {
         <h3 className="type-subheading text-studio-paperText" id="ownership-heading">
           {engagementPage.ownershipPrinciples.heading}
         </h3>
-        <ul className="mt-5 grid gap-3">
+        <ul className="mt-4 grid gap-2.5">
           {engagementPage.ownershipPrinciples.items.map((item) => (
             <li className="border-t border-studio-paperLine pt-3 text-sm leading-6 text-studio-paperMuted" key={item}>
               {item}

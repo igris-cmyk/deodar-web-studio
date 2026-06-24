@@ -195,7 +195,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
 function CaseHero({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof getCaseStudy>> }) {
   return (
-    <section className="studio-canvas pt-24 pb-[var(--studio-section-space-compact)]">
+    <section className="studio-canvas pt-20 pb-12 lg:pt-24 lg:pb-14">
       <Container size="wide">
         <Link
           className="type-label inline-flex rounded-studioSm text-studio-greenBright underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright"
@@ -203,13 +203,13 @@ function CaseHero({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof getC
         >
           Back to selected work
         </Link>
-        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
+        <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end">
           <div>
             <p className="type-label text-studio-faint">{caseStudy.category}</p>
-            <h1 className="type-display-lg mt-5 max-w-5xl text-studio-text">
+            <h1 className="type-display-lg mt-4 max-w-5xl text-studio-text">
               {caseStudy.name}
             </h1>
-            <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2">
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
               <p className="type-label text-studio-greenBright">
                 {caseStudy.status}
               </p>
@@ -222,13 +222,13 @@ function CaseHero({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof getC
             <p className="type-subheading max-w-xl text-studio-text">
               {caseStudy.thesis}
             </p>
-            <p className="type-body-lg mt-5 max-w-[var(--studio-reading-max)] text-studio-textSoft">
+            <p className="type-body-lg mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
               {caseStudy.summary}
             </p>
           </div>
         </div>
 
-        <figure className="mt-12 border border-studio-line bg-studio-surface p-2 sm:p-3">
+        <figure className="mt-8 border border-studio-line bg-studio-surface p-2 sm:p-3">
           <Image
             src={caseStudy.screenshot.src}
             alt={caseStudy.screenshot.alt}
@@ -246,9 +246,9 @@ function CaseHero({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof getC
 
 function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof getCaseStudy>> }) {
   return (
-    <section className="studio-canvas border-t border-studio-line py-[var(--studio-section-space)]">
+    <section className="studio-canvas border-t border-studio-line py-[var(--studio-section-space-compact)]">
       <Container size="wide">
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2">
           <EvidenceBlock
             label="Problem"
             heading={caseStudy.problem.heading}
@@ -261,15 +261,15 @@ function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof 
           />
         </div>
 
-        <div className="mt-14 grid gap-12 border-t border-studio-line pt-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div className="mt-10 grid gap-8 border-t border-studio-line pt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>
             <p className="type-label text-studio-greenBright">
               {caseStudy.flowTitle}
             </p>
-            <ol className="mt-6 border-y border-studio-line">
+            <ol className="mt-5 border-y border-studio-line">
               {caseStudy.flow.map((item, index) => (
                 <li
-                  className="grid gap-4 border-t border-studio-line py-5 first:border-t-0 sm:grid-cols-[3.5rem_1fr]"
+                  className="grid gap-3 border-t border-studio-line py-4 first:border-t-0 sm:grid-cols-[3.5rem_1fr]"
                   key={item.step}
                 >
                   <span className="type-label text-studio-faint">
@@ -292,10 +292,10 @@ function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof 
             <p className="type-label text-studio-greenBright">
               {caseStudy.areasTitle}
             </p>
-            <ul className="mt-6 border-y border-studio-line">
+            <ul className="mt-5 border-y border-studio-line">
               {caseStudy.areas.map((area) => (
                 <li
-                  className="grid gap-3 border-t border-studio-line py-4 first:border-t-0 sm:grid-cols-[minmax(10rem,0.42fr)_1fr]"
+                  className="grid gap-3 border-t border-studio-line py-3.5 first:border-t-0 sm:grid-cols-[minmax(10rem,0.42fr)_1fr]"
                   key={area.label}
                 >
                   <h2 className="text-sm font-semibold text-studio-text">
@@ -310,12 +310,12 @@ function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof 
           </div>
         </div>
 
-        <div className="mt-14 grid gap-10 border-t border-studio-line pt-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="mt-10 grid gap-8 border-t border-studio-line pt-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div>
             <h2 className="type-subheading text-studio-text">
               {caseStudy.roleHeading}
             </h2>
-            <p className="type-body-lg mt-5 max-w-[var(--studio-reading-max)] text-studio-textSoft">
+            <p className="type-body-lg mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
               {caseStudy.role}
             </p>
           </div>
@@ -324,7 +324,7 @@ function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof 
             <p className="type-label text-studio-faint">
               {caseStudy.boundariesTitle}
             </p>
-            <ul className="mt-5 grid gap-2">
+            <ul className="mt-4 grid gap-2">
               {caseStudy.boundaries.map((item) => (
                 <li className="type-small text-studio-muted" key={item}>
                   {item}
@@ -332,7 +332,7 @@ function CaseEvidence({ caseStudy }: { caseStudy: NonNullable<ReturnType<typeof 
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
+            <div className="mt-6 flex flex-col gap-3 min-[390px]:flex-row min-[390px]:flex-wrap">
               <ActionLink href={caseStudy.links.liveUrl} external size="lg">
                 {caseStudy.links.liveLabel}
               </ActionLink>
@@ -362,10 +362,10 @@ function EvidenceBlock({
   body: string;
 }) {
   return (
-    <section className="border-t border-studio-line pt-6">
+    <section className="border-t border-studio-line pt-5">
       <p className="type-label text-studio-faint">{label}</p>
-      <h2 className="type-subheading mt-4 text-studio-text">{heading}</h2>
-      <p className="type-body mt-4 max-w-[var(--studio-reading-max)] text-studio-textSoft">
+      <h2 className="type-subheading mt-3 text-studio-text">{heading}</h2>
+      <p className="type-body mt-3 max-w-[var(--studio-reading-max)] text-studio-textSoft">
         {body}
       </p>
     </section>

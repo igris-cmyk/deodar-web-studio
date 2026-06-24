@@ -221,18 +221,18 @@ export function Contact() {
   return (
     <section id="contact" className="studio-canvas border-t border-studio-line py-[var(--studio-section-space)]">
       <Container size="wide">
-        <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div className="max-w-[var(--studio-reading-max)]">
             <p className="type-label text-studio-greenBright">{projectEnquiry.eyebrow}</p>
-            <h2 className="type-section mt-5 text-studio-text">{projectEnquiry.heading}</h2>
-            <p className="type-body-lg mt-6 text-studio-textSoft">{projectEnquiry.introduction}</p>
-            <p className="mt-6 border-l border-studio-green pl-5 text-base font-semibold leading-7 text-studio-text">
+            <h2 className="type-section mt-4 text-studio-text">{projectEnquiry.heading}</h2>
+            <p className="type-body-lg mt-5 text-studio-textSoft">{projectEnquiry.introduction}</p>
+            <p className="mt-5 border-l border-studio-green pl-4 text-base font-semibold leading-7 text-studio-text">
               {projectEnquiry.directStatement}
             </p>
 
-            <div className="mt-10 border-t border-studio-line pt-6">
+            <div className="mt-7 border-t border-studio-line pt-5">
               <h3 className="type-subheading text-studio-text">Useful context</h3>
-              <ul className="mt-5 grid gap-3 text-sm leading-6 text-studio-muted">
+              <ul className="mt-4 grid gap-2.5 text-sm leading-6 text-studio-muted">
                 {projectEnquiry.usefulContext.map((item) => (
                   <li key={item} className="grid grid-cols-[1.25rem_1fr] gap-3">
                     <SiteIcon name="check" className="mt-1 size-4 text-studio-greenBright" />
@@ -242,7 +242,7 @@ export function Contact() {
               </ul>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               {directWhatsAppUrl ? (
                 <ActionLink href={directWhatsAppUrl} variant="secondary" external>
                   Open WhatsApp directly
@@ -264,9 +264,9 @@ export function Contact() {
             action="#contact"
             noValidate
             onSubmit={onSubmit}
-            className="border-t border-studio-line pt-6 lg:border-t-0 lg:pt-0"
+            className="border-t border-studio-line pt-6 lg:border-t-0 lg:pt-1"
           >
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               <TextField
                 error={errors.name}
                 label={fieldLabels.name}
@@ -377,7 +377,7 @@ export function Contact() {
               />
             </div>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
                 type="submit"
                 className="inline-flex min-h-[50px] flex-1 items-center justify-center gap-2 rounded-studioSm border border-studio-green bg-studio-green px-5 py-3 text-sm font-semibold leading-none text-studio-greenInk transition duration-200 hover:border-studio-greenBright hover:bg-studio-greenBright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright motion-safe:hover:-translate-y-0.5"
@@ -403,7 +403,7 @@ export function Contact() {
               </button>
             </div>
 
-            <p className="type-small mt-5 text-studio-muted">{projectEnquiry.privacyNote}</p>
+            <p className="type-small mt-4 text-studio-muted">{projectEnquiry.privacyNote}</p>
             <p className="type-small mt-2 text-studio-muted">{projectEnquiry.copyFallbackNote}</p>
 
             {status ? (

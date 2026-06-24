@@ -26,8 +26,8 @@
   --studio-paper-line: rgba(23, 26, 23, 0.16);
   --studio-danger: #C77970;
   --studio-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --studio-section-space: clamp(5rem, 10vw, 9rem);
-  --studio-section-space-compact: clamp(3.5rem, 7vw, 6rem);
+  --studio-section-space: clamp(4rem, 7vw, 7rem);
+  --studio-section-space-compact: clamp(3rem, 5vw, 4.75rem);
   --studio-content-max: 80rem;
   --studio-wide-max: 90rem;
   --studio-reading-max: 44rem;

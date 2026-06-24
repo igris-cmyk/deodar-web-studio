@@ -12,8 +12,8 @@ export function Footer() {
 
   return (
     <footer className="studio-canvas border-t border-studio-line">
-      <Container size="wide" className="py-10 sm:py-12 lg:py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+      <Container size="wide" className="py-8 sm:py-10 lg:py-12">
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="max-w-2xl">
             <Link href="/#home" className="inline-flex rounded-studioSm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-studio-greenBright">
               <span>
@@ -21,12 +21,12 @@ export function Footer() {
                 <span className="mt-1 block text-sm text-studio-muted">{studioNavigation.brand.descriptor}</span>
               </span>
             </Link>
-            <p className="type-body mt-6 max-w-xl text-studio-textSoft">
+            <p className="type-body mt-4 max-w-xl text-studio-textSoft">
               Founder-led product direction, interface systems and full-stack engineering for focused digital products and business systems.
             </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-3 lg:grid-cols-[0.75fr_0.75fr_1fr]">
+          <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-[0.75fr_0.75fr_1fr]">
             <nav aria-label="Footer navigation">
               <h2 className="type-label text-studio-greenBright">Navigate</h2>
               <ul className="mt-4 grid gap-2">
@@ -82,7 +82,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-studio-line pt-5 text-xs leading-5 text-studio-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-studio-line pt-4 text-xs leading-5 text-studio-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {siteConfig.name}</p>
           <p>{contactConfig.locationLine}</p>
         </div>

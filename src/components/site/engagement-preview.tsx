@@ -6,10 +6,10 @@ export function EngagementPreview() {
   return (
     <section className="studio-paper py-[var(--studio-section-space-compact)]">
       <Container size="wide">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-end">
           <div>
             <p className="type-label text-studio-paperMuted">Ways to work together</p>
-            <h2 className="type-section mt-4 max-w-2xl text-studio-paperText">
+            <h2 className="type-section mt-3 max-w-2xl text-studio-paperText">
               Start at the level of responsibility the business actually needs.
             </h2>
           </div>
@@ -17,16 +17,16 @@ export function EngagementPreview() {
             <p className="type-body text-studio-paperMuted">
               From a constrained launch to an evolving custom product, each engagement has a visible boundary and a clear next decision.
             </p>
-            <ActionLink className="mt-6" href="/engagements" variant="inverse">
+            <ActionLink className="mt-5" href="/engagements" variant="inverse">
               Review engagements and pricing
             </ActionLink>
           </div>
         </div>
 
-        <ol className="mt-10 border-y border-studio-paperLine">
+        <ol className="mt-8 border-y border-studio-paperLine">
           {engagementOptions.map((option) => (
             <li
-              className="grid gap-4 border-t border-studio-paperLine py-5 first:border-t-0 md:grid-cols-[3rem_minmax(10rem,0.7fr)_minmax(0,1fr)_minmax(9rem,0.38fr)] md:items-center"
+              className="grid gap-3 border-t border-studio-paperLine py-4 first:border-t-0 md:grid-cols-[3rem_minmax(10rem,0.7fr)_minmax(0,1fr)_minmax(9rem,0.38fr)] md:items-center"
               key={option.slug}
             >
               <span className="type-label text-studio-paperMuted">{option.index}</span>
